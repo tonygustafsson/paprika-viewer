@@ -1,0 +1,16 @@
+{
+    "name": "paprika-viewer",
+    "version": "1.0.0",
+    "description": "A CoinPaprika API viewer",
+    "main": "index.js",
+    "scripts": {
+        "rediscli": "node ./node_modules/redis-cli/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Tony Gustafsson",
+    "license": "ISC",
+    "dependencies": {
+        "firebase-admin": "^8.6.0",
+        "node-fetch": "^2.6.0"
+    }
+}
