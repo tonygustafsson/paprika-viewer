@@ -13,7 +13,9 @@ Is using only public API so no key is needed.
 
 Install the dependencies...
 
-```bash
-cd svelte-app
+```
+git clone https://github.com/tonygustafsson/paprika-viewer.git
+cd paprika-viewer
 npm install
+npm run dev
 ```
