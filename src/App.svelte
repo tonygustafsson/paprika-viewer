@@ -43,6 +43,9 @@
         const tickersResponse = await fetch(urls.tickers);
         tickers = await tickersResponse.json();
 
+        // Remove coins with too low volume
+        tickers = tickers.filter(ticker => ticker.quotes.USD.volume_24h > 1000);
+
         addMarketToTickers('coinbasePro').then(result => (tickers = result));
         addMarketToTickers('binance').then(result => (tickers = result));
         addMarketToTickers('idex').then(result => (tickers = result));
