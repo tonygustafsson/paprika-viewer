@@ -1,23 +1,10 @@
 <script>
     import { onMount } from 'svelte';
     import sort from 'fast-sort';
+    import { apiUrls, debugApiUrls } from './constants';
 
-    const debugMode = false;
-
-    const urls = {
-        tickers: debugMode ? 'tickers.json' : 'https://api.coinpaprika.com/v1/tickers',
-        markets: {
-            binance: debugMode ? 'markets-binance.json' : 'https://api.coinpaprika.com/v1/exchanges/binance/markets',
-            idex: debugMode ? 'markets-idex.json' : 'https://api.coinpaprika.com/v1/exchanges/idex/markets',
-            idax: debugMode ? 'markets-idax.json' : 'https://api.coinpaprika.com/v1/exchanges/idax/markets',
-            coinbasePro: debugMode
-                ? 'markets-coinbase-pro.json'
-                : 'https://api.coinpaprika.com/v1/exchanges/coinbase-pro/markets',
-            kraken: debugMode ? 'markets-kraken.json' : 'https://api.coinpaprika.com/v1/exchanges/kraken/markets',
-            kucoin: debugMode ? 'markets-kucoin.json' : 'https://api.coinpaprika.com/v1/exchanges/kucoin/markets',
-            okex: debugMode ? 'markets-okex.json' : 'https://api.coinpaprika.com/v1/exchanges/okex/markets'
-        }
-    };
+    const debugMode = true;
+    const urls = debugMode ? debugApiUrls : apiUrls;
 
     let tickers = [];
     let sortOrder = 'marketcap';
