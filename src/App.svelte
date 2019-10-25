@@ -1,30 +1,14 @@
 <script>
     import { onMount } from 'svelte';
     import sort from 'fast-sort';
-    import { apiUrls, debugApiUrls } from './constants';
+    import { debugMode, apiUrls, debugApiUrls } from './constants';
+    import { addMarketToTickers } from './marketsMap';
 
-    const debugMode = true;
     const urls = debugMode ? debugApiUrls : apiUrls;
 
     let tickers = [];
     let sortOrder = 'marketcap';
     let sortOrderDirection = 'desc';
-
-    const addMarketToTickers = async exchange => {
-        const response = await fetch(urls.markets[exchange]);
-        const markets = await response.json();
-
-        markets.forEach(market => {
-            const matchingTicker = tickers.find(x => x.id === market.base_currency_id);
-
-            if (matchingTicker) {
-                if (!matchingTicker.exchanges) matchingTicker.exchanges = {};
-                matchingTicker.exchanges[exchange] = true;
-            }
-        });
-
-        return tickers;
-    };
 
     onMount(async () => {
         const tickersResponse = await fetch(urls.tickers);
@@ -33,13 +17,13 @@
         // Remove coins with too low volume
         tickers = tickers.filter(ticker => ticker.quotes.USD.volume_24h > 1000);
 
-        addMarketToTickers('coinbasePro').then(result => (tickers = result));
-        addMarketToTickers('binance').then(result => (tickers = result));
-        addMarketToTickers('idex').then(result => (tickers = result));
-        addMarketToTickers('idax').then(result => (tickers = result));
-        addMarketToTickers('kraken').then(result => (tickers = result));
-        addMarketToTickers('kucoin').then(result => (tickers = result));
-        addMarketToTickers('okex').then(result => (tickers = result));
+        addMarketToTickers(tickers, 'coinbasePro').then(result => (tickers = result));
+        addMarketToTickers(tickers, 'binance').then(result => (tickers = result));
+        addMarketToTickers(tickers, 'idex').then(result => (tickers = result));
+        addMarketToTickers(tickers, 'idax').then(result => (tickers = result));
+        addMarketToTickers(tickers, 'kraken').then(result => (tickers = result));
+        addMarketToTickers(tickers, 'kucoin').then(result => (tickers = result));
+        addMarketToTickers(tickers, 'okex').then(result => (tickers = result));
 
         orderTickers();
     });

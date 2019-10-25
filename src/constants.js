@@ -1,3 +1,5 @@
+export const debugMode = true;
+
 export const apiUrls = {
     tickers: 'https://api.coinpaprika.com/v1/tickers',
     markets: {
