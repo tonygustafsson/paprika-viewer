@@ -27,6 +27,11 @@
     td {
         padding: 0.5em 0;
     }
+
+    .exchanges ul {
+        list-style: none;
+        padding: 0;
+    }
 </style>
 
 <div class="container">
@@ -64,8 +69,14 @@
                     <td>{ticker.quotes.USD.percent_change_7d}%</td>
                     <td>{ticker.quotes.USD.percent_change_30d}%</td>
                     <td>{ticker.quotes.USD.percent_from_price_ath}%</td>
-                    <td>
-                        {#if ticker.exchanges}{Object.keys(ticker.exchanges).join(',')}{/if}
+                    <td class="exchanges">
+                        {#if ticker.exchanges}
+                            <ul>
+                                {#each Object.keys(ticker.exchanges) as exchange}
+                                    <li>{exchange}</li>
+                                {/each}
+                            </ul>
+                        {/if}
                     </td>
                 </tr>
             {/each}

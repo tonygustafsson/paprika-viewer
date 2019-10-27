@@ -36,7 +36,10 @@ const addMarketToTickers = async (tickersResponse, exchange) => {
 
         if (matchingTicker) {
             if (!matchingTicker.exchanges) matchingTicker.exchanges = {};
-            matchingTicker.exchanges[exchange] = true;
+
+            if (exchange === 'coinbasePro') exchange = 'coinbase';
+
+            matchingTicker.exchanges[exchange] = exchange;
         }
     });
 
