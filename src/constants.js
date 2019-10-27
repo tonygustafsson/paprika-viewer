@@ -25,3 +25,6 @@ export const debugApiUrls = {
         okex: 'markets-okex.json'
     }
 };
+
+export const minVolumeToView = 1000; // USD
+export const minMarketCapToView = 100000; // USD

@@ -1,6 +1,6 @@
 import { writable, get } from 'svelte/store';
 import { order } from './order';
-import { debugMode, apiUrls, debugApiUrls } from '../constants';
+import { debugMode, apiUrls, debugApiUrls, minVolumeToView, minMarketCapToView } from '../constants';
 import sort from 'fast-sort';
 
 const urls = debugMode ? debugApiUrls : apiUrls;
@@ -22,7 +22,9 @@ const getTickersFromApi = async () => {
     let tickersJson = await tickersResponse.json();
 
     // Remove coins with too low volume
-    tickersJson = tickersJson.filter(ticker => ticker.quotes.USD.volume_24h > 1000);
+    tickersJson = tickersJson
+        .filter(ticker => ticker.quotes.USD.volume_24h > minVolumeToView)
+        .filter(ticker => ticker.quotes.USD.market_cap > minMarketCapToView);
 
     return tickersJson;
 };
@@ -115,4 +117,5 @@ getTickersFromApi().then(async tickersResponse => {
     tickersResponse = await addMarketToTickers(tickersResponse, 'okex');
 
     tickers.updateAll(tickersResponse);
+    tickers.order();
 });
