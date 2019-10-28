@@ -37,7 +37,7 @@
 </style>
 
 <div class="container">
-    <h1>Paprika Viewer</h1>
+    <h1>🌶️ Paprika Viewer</h1>
 
     {#if $global.loading}
         <p>
