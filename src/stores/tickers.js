@@ -1,5 +1,6 @@
 import { writable, get } from 'svelte/store';
 import { order } from './order';
+import { global } from './global';
 import { debugMode, apiUrls, debugApiUrls, minVolumeToView, minMarketCapToView } from '../constants';
 import sort from 'fast-sort';
 
@@ -129,4 +130,5 @@ getTickersFromApi().then(async tickersResponse => {
 
     tickers.updateAll(tickersResponse);
     tickers.order();
+    global.isLoading(false);
 });

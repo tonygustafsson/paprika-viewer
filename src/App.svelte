@@ -1,4 +1,5 @@
 <script>
+    import { global } from './stores/global';
     import { tickers } from './stores/tickers';
     import { order } from './stores/order';
     import Filter from './Filter.svelte';
@@ -38,9 +39,15 @@
 <div class="container">
     <h1>Paprika Viewer</h1>
 
-    <Filter />
+    {#if $global.loading}
+        <p>
+            <em>Loading...</em>
+        </p>
+    {/if}
 
-    {#if $tickers.length > 0}
+    {#if !$global.loading && $tickers.length > 0}
+        <Filter />
+
         <table>
             <tr>
                 <th on:click={() => sort('rank')}>#</th>
@@ -84,9 +91,9 @@
                 </tr>
             {/each}
         </table>
-    {:else}
+    {:else if !$global.loading}
         <p>
-            <em>Loading...</em>
+            <em>No matching coins...</em>
         </p>
     {/if}
 </div>
