@@ -1,6 +1,7 @@
 <script>
     import { tickers } from './stores/tickers';
     import { order } from './stores/order';
+    import Filter from './Filter.svelte';
 
     const sort = sortBy => {
         order.setOrderBy(sortBy);
@@ -37,6 +38,8 @@
 <div class="container">
     <h1>Paprika Viewer</h1>
 
+    <Filter />
+
     {#if $tickers.length > 0}
         <table>
             <tr>
@@ -72,7 +75,7 @@
                     <td class="exchanges">
                         {#if ticker.exchanges}
                             <ul>
-                                {#each Object.keys(ticker.exchanges) as exchange}
+                                {#each ticker.exchanges as exchange}
                                     <li>{exchange}</li>
                                 {/each}
                             </ul>

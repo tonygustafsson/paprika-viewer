@@ -37,11 +37,13 @@ const addMarketToTickers = async (tickersResponse, exchange) => {
         const matchingTicker = tickersResponse.find(x => x.id === market.base_currency_id);
 
         if (matchingTicker) {
-            if (!matchingTicker.exchanges) matchingTicker.exchanges = {};
+            if (!matchingTicker.exchanges) matchingTicker.exchanges = [];
 
             if (exchange === 'coinbasePro') exchange = 'coinbase';
 
-            matchingTicker.exchanges[exchange] = exchange;
+            if (!matchingTicker.exchanges.includes(exchange)) {
+                matchingTicker.exchanges.push(exchange);
+            }
         }
     });
 
@@ -55,6 +57,15 @@ const tickersStore = () => {
         subscribe,
         updateAll: data => {
             set(data);
+        },
+        filterExchange: filterExchange => {
+            update(tickers => {
+                let newTickers = [...tickers];
+
+                newTickers = newTickers.filter(ticker => ticker.exchanges && ticker.exchanges.includes(filterExchange));
+
+                return newTickers;
+            });
         },
         order: () => {
             update(tickers => {
