@@ -93,3 +93,7 @@ const filteredTickersStore = () => {
 };
 
 export const filteredTickers = filteredTickersStore();
+
+tickers.subscribe(tickers => {
+    filteredTickers.updateAll(tickers);
+});

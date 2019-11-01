@@ -1,7 +1,6 @@
 import { writable, get } from 'svelte/store';
 import { order } from './order';
 import { global } from './global';
-import { filteredTickers } from './filteredTickers';
 import { debugMode, apiUrls, debugApiUrls, minVolumeToView, minMarketCapToView } from '../constants';
 
 const urls = debugMode ? debugApiUrls : apiUrls;
@@ -64,7 +63,5 @@ getTickersFromApi().then(async tickersResponse => {
     tickersResponse = await addMarketToTickers(tickersResponse, 'okex');
 
     tickers.updateAll(tickersResponse);
-    filteredTickers.updateAll(tickersResponse);
-
     global.isLoading(false);
 });
