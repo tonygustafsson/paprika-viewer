@@ -1,9 +1,9 @@
 <script>
-    import { tickers } from './stores/tickers';
+    import { filteredTickers } from './stores/filteredTickers';
 
     const filterExchange = e => {
         const chosenExchange = e.target.value;
-        tickers.filterExchange(chosenExchange);
+        filteredTickers.filterExchange(chosenExchange);
     };
 </script>
 

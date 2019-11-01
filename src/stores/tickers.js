@@ -48,21 +48,6 @@ const tickersStore = () => {
         subscribe,
         updateAll: data => {
             set(data);
-        },
-        filterExchange: filterExchange => {
-            update(tickers => {
-                let newTickers = [...tickers];
-
-                if (filterExchange !== 'all') {
-                    newTickers = newTickers.filter(
-                        ticker => ticker.exchanges && ticker.exchanges.includes(filterExchange)
-                    );
-                }
-
-                filteredTickers.updateAll(newTickers);
-
-                return tickers;
-            });
         }
     };
 };

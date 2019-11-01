@@ -1,4 +1,5 @@
 import { writable, get } from 'svelte/store';
+import { tickers } from './tickers';
 import { order } from './order';
 import sort from 'fast-sort';
 
@@ -67,6 +68,20 @@ const filteredTickersStore = () => {
         updateAll: data => {
             const newTickers = orderTickers(data);
             set(newTickers);
+        },
+        filterExchange: filterExchange => {
+            update(filteredTickers => {
+                const $tickers = get(tickers);
+                let newTickers = [...$tickers];
+
+                if (filterExchange !== 'all') {
+                    newTickers = newTickers.filter(
+                        ticker => ticker.exchanges && ticker.exchanges.includes(filterExchange)
+                    );
+                }
+
+                return newTickers;
+            });
         },
         order: () => {
             update(tickers => {
