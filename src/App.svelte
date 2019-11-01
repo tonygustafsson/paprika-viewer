@@ -1,12 +1,13 @@
 <script>
     import { global } from './stores/global';
     import { tickers } from './stores/tickers';
+    import { filteredTickers } from './stores/filteredTickers';
     import { order } from './stores/order';
     import Filter from './Filter.svelte';
 
     const sort = sortBy => {
         order.setOrderBy(sortBy);
-        tickers.order();
+        filteredTickers.order();
     };
 </script>
 
@@ -48,7 +49,7 @@
     {#if !$global.loading}
         <Filter />
 
-        {#if $tickers.length > 0}
+        {#if $filteredTickers.length > 0}
             <table>
                 <tr>
                     <th on:click={() => sort('rank')}>#</th>
@@ -66,7 +67,7 @@
                     <th>Exchanges</th>
                 </tr>
 
-                {#each $tickers as ticker}
+                {#each $filteredTickers as ticker}
                     <tr>
                         <td>{ticker.rank}</td>
                         <td>{ticker.symbol}</td>
