@@ -1,9 +1,7 @@
 import { global } from '../stores/global';
 import { tickers } from '../stores/tickers';
 import {
-    debugMode,
     apiUrls,
-    debugApiUrls,
     minVolumeToView,
     minMarketCapToView,
     localStorageExpireTimeoutMs,
@@ -18,10 +16,8 @@ localforage.config({
     storeName: localStorageDatabaseName
 });
 
-const urls = debugMode ? debugApiUrls : apiUrls;
-
 const getTickersFromApi = async () => {
-    const tickersResponse = await fetch(urls.tickers);
+    const tickersResponse = await fetch(apiUrls.tickers);
     let tickersJson = await tickersResponse.json();
 
     // Remove coins with too low volume
@@ -33,7 +29,7 @@ const getTickersFromApi = async () => {
 };
 
 const addMarketToTickers = async (tickersResponse, exchange) => {
-    const response = await fetch(urls.markets[exchange]);
+    const response = await fetch(apiUrls.markets[exchange]);
     const markets = await response.json();
 
     markets.forEach(market => {
@@ -83,7 +79,7 @@ export const getTickers = () => {
                     global.isLoading(false);
                 } else {
                     // If it's not stored, get the data from API
-                    console.log(`Fetching data from API (debug mode: ${debugMode})`);
+                    console.log(`Fetching data from API.`);
                     getTickersFromApi().then(async tickersResponse => {
                         tickersResponse = await addMarketToTickers(tickersResponse, 'coinbasePro');
                         tickersResponse = await addMarketToTickers(tickersResponse, 'binance');
