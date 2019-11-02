@@ -1,7 +1,7 @@
 <script>
     import { global } from './stores/global';
-    import Filter from './Filter.svelte';
-    import Tickers from './Tickers.svelte';
+    import Filter from './components/Filter.svelte';
+    import Tickers from './components/Tickers.svelte';
 </script>
 
 <style>

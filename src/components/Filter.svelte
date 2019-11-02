@@ -1,5 +1,5 @@
 <script>
-    import { filteredTickers } from './stores/filteredTickers';
+    import { filteredTickers } from '../stores/filteredTickers';
 
     const filterExchange = e => {
         const chosenExchange = e.target.value;
