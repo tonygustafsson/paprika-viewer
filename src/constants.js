@@ -28,3 +28,7 @@ export const debugApiUrls = {
 
 export const minVolumeToView = 1000; // USD
 export const minMarketCapToView = 100000; // USD
+export const localStorageExpireTimeoutMs = 5 * 60 * 1000; // 5 minutes
+export const localStorageDatabaseName = 'paprika-viewer';
+export const localStorageTickersTable = 'tickers';
+export const localStorageFetchTimeTable = 'fetchTime';

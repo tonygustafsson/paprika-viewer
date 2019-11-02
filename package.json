@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "fast-sort": "^1.6.0",
+    "localforage": "^1.7.3",
     "sirv-cli": "^0.4.5"
   },
   "scripts": {
