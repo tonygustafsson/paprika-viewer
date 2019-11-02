@@ -13,9 +13,13 @@
     }
 
     select {
-        padding: 0.2em;
-        margin: 1em;
+        padding: 0.2em 0.5em;
+        margin: 1em 0.5em;
+        background-color: #202020;
+        color: #fff;
         font-size: 100%;
+        border: 0;
+        vertical-align: middle;
     }
 </style>
 
