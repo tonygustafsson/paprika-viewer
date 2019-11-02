@@ -14,6 +14,10 @@ Built with svelte.js and is fetching live data from CoinPaprika with client AJAX
 Cache the API data in localForage to avoid adding too much load on CoinPaprika.
 Using only public API so no key is needed.
 
+## Screenshot
+
+![Paprika Viewer](paprika-viewer.png 'Paprika Viewer')
+
 ## Upcoming
 
 -   Filtering on all values.
