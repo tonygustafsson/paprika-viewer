@@ -1,21 +1,23 @@
 # Paprika Viewer
 
-Not for use in production. I do have a usecase though where this tool is helpful.
+Fetches all cryptocurrencies and their tickers. Also showing which coins are listing on what exchange in the same view. This is useful since no other coin trackers are giving this ability. I often try to find coins that has gone +25% or -25% in a day, but I'm not interested in coins I cannot buy or coins with a volume that is too low.
 
-Fetches all cryptocurrencies and their tickers. Also showing which coins are listing on what exchange. Using the fastest sorting algoritm I could find.
+IDEX for instance is nice, but don't give us the ability to see winners and loosers over a week. Also most of their markets has such low volume that it's often a bad buy.
 
-I couldn't find any coin helpers out there that could show me all coins and made them sortable while still being able to filter out stupid small projects.
+Since all coins are listed in one table, it takes a second or two to sort them. I'm using the fastest sorting algoritm I could find, but I will try to improve on this.
+
+This project is in a really early stage, Please use it as you wish, but there are no hosted site yet.
 
 ## Tech
 
 Built with svelte.js and is fetching live data from CoinPaprika with client AJAX calls.
-Is using only public API so no key is needed.
+Cache the API data in localForage to avoid adding too much load on CoinPaprika.
+Using only public API so no key is needed.
 
 ## Upcoming
 
--   Making the exchanges info none ugly
--   Cache info in localStorage for some minutes
--   Filtering on market cap and volume
+-   Filtering on all values.
+-   Easier way of adding more markets
 
 ## Get started
 
