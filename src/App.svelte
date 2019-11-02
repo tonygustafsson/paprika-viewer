@@ -1,7 +1,10 @@
 <script>
     import { global } from './stores/global';
+    import { getTickers } from './utils/getTickers';
     import Filter from './components/Filter.svelte';
     import Tickers from './components/Tickers.svelte';
+
+    getTickers();
 </script>
 
 <style>
