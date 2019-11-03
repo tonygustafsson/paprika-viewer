@@ -1,14 +1,17 @@
 <script>
     import { filteredTickers } from '../stores/filteredTickers';
+    import { filter } from '../stores/filter';
 
     const filterExchange = e => {
         const chosenExchange = e.target.value;
-        filteredTickers.filterExchange(chosenExchange);
+        filter.setExchange(chosenExchange);
+        filteredTickers.filter();
     };
 
     const filterVolume = e => {
         const chosenVolume = e.target.value;
-        filteredTickers.filterVolume(chosenVolume);
+        filter.setVolume(chosenVolume);
+        filteredTickers.filter();
     };
 </script>
 
