@@ -85,6 +85,64 @@ const filteredTickersStore = () => {
                 return newTickers.filter(ticker => ticker.exchanges && ticker.exchanges.includes(filterExchange));
             });
         },
+        filterVolume: filterVolume => {
+            update(filteredTickers => {
+                const $tickers = get(tickers);
+                let newTickers = [...$tickers];
+
+                if (filterVolume === '0') {
+                    return newTickers.filter(ticker => ticker.quotes.USD.volume_24h < 100000);
+                }
+
+                if (filterVolume === '100000') {
+                    return newTickers.filter(
+                        ticker => ticker.quotes.USD.volume_24h >= 100000 && ticker.quotes.USD.volume_24h <= 250000
+                    );
+                }
+
+                if (filterVolume === '250000') {
+                    return newTickers.filter(
+                        ticker => ticker.quotes.USD.volume_24h > 250000 && ticker.quotes.USD.volume_24h <= 500000
+                    );
+                }
+
+                if (filterVolume === '500000') {
+                    return newTickers.filter(
+                        ticker => ticker.quotes.USD.volume_24h > 500000 && ticker.quotes.USD.volume_24h <= 1000000
+                    );
+                }
+
+                if (filterVolume === '1000000') {
+                    return newTickers.filter(
+                        ticker => ticker.quotes.USD.volume_24h > 1000000 && ticker.quotes.USD.volume_24h <= 5000000
+                    );
+                }
+
+                if (filterVolume === '5000000') {
+                    return newTickers.filter(
+                        ticker => ticker.quotes.USD.volume_24h > 5000000 && ticker.quotes.USD.volume_24h <= 10000000
+                    );
+                }
+
+                if (filterVolume === '10000000') {
+                    return newTickers.filter(
+                        ticker => ticker.quotes.USD.volume_24h > 10000000 && ticker.quotes.USD.volume_24h <= 20000000
+                    );
+                }
+
+                if (filterVolume === '20000000') {
+                    return newTickers.filter(
+                        ticker => ticker.quotes.USD.volume_24h > 20000000 && ticker.quotes.USD.volume_24h <= 50000000
+                    );
+                }
+
+                if (filterVolume === '50000000') {
+                    return newTickers.filter(ticker => ticker.quotes.USD.volume_24h > 50000000);
+                }
+
+                return newTickers;
+            });
+        },
         order: () => {
             update(tickers => {
                 const newTickers = orderTickers(tickers);

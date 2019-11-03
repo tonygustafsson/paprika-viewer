@@ -5,6 +5,11 @@
         const chosenExchange = e.target.value;
         filteredTickers.filterExchange(chosenExchange);
     };
+
+    const filterVolume = e => {
+        const chosenVolume = e.target.value;
+        filteredTickers.filterVolume(chosenVolume);
+    };
 </script>
 
 <style>
@@ -31,5 +36,19 @@
         <option value="kraken">Kraken</option>
         <option value="kucoin">Kucoin</option>
         <option value="okex">OKEx</option>
+    </select>
+
+    <label for="filter-exchange">Volume:</label>
+    <select id="filter-exchange" name="filter-exchange" on:change={e => filterVolume(e)}>
+        <option value="all">All</option>
+        <option value="0">0 - 100k</option>
+        <option value="100000">100k - 250k</option>
+        <option value="250000">250k - 500k</option>
+        <option value="500000">500k - 1m</option>
+        <option value="1000000">1m - 5m</option>
+        <option value="5000000">5m - 10m</option>
+        <option value="10000000">10m - 20m</option>
+        <option value="20000000">20m - 50m</option>
+        <option value="50000000">50m+</option>
     </select>
 </div>
