@@ -27,6 +27,7 @@
     <label for="filter-exchange">Exchange:</label>
     <select id="filter-exchange" name="filter-exchange" on:change={e => filterExchange(e)}>
         <option value="all">All</option>
+        <option value="any">Any</option>
         <option value="binance">Binance</option>
         <option value="coinbase">Coinbase</option>
         <option value="idax">IDAX</option>

@@ -74,13 +74,15 @@ const filteredTickersStore = () => {
                 const $tickers = get(tickers);
                 let newTickers = [...$tickers];
 
-                if (filterExchange !== 'all') {
-                    newTickers = newTickers.filter(
-                        ticker => ticker.exchanges && ticker.exchanges.includes(filterExchange)
-                    );
+                if (!filterExchange || filterExchange === 'all') {
+                    return newTickers;
                 }
 
-                return newTickers;
+                if (filterExchange === 'any') {
+                    return newTickers.filter(ticker => ticker.exchanges && ticker.exchanges.length > 0);
+                }
+
+                return newTickers.filter(ticker => ticker.exchanges && ticker.exchanges.includes(filterExchange));
             });
         },
         order: () => {
