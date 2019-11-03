@@ -8,10 +8,6 @@
 </script>
 
 <style>
-    .filter {
-        padding-bottom: 1em;
-    }
-
     select {
         padding: 0.2em 0.5em;
         margin: 1em 0.5em;

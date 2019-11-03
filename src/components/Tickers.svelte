@@ -23,6 +23,8 @@
     }
 </style>
 
+<p>Visible coins: {$filteredTickers.length}.</p>
+
 {#if $filteredTickers.length > 0}
     <table>
         <tr>
