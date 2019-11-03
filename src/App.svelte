@@ -3,6 +3,7 @@
     import { getTickers } from './utils/getTickers';
     import Filter from './components/Filter.svelte';
     import Tickers from './components/Tickers.svelte';
+    import Loader from './components/Loader.svelte';
 
     getTickers();
 </script>
@@ -14,14 +15,10 @@
     }
 </style>
 
+<Loader />
+
 <div class="container">
     <h1>🌶️ Paprika Viewer</h1>
-
-    {#if $global.loading}
-        <p>
-            <em>Loading...</em>
-        </p>
-    {/if}
 
     {#if !$global.loading}
         <Filter />
