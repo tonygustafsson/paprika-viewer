@@ -8,7 +8,11 @@
     }
 
     td {
-        padding: 0.5em 0;
+        padding: 0.5em;
+    }
+
+    a {
+        color: #fff;
     }
 
     .exchanges ul {
@@ -19,7 +23,9 @@
 
 <tr>
     <td>{ticker.rank}</td>
-    <td>{ticker.symbol}</td>
+    <td>
+        <a href="https://coinpaprika.com/coin/{ticker.id}">{ticker.symbol}</a>
+    </td>
     <td>{ticker.name}</td>
     <td>{ticker.quotes.USD.price.toFixed(2)} USD</td>
     <td>{ticker.quotes.USD.market_cap} USD</td>
