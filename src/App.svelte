@@ -1,11 +1,14 @@
 <script>
+    import { onMount } from 'svelte';
     import { global } from './stores/global';
     import { getTickers } from './utils/getTickers';
     import Filter from './components/Filter.svelte';
     import Tickers from './components/Tickers.svelte';
     import Loader from './components/Loader.svelte';
 
-    getTickers();
+    onMount(async () => {
+        getTickers();
+    });
 </script>
 
 <style>
