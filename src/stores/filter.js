@@ -2,14 +2,22 @@ import { writable } from 'svelte/store';
 
 const initValue = {
     exchange: 'all',
-    volume: 'all'
+    volume: 'all',
+    marketCap: 'all'
 };
 
 const filterStore = () => {
-    const { subscribe, update } = writable(initValue);
+    const { subscribe, set, update } = writable(initValue);
 
     return {
         subscribe,
+        update: filter => {
+            update(filters => {
+                let newFilter = { ...filters };
+                newFilter.exchange = filter;
+                return newFilter;
+            });
+        },
         setExchange: filter => {
             update(filters => {
                 let newFilter = { ...filters };
@@ -23,6 +31,16 @@ const filterStore = () => {
                 newFilter.volume = filter;
                 return newFilter;
             });
+        },
+        setMarketCap: filter => {
+            update(filters => {
+                let newFilter = { ...filters };
+                newFilter.marketCap = filter;
+                return newFilter;
+            });
+        },
+        reset: () => {
+            set(initValue);
         }
     };
 };

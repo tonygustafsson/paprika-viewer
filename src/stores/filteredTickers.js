@@ -135,6 +135,56 @@ const filteredTickersStore = () => {
                     newTickers = newTickers.filter(ticker => ticker.quotes.USD.volume_24h > 50000000);
                 }
 
+                if ($filter.marketCap === '0') {
+                    newTickers = newTickers.filter(ticker => ticker.quotes.USD.market_cap < 100000);
+                }
+
+                if ($filter.marketCap === '100000') {
+                    newTickers = newTickers.filter(
+                        ticker => ticker.quotes.USD.market_cap >= 100000 && ticker.quotes.USD.market_cap <= 250000
+                    );
+                }
+
+                if ($filter.marketCap === '250000') {
+                    newTickers = newTickers.filter(
+                        ticker => ticker.quotes.USD.market_cap > 250000 && ticker.quotes.USD.market_cap <= 500000
+                    );
+                }
+
+                if ($filter.marketCap === '500000') {
+                    newTickers = newTickers.filter(
+                        ticker => ticker.quotes.USD.market_cap > 500000 && ticker.quotes.USD.market_cap <= 1000000
+                    );
+                }
+
+                if ($filter.marketCap === '1000000') {
+                    newTickers = newTickers.filter(
+                        ticker => ticker.quotes.USD.market_cap > 1000000 && ticker.quotes.USD.market_cap <= 5000000
+                    );
+                }
+
+                if ($filter.marketCap === '5000000') {
+                    newTickers = newTickers.filter(
+                        ticker => ticker.quotes.USD.market_cap > 5000000 && ticker.quotes.USD.market_cap <= 10000000
+                    );
+                }
+
+                if ($filter.marketCap === '10000000') {
+                    newTickers = newTickers.filter(
+                        ticker => ticker.quotes.USD.market_cap > 10000000 && ticker.quotes.USD.market_cap <= 20000000
+                    );
+                }
+
+                if ($filter.marketCap === '20000000') {
+                    newTickers = newTickers.filter(
+                        ticker => ticker.quotes.USD.market_cap > 20000000 && ticker.quotes.USD.market_cap <= 50000000
+                    );
+                }
+
+                if ($filter.marketCap === '50000000') {
+                    newTickers = newTickers.filter(ticker => ticker.quotes.USD.market_cap > 50000000);
+                }
+
                 return newTickers;
             });
         },
