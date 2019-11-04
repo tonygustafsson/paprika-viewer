@@ -17,9 +17,7 @@
         background: #111;
         text-align: left;
         cursor: pointer;
-    }
-    th {
-        padding: 0.5em 0;
+        padding: 0.5em;
     }
 </style>
 

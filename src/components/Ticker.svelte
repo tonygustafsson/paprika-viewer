@@ -27,9 +27,9 @@
         <a href="https://coinpaprika.com/coin/{ticker.id}">{ticker.symbol}</a>
     </td>
     <td>{ticker.name}</td>
-    <td>{ticker.quotes.USD.price.toFixed(2)} USD</td>
-    <td>{ticker.quotes.USD.market_cap} USD</td>
-    <td>{ticker.quotes.USD.volume_24h.toFixed(0)} USD</td>
+    <td>${ticker.quotes.USD.price.toFixed(2)}</td>
+    <td>${ticker.quotes.USD.market_cap}</td>
+    <td>${ticker.quotes.USD.volume_24h.toFixed(0)}</td>
     <td>{ticker.quotes.USD.percent_change_1h}%</td>
     <td>{ticker.quotes.USD.percent_change_12h}%</td>
     <td>{ticker.quotes.USD.percent_change_24h}%</td>
