@@ -19,6 +19,11 @@
         list-style: none;
         padding: 0;
     }
+
+    .graph-img {
+        margin: 0 4px 4px 0;
+        vertical-align: middle;
+    }
 </style>
 
 <tr>
@@ -33,7 +38,16 @@
     <td>{ticker.quotes.USD.percent_change_1h}%</td>
     <td>{ticker.quotes.USD.percent_change_12h}%</td>
     <td>{ticker.quotes.USD.percent_change_24h}%</td>
-    <td>{ticker.quotes.USD.percent_change_7d}%</td>
+    <td>
+        <img
+            loading="lazy"
+            class="graph-img"
+            width="120"
+            height="23"
+            src="https://graphs{Math.random() > 0.5 ? '2' : ''}.coinpaprika.com/currency/chart/{ticker.id}/7d/chart.svg"
+            alt="" />
+        {ticker.quotes.USD.percent_change_7d}%
+    </td>
     <td>{ticker.quotes.USD.percent_change_30d}%</td>
     <td>{ticker.quotes.USD.percent_from_price_ath}%</td>
     <td class="exchanges">
