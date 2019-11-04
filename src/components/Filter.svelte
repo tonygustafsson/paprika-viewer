@@ -3,26 +3,19 @@
     import { filter } from '../stores/filter';
 
     const filterExchange = e => {
-        const chosenExchange = e.target.value;
-        filter.setExchange(chosenExchange);
-        filteredTickers.filter();
+        filter.setExchange(e.target.value);
     };
 
     const filterVolume = e => {
-        const chosenVolume = e.target.value;
-        filter.setVolume(chosenVolume);
-        filteredTickers.filter();
+        filter.setVolume(e.target.value);
     };
 
     const filterMarketCap = e => {
-        const chosenMarketCap = e.target.value;
-        filter.setMarketCap(chosenMarketCap);
-        filteredTickers.filter();
+        filter.setMarketCap(e.target.value);
     };
 
     const resetFilters = () => {
         filter.reset();
-        filteredTickers.filter();
     };
 </script>
 
@@ -63,8 +56,8 @@
         <option value="okex">OKEx</option>
     </select>
 
-    <label for="filter-volume">Volume:</label>
-    <select id="filter-volume" name="filter-volume" value={$filter.volume} on:change={e => filterVolume(e)}>
+    <label for="filter-marketcap">MarketCap:</label>
+    <select id="filter-marketcap" name="filter-marketcap" value={$filter.marketCap} on:change={e => filterMarketCap(e)}>
         <option value="all">All</option>
         <option value="0">0 - 100k</option>
         <option value="100000">100k - 250k</option>
@@ -77,8 +70,8 @@
         <option value="50000000">50m+</option>
     </select>
 
-    <label for="filter-marketcap">MarketCap:</label>
-    <select id="filter-marketcap" name="filter-marketcap" value={$filter.marketCap} on:change={e => filterMarketCap(e)}>
+    <label for="filter-volume">Volume:</label>
+    <select id="filter-volume" name="filter-volume" value={$filter.volume} on:change={e => filterVolume(e)}>
         <option value="all">All</option>
         <option value="0">0 - 100k</option>
         <option value="100000">100k - 250k</option>

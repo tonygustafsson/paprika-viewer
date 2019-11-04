@@ -202,3 +202,8 @@ export const filteredTickers = filteredTickersStore();
 tickers.subscribe(tickers => {
     filteredTickers.updateAll(tickers);
 });
+
+filter.subscribe(filter => {
+    filteredTickers.filter();
+    filteredTickers.order();
+});
