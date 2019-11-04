@@ -20,10 +20,15 @@ const getTickersFromApi = async () => {
     const tickersResponse = await fetch(apiUrls.tickers);
     let tickersJson = await tickersResponse.json();
 
-    // Remove coins with too low volume
-    tickersJson = tickersJson
-        .filter(ticker => ticker.quotes.USD.volume_24h > minVolumeToView)
-        .filter(ticker => ticker.quotes.USD.market_cap > minMarketCapToView);
+    if (minVolumeToView !== 0) {
+        // Remove coins with too low volume
+        tickersJson = tickersJson.filter(ticker => ticker.quotes.USD.volume_24h > minVolumeToView);
+    }
+
+    if (minMarketCapToView !== 0) {
+        // Remove coins with too low marketcap
+        tickersJson = tickersJson.filter(ticker => ticker.quotes.USD.market_cap > minMarketCapToView);
+    }
 
     return tickersJson;
 };
