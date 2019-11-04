@@ -24,6 +24,14 @@
         margin: 0 4px 4px 0;
         vertical-align: middle;
     }
+
+    .graph-img.positive {
+        filter: hue-rotate(210deg);
+    }
+
+    .graph-img.negative {
+        filter: hue-rotate(115deg);
+    }
 </style>
 
 <tr>
@@ -42,6 +50,8 @@
         <img
             loading="lazy"
             class="graph-img"
+            class:positive={ticker.quotes.USD.percent_change_7d > 0}
+            class:negative={ticker.quotes.USD.percent_change_7d < 0}
             width="120"
             height="23"
             src="https://graphs{Math.random() > 0.5 ? '2' : ''}.coinpaprika.com/currency/chart/{ticker.id}/7d/chart.svg"
