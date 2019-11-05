@@ -1,5 +1,11 @@
 <script>
+    import { selectedTicker } from '../stores/selectedTicker';
+
     export let ticker;
+
+    const selectTicker = ticker => {
+        selectedTicker.set(ticker);
+    };
 </script>
 
 <style>
@@ -37,9 +43,11 @@
 <tr>
     <td>{ticker.rank}</td>
     <td>
-        <a href="https://coinpaprika.com/coin/{ticker.id}">{ticker.symbol}</a>
+        <a href on:click|preventDefault={() => selectTicker(ticker)}>{ticker.symbol}</a>
     </td>
-    <td>{ticker.name}</td>
+    <td>
+        <a href on:click|preventDefault={() => selectTicker(ticker)}>{ticker.name}</a>
+    </td>
     <td>${ticker.quotes.USD.price.toFixed(2)}</td>
     <td>${ticker.quotes.USD.market_cap}</td>
     <td>${ticker.quotes.USD.volume_24h.toFixed(0)}</td>

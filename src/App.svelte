@@ -5,6 +5,7 @@
     import Filter from './components/Filter.svelte';
     import Tickers from './components/Tickers.svelte';
     import Loader from './components/Loader.svelte';
+    import TickerInfoBar from './components/TickerInfoBar.svelte';
 
     onMount(() => {
         getTickers();
@@ -31,6 +32,8 @@
     </h1>
 
     {#if !$global.loading}
+        <TickerInfoBar />
+
         <Filter />
 
         <Tickers />
