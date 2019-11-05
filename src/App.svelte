@@ -16,12 +16,19 @@
         width: 80%;
         margin: 0 auto;
     }
+
+    .logo-link {
+        color: #fff;
+        text-decoration: none;
+    }
 </style>
 
 <Loader />
 
 <div class="container">
-    <h1>🌶️ Paprika Viewer</h1>
+    <h1>
+        <a class="logo-link" href="/">🌶️ Paprika Viewer</a>
+    </h1>
 
     {#if !$global.loading}
         <Filter />
