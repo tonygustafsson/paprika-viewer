@@ -7,6 +7,8 @@
         order.setOrderBy(sortBy);
         filteredTickers.order();
     };
+
+    $: orderSymbol = $order.direction === 'desc' ? '↓' : '↑';
 </script>
 
 <style>
@@ -26,18 +28,54 @@
 {#if $filteredTickers.length > 0}
     <table>
         <tr>
-            <th on:click={() => sort('rank')}>#</th>
-            <th on:click={() => sort('symbol')}>Symbol</th>
-            <th on:click={() => sort('name')}>Name</th>
-            <th on:click={() => sort('price')}>Price</th>
-            <th on:click={() => sort('marketcap')}>Marketcap</th>
-            <th on:click={() => sort('volume_24h')}>Volume 24h</th>
-            <th on:click={() => sort('1h')}>1h</th>
-            <th on:click={() => sort('12h')}>12h</th>
-            <th on:click={() => sort('24h')}>24h</th>
-            <th on:click={() => sort('7d')}>7d</th>
-            <th on:click={() => sort('30d')}>30d</th>
-            <th on:click={() => sort('ath')}>From ATH</th>
+            <th on:click={() => sort('rank')}>
+                #
+                {#if $order.by === 'rank'}{orderSymbol}{/if}
+            </th>
+            <th on:click={() => sort('symbol')}>
+                Symbol
+                {#if $order.by === 'symbol'}{orderSymbol}{/if}
+            </th>
+            <th on:click={() => sort('name')}>
+                Name
+                {#if $order.by === 'name'}{orderSymbol}{/if}
+            </th>
+            <th on:click={() => sort('price')}>
+                Price
+                {#if $order.by === 'price'}{orderSymbol}{/if}
+            </th>
+            <th on:click={() => sort('marketcap')}>
+                Marketcap
+                {#if $order.by === 'marketcap'}{orderSymbol}{/if}
+            </th>
+            <th on:click={() => sort('volume_24h')}>
+                Volume 24h
+                {#if $order.by === 'volume_24h'}{orderSymbol}{/if}
+            </th>
+            <th on:click={() => sort('1h')}>
+                1h
+                {#if $order.by === '1h'}{orderSymbol}{/if}
+            </th>
+            <th on:click={() => sort('12h')}>
+                12h
+                {#if $order.by === '12h'}{orderSymbol}{/if}
+            </th>
+            <th on:click={() => sort('24h')}>
+                24h
+                {#if $order.by === '24h'}{orderSymbol}{/if}
+            </th>
+            <th on:click={() => sort('7d')}>
+                7d
+                {#if $order.by === '7d'}{orderSymbol}{/if}
+            </th>
+            <th on:click={() => sort('30d')}>
+                30d
+                {#if $order.by === '30d'}{orderSymbol}{/if}
+            </th>
+            <th on:click={() => sort('ath')}>
+                From ATH
+                {#if $order.by === 'ath'}{orderSymbol}{/if}
+            </th>
             <th>Exchanges</th>
         </tr>
 

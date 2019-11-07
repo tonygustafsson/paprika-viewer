@@ -5,8 +5,9 @@
     import Filter from './components/Filter.svelte';
     import Tickers from './components/Tickers.svelte';
     import Loader from './components/Loader.svelte';
+    import TickerInfoBar from './components/TickerInfoBar.svelte';
 
-    onMount(async () => {
+    onMount(() => {
         getTickers();
     });
 </script>
@@ -16,14 +17,23 @@
         width: 80%;
         margin: 0 auto;
     }
+
+    .logo-link {
+        color: #fff;
+        text-decoration: none;
+    }
 </style>
 
 <Loader />
 
 <div class="container">
-    <h1>🌶️ Paprika Viewer</h1>
+    <h1>
+        <a class="logo-link" href="/">🌶️ Paprika Viewer</a>
+    </h1>
 
     {#if !$global.loading}
+        <TickerInfoBar />
+
         <Filter />
 
         <Tickers />
