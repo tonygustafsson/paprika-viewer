@@ -1,10 +1,15 @@
 <script>
     import { selectedTicker } from '../stores/selectedTicker';
+    import { favorites } from '../stores/favorites';
 
     export let ticker;
 
     const selectTicker = ticker => {
         selectedTicker.set(ticker);
+    };
+
+    const addAsFavorite = symbol => {
+        favorites.add(symbol);
     };
 </script>
 
@@ -38,10 +43,20 @@
     .graph-img.negative {
         filter: hue-rotate(115deg);
     }
+
+    .favorite {
+        font-size: 250%;
+        vertical-align: sub;
+        margin-left: 0.25em;
+        cursor: pointer;
+    }
 </style>
 
 <tr>
-    <td>{ticker.rank}</td>
+    <td>
+        {ticker.rank}
+        <span on:click={() => addAsFavorite(ticker.symbol)} class="favorite">☆</span>
+    </td>
     <td>
         <a href on:click|preventDefault={() => selectTicker(ticker)}>{ticker.symbol}</a>
     </td>
