@@ -18,4 +18,4 @@ export const localStorageExpireTimeoutMs = 5 * 60 * 1000; // 5 minutes
 export const localStorageDatabaseName = 'paprika-viewer';
 export const localStorageTickersTable = 'tickers';
 export const localStorageGlobalMarketTable = 'globalMarket';
-export const localStorageFetchTimeTable = 'fetchTime';
+export const localStorageFetchTimeTablePrefix = 'fetchTime';
