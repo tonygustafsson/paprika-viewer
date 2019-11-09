@@ -19,6 +19,7 @@
     li {
         display: inline-block;
         margin-right: 2em;
+        color: #8b8b8b;
     }
 
     li:last-child {
