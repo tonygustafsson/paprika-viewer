@@ -1,16 +1,16 @@
 import { writable } from 'svelte/store';
 
-const initValue = [];
+const initValue = {};
 
 const favoritesStore = () => {
     const { subscribe, set, update } = writable(initValue);
 
     return {
         subscribe,
-        add: symbol => {
+        toggle: symbol => {
             update(favorites => {
                 let newFavs = { ...favorites };
-                newFavs.push(symbol);
+                newFavs[symbol] = !newFavs[symbol];
                 return newFavs;
             });
         }
