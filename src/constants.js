@@ -14,8 +14,14 @@ export const apiUrls = {
 
 export const minVolumeToView = 100; // USD
 export const minMarketCapToView = 1000; // USD
-export const localStorageExpireTimeoutMs = 5 * 60 * 1000; // 5 minutes
 export const localStorageDatabaseName = 'paprika-viewer';
 export const localStorageTickersTable = 'tickers';
 export const localStorageGlobalMarketTable = 'globalMarket';
+export const localStorageFavoritesTable = 'favorites';
 export const localStorageFetchTimeTablePrefix = 'fetchTime';
+
+export const localStorageCacheTimeout = {
+    tickers: 5 * 60 * 1000, // 5 minutes,
+    globalMarket: 5 * 60 * 1000, // 5 minutes,
+    favorites: 0
+};

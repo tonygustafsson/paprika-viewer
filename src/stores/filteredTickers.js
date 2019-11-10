@@ -2,6 +2,7 @@ import { writable, get } from 'svelte/store';
 import { tickers } from './tickers';
 import { order } from './order';
 import { filter } from './filter';
+import { favorites } from './favorites';
 import sort from 'fast-sort';
 
 const initValue = [];
@@ -76,6 +77,11 @@ const filteredTickersStore = () => {
                 const $filter = get(filter);
 
                 let newTickers = [...$tickers];
+
+                if ($filter.favorites === true) {
+                    const $favorites = get(favorites);
+                    newTickers = newTickers.filter(ticker => $favorites.hasOwnProperty(ticker.symbol));
+                }
 
                 if ($filter.exchange === 'any') {
                     newTickers = newTickers.filter(ticker => ticker.exchanges && ticker.exchanges.length > 0);

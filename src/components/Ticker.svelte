@@ -8,7 +8,7 @@
         selectedTicker.set(ticker);
     };
 
-    const addAsFavorite = symbol => {
+    const toggleFavorite = symbol => {
         favorites.toggle(symbol);
     };
 </script>
@@ -55,7 +55,7 @@
 <tr>
     <td>
         {ticker.rank}
-        <span on:click={() => addAsFavorite(ticker.symbol)} class="favorite">
+        <span on:click={() => toggleFavorite(ticker.symbol)} class="favorite">
             {#if $favorites[ticker.symbol]}★{:else}☆{/if}
         </span>
     </td>

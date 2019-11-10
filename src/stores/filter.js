@@ -3,7 +3,8 @@ import { writable } from 'svelte/store';
 const initValue = {
     exchange: 'all',
     volume: 'all',
-    marketCap: 'all'
+    marketCap: 'all',
+    favorites: false
 };
 
 const filterStore = () => {
@@ -36,6 +37,13 @@ const filterStore = () => {
             update(filters => {
                 let newFilter = { ...filters };
                 newFilter.marketCap = filter;
+                return newFilter;
+            });
+        },
+        setFavorites: filter => {
+            update(filters => {
+                let newFilter = { ...filters };
+                newFilter.favorites = filter;
                 return newFilter;
             });
         },

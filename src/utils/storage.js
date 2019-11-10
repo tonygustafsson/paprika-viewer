@@ -1,5 +1,5 @@
 import localforage from 'localforage';
-import { localStorageExpireTimeoutMs, localStorageDatabaseName, localStorageFetchTimeTablePrefix } from '../constants';
+import { localStorageDatabaseName, localStorageFetchTimeTablePrefix, localStorageCacheTimeout } from '../constants';
 
 localforage.config({
     name: localStorageDatabaseName,
@@ -7,12 +7,14 @@ localforage.config({
 });
 
 export const getFromStorage = async table => {
-    const fetchTime = await localforage.getItem(`${localStorageFetchTimeTablePrefix}_${table}`);
+    if (localStorageCacheTimeout[table] && localStorageCacheTimeout[table] > 0) {
+        const fetchTime = await localforage.getItem(`${localStorageFetchTimeTablePrefix}_${table}`);
 
-    if (fetchTime && Date.now() - fetchTime > localStorageExpireTimeoutMs) {
-        // Expire the cache if it's too old
-        console.log(`Cache expired for ${table}.`);
-        return null;
+        if (fetchTime && Date.now() - fetchTime > localStorageCacheTimeout[table]) {
+            // Expire the cache if it's too old
+            console.log(`Cache expired for ${table}.`);
+            return null;
+        }
     }
 
     console.log(`Fetching ${table} from local storage`);
@@ -22,8 +24,10 @@ export const getFromStorage = async table => {
 };
 
 export const saveToStorage = async (table, data) => {
-    // Set the last time data were saved to storage
-    localforage.setItem(`${localStorageFetchTimeTablePrefix}_${table}`, Date.now());
+    if (localStorageCacheTimeout[table] && localStorageCacheTimeout[table] > 0) {
+        // Set the last time data were saved to storage
+        localforage.setItem(`${localStorageFetchTimeTablePrefix}_${table}`, Date.now());
+    }
 
     console.log(`Saving ${table} to local storage`);
 

@@ -14,6 +14,10 @@
         filter.setMarketCap(e.target.value);
     };
 
+    const filterFavorites = e => {
+        filter.setFavorites(e.target.checked);
+    };
+
     const resetFilters = () => {
         filter.reset();
     };
@@ -27,6 +31,14 @@
         color: #fff;
         font-size: 100%;
         border: 0;
+        vertical-align: middle;
+    }
+
+    input[type='checkbox'] {
+        margin: 1em 0.5em;
+        background-color: #202020;
+        color: #fff;
+        font-size: 100%;
         vertical-align: middle;
     }
 
@@ -83,6 +95,14 @@
         <option value="20000000">20m - 50m</option>
         <option value="50000000">50m+</option>
     </select>
+
+    <label for="filter-favorites">Favorites only:</label>
+    <input
+        type="checkbox"
+        id="filter-favorites"
+        name="filter-favorites"
+        checked={$filter.favorites}
+        on:change={e => filterFavorites(e)} />
 
     <button on:click={resetFilters}>Reset</button>
 </div>
