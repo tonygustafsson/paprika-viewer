@@ -18,10 +18,16 @@ Using only public API so no key is needed.
 
 ![Paprika Viewer](paprika-viewer.png 'Paprika Viewer')
 
-## Upcoming
+## Features
 
--   Filtering on all values.
--   Easier way of adding more markets
+-   Show all coins in one view
+-   Filtering on exchanges, market cap, volume
+-   Sorting on rank, symbol, name, price, marketcap, volume, market value change or all time high (ATH)
+-   Listing which exchanges provide each coin on all coins at the same time
+-   Graphs for 7d. Clicking on coins gives graphs for 24h, 7d and 30d
+-   Global market cap, Bitcoin dominance and total 24h volume
+-   Add your favorites and filter for those only
+-   Go directly to CoinPaprika for each coin for more info
 
 ## Get started
 
