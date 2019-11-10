@@ -2,6 +2,7 @@
     import { onMount } from 'svelte';
     import { global } from './stores/global';
     import { getTickers } from './utils/getTickers';
+    import GlobalMarket from './components/GlobalMarket.svelte';
     import Filter from './components/Filter.svelte';
     import Tickers from './components/Tickers.svelte';
     import Loader from './components/Loader.svelte';
@@ -27,6 +28,10 @@
 <Loader />
 
 <div class="container">
+    {#if !$global.loading}
+        <GlobalMarket />
+    {/if}
+
     <h1>
         <a class="logo-link" href="/">🌶️ Paprika Viewer</a>
     </h1>

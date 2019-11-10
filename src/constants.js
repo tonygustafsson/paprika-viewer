@@ -1,5 +1,6 @@
 export const apiUrls = {
     tickers: 'https://api.coinpaprika.com/v1/tickers',
+    globalMarket: 'https://api.coinpaprika.com/v1/global',
     markets: {
         binance: 'https://api.coinpaprika.com/v1/exchanges/binance/markets',
         idex: 'https://api.coinpaprika.com/v1/exchanges/idex/markets',
@@ -16,4 +17,5 @@ export const minMarketCapToView = 1000; // USD
 export const localStorageExpireTimeoutMs = 5 * 60 * 1000; // 5 minutes
 export const localStorageDatabaseName = 'paprika-viewer';
 export const localStorageTickersTable = 'tickers';
-export const localStorageFetchTimeTable = 'fetchTime';
+export const localStorageGlobalMarketTable = 'globalMarket';
+export const localStorageFetchTimeTablePrefix = 'fetchTime';
