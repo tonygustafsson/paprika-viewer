@@ -17,13 +17,18 @@
     }
 
     li {
-        display: inline-block;
-        margin-right: 2em;
+        display: block;
         color: #8b8b8b;
     }
 
-    li:last-child {
-        margin-right: 0;
+    @media screen and (min-width: 1000px) {
+        li {
+            display: inline-block;
+            margin-right: 2em;
+        }
+        li:last-child {
+            margin-right: 0;
+        }
     }
 </style>
 
