@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 const initValue = {
-    by: 'marketcap',
+    by: '24h',
     direction: 'desc'
 };
 
