@@ -16,6 +16,8 @@
         width: 100%;
     }
     th {
+        position: sticky;
+        top: 0;
         background: #111;
         text-align: left;
         cursor: pointer;
