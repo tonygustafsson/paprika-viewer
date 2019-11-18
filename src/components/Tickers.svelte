@@ -12,6 +12,10 @@
 </script>
 
 <style>
+    .table-responsive {
+        max-width: 100%;
+        overflow: auto;
+    }
     table {
         width: 100%;
     }
@@ -28,63 +32,65 @@
 <p>Visible coins: {$filteredTickers.length}.</p>
 
 {#if $filteredTickers.length > 0}
-    <table>
-        <tr>
-            <th on:click={() => sort('rank')}>
-                #
-                {#if $order.by === 'rank'}{orderSymbol}{/if}
-            </th>
-            <th on:click={() => sort('symbol')}>
-                Symbol
-                {#if $order.by === 'symbol'}{orderSymbol}{/if}
-            </th>
-            <th on:click={() => sort('name')}>
-                Name
-                {#if $order.by === 'name'}{orderSymbol}{/if}
-            </th>
-            <th on:click={() => sort('price')}>
-                Price
-                {#if $order.by === 'price'}{orderSymbol}{/if}
-            </th>
-            <th on:click={() => sort('marketcap')}>
-                Marketcap
-                {#if $order.by === 'marketcap'}{orderSymbol}{/if}
-            </th>
-            <th on:click={() => sort('volume_24h')}>
-                Volume 24h
-                {#if $order.by === 'volume_24h'}{orderSymbol}{/if}
-            </th>
-            <th on:click={() => sort('1h')}>
-                1h
-                {#if $order.by === '1h'}{orderSymbol}{/if}
-            </th>
-            <th on:click={() => sort('12h')}>
-                12h
-                {#if $order.by === '12h'}{orderSymbol}{/if}
-            </th>
-            <th on:click={() => sort('24h')}>
-                24h
-                {#if $order.by === '24h'}{orderSymbol}{/if}
-            </th>
-            <th on:click={() => sort('7d')}>
-                7d
-                {#if $order.by === '7d'}{orderSymbol}{/if}
-            </th>
-            <th on:click={() => sort('30d')}>
-                30d
-                {#if $order.by === '30d'}{orderSymbol}{/if}
-            </th>
-            <th on:click={() => sort('ath')}>
-                From ATH
-                {#if $order.by === 'ath'}{orderSymbol}{/if}
-            </th>
-            <th>Exchanges</th>
-        </tr>
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th on:click={() => sort('rank')}>
+                    #
+                    {#if $order.by === 'rank'}{orderSymbol}{/if}
+                </th>
+                <th on:click={() => sort('symbol')}>
+                    Symbol
+                    {#if $order.by === 'symbol'}{orderSymbol}{/if}
+                </th>
+                <th on:click={() => sort('name')}>
+                    Name
+                    {#if $order.by === 'name'}{orderSymbol}{/if}
+                </th>
+                <th on:click={() => sort('price')}>
+                    Price
+                    {#if $order.by === 'price'}{orderSymbol}{/if}
+                </th>
+                <th on:click={() => sort('marketcap')}>
+                    Marketcap
+                    {#if $order.by === 'marketcap'}{orderSymbol}{/if}
+                </th>
+                <th on:click={() => sort('volume_24h')}>
+                    Volume 24h
+                    {#if $order.by === 'volume_24h'}{orderSymbol}{/if}
+                </th>
+                <th on:click={() => sort('1h')}>
+                    1h
+                    {#if $order.by === '1h'}{orderSymbol}{/if}
+                </th>
+                <th on:click={() => sort('12h')}>
+                    12h
+                    {#if $order.by === '12h'}{orderSymbol}{/if}
+                </th>
+                <th on:click={() => sort('24h')}>
+                    24h
+                    {#if $order.by === '24h'}{orderSymbol}{/if}
+                </th>
+                <th on:click={() => sort('7d')}>
+                    7d
+                    {#if $order.by === '7d'}{orderSymbol}{/if}
+                </th>
+                <th on:click={() => sort('30d')}>
+                    30d
+                    {#if $order.by === '30d'}{orderSymbol}{/if}
+                </th>
+                <th on:click={() => sort('ath')}>
+                    From ATH
+                    {#if $order.by === 'ath'}{orderSymbol}{/if}
+                </th>
+                <th>Exchanges</th>
+            </tr>
 
-        {#each $filteredTickers as ticker}
-            <Ticker {ticker} />
-        {/each}
-    </table>
+            {#each $filteredTickers as ticker}
+                <Ticker {ticker} />
+            {/each}
+        </table>
+    </div>
 {:else}
     <p>
         <em>No matching coins...</em>
