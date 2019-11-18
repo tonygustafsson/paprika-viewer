@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 const initValue = {
-    exchange: 'all',
+    exchange: 'any',
     volume: 'all',
     marketCap: 'all',
     favorites: false

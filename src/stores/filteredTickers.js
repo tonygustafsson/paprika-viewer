@@ -206,10 +206,12 @@ const filteredTickersStore = () => {
 export const filteredTickers = filteredTickersStore();
 
 tickers.subscribe(tickers => {
-    filteredTickers.updateAll(tickers);
-});
+    if (tickers.length <= 0) return;
 
-filter.subscribe(filter => {
-    filteredTickers.filter();
-    filteredTickers.order();
+    filteredTickers.updateAll(tickers);
+
+    filter.subscribe(filter => {
+        filteredTickers.filter();
+        filteredTickers.order();
+    });
 });
