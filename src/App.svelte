@@ -39,7 +39,7 @@
     {/if}
 
     <h1>
-        <a class="logo-link" href="/">🌶️ Paprika Viewer</a>
+        <a class="logo-link" href="index.html">🌶️ Paprika Viewer</a>
     </h1>
 
     {#if !$global.loading}
