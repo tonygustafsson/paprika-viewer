@@ -46,9 +46,18 @@
 
     .favorite {
         font-size: 250%;
-        vertical-align: sub;
-        margin-left: 0.25em;
+        margin: 0 auto;
+        display: block;
+        text-align: center;
         cursor: pointer;
+    }
+
+    @media screen and (min-width: 1000px) {
+        .favorite {
+            display: inline-block;
+            vertical-align: sub;
+            margin-left: 0.25em;
+        }
     }
 </style>
 
