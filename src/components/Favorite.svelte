@@ -10,7 +10,7 @@
 
 <style>
     .favorite {
-        font-size: 250%;
+        font-size: 200%;
         margin: 0 auto;
         display: block;
         text-align: center;
@@ -19,6 +19,7 @@
 
     @media screen and (min-width: 1000px) {
         .favorite {
+            font-size: 250%;
             display: inline-block;
             vertical-align: sub;
             margin-left: 0.25em;
