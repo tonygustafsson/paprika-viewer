@@ -1,15 +1,12 @@
 <script>
     import { selectedTicker } from '../stores/selectedTicker';
     import { favorites } from '../stores/favorites';
+    import Favorite from './Favorite.svelte';
 
     export let ticker;
 
     const selectTicker = ticker => {
         selectedTicker.set(ticker);
-    };
-
-    const toggleFavorite = symbol => {
-        favorites.toggle(symbol);
     };
 </script>
 
@@ -43,30 +40,12 @@
     .graph-img.negative {
         filter: hue-rotate(115deg);
     }
-
-    .favorite {
-        font-size: 250%;
-        margin: 0 auto;
-        display: block;
-        text-align: center;
-        cursor: pointer;
-    }
-
-    @media screen and (min-width: 1000px) {
-        .favorite {
-            display: inline-block;
-            vertical-align: sub;
-            margin-left: 0.25em;
-        }
-    }
 </style>
 
 <tr>
     <td>
         {ticker.rank}
-        <span on:click={() => toggleFavorite(ticker.symbol)} class="favorite">
-            {#if $favorites[ticker.symbol]}★{:else}☆{/if}
-        </span>
+        <Favorite tickerSymbol={ticker.symbol} />
     </td>
     <td>
         <a href on:click|preventDefault={() => selectTicker(ticker)}>{ticker.symbol}</a>
