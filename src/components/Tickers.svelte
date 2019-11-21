@@ -15,6 +15,15 @@
     .table-responsive {
         max-width: 100%;
         overflow: auto;
+        height: 1100px;
+    }
+    .table-responsive::-webkit-scrollbar {
+        width: 5px;
+        background-color: #000;
+    }
+    .table-responsive::-webkit-scrollbar-thumb {
+        width: 5px;
+        background-color: #f10;
     }
     table {
         width: 100%;
@@ -22,10 +31,12 @@
     th {
         position: sticky;
         top: 0;
+        left: 0;
         background: #111;
         text-align: left;
         cursor: pointer;
         padding: 0.5em;
+        z-index: 1;
     }
 </style>
 

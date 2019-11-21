@@ -12,7 +12,7 @@
 
 <style>
     tr:nth-child(2n + 1) {
-        background: #111;
+        background-color: #111;
     }
 
     td {
