@@ -1,5 +1,6 @@
 <script>
     import { selectedTicker } from '../stores/selectedTicker';
+    import { global } from '../stores/global';
 
     const closeBar = () => {
         selectedTicker.set(null);
@@ -85,18 +86,18 @@
         <div class="content">
             <p class="name">
                 <a target="_blank" href="https://coinpaprika.com/coin/{$selectedTicker.id}">{$selectedTicker.name}</a>
-                ${$selectedTicker.usd.price}
+                {$global.currencySymbol}{$selectedTicker[$global.referenceCurrency].price}
             </p>
 
             <div class="graphs">
                 <div class="graph-item">
-                    <span class="graph-label">24h ({$selectedTicker.usd.change24h}%):</span>
+                    <span class="graph-label">24h ({$selectedTicker[$global.referenceCurrency].change24h}%):</span>
 
                     <img
                         loading="lazy"
                         class="graph-img"
-                        class:positive={$selectedTicker.usd.change24h >= 0}
-                        class:negative={$selectedTicker.usd.change24h < 0}
+                        class:positive={$selectedTicker[$global.referenceCurrency].change24h >= 0}
+                        class:negative={$selectedTicker[$global.referenceCurrency].change24h < 0}
                         width="120"
                         height="23"
                         src="https://graphs{Math.random() > 0.5 ? '2' : ''}.coinpaprika.com/currency/chart/{$selectedTicker.id}/24h/chart.svg"
@@ -104,13 +105,13 @@
                 </div>
 
                 <div class="graph-item">
-                    <span class="graph-label">7d ({$selectedTicker.usd.change_7d}%):</span>
+                    <span class="graph-label">7d ({$selectedTicker[$global.referenceCurrency].change7d}%):</span>
 
                     <img
                         loading="lazy"
                         class="graph-img"
-                        class:positive={$selectedTicker.usd.change7d >= 0}
-                        class:negative={$selectedTicker.usd.change7d < 0}
+                        class:positive={$selectedTicker[$global.referenceCurrency].change7d >= 0}
+                        class:negative={$selectedTicker[$global.referenceCurrency].change7d < 0}
                         width="120"
                         height="23"
                         src="https://graphs{Math.random() > 0.5 ? '2' : ''}.coinpaprika.com/currency/chart/{$selectedTicker.id}/7d/chart.svg"
@@ -118,13 +119,13 @@
                 </div>
 
                 <div class="graph-item">
-                    <span class="graph-label">30d ({$selectedTicker.usd.change30d}%):</span>
+                    <span class="graph-label">30d ({$selectedTicker[$global.referenceCurrency].change30d}%):</span>
 
                     <img
                         loading="lazy"
                         class="graph-img"
-                        class:positive={$selectedTicker.usd.change30d >= 0}
-                        class:negative={$selectedTicker.usd.change30d < 0}
+                        class:positive={$selectedTicker[$global.referenceCurrency].change30d >= 0}
+                        class:negative={$selectedTicker[$global.referenceCurrency].change30d < 0}
                         width="120"
                         height="23"
                         src="https://graphs{Math.random() > 0.5 ? '2' : ''}.coinpaprika.com/currency/chart/{$selectedTicker.id}/30d/chart.svg"

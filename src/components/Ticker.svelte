@@ -1,6 +1,7 @@
 <script>
     import { selectedTicker } from '../stores/selectedTicker';
     import { favorites } from '../stores/favorites';
+    import { global } from '../stores/global';
     import Favorite from './Favorite.svelte';
 
     export let ticker;
@@ -53,26 +54,26 @@
     <td>
         <a href on:click|preventDefault={() => selectTicker(ticker)}>{ticker.name}</a>
     </td>
-    <td>${ticker.usd.price}</td>
-    <td>${ticker.usd.marketCap}</td>
-    <td>${ticker.usd.volume24h.toFixed(0)}</td>
-    <td>{ticker.usd.change1h}%</td>
-    <td>{ticker.usd.change12h}%</td>
-    <td>{ticker.usd.change24h}%</td>
+    <td>{$global.currencySymbol}{ticker[$global.referenceCurrency].price}</td>
+    <td>{$global.currencySymbol}{ticker[$global.referenceCurrency].marketCap}</td>
+    <td>{$global.currencySymbol}{ticker[$global.referenceCurrency].volume24h.toFixed(0)}</td>
+    <td>{ticker[$global.referenceCurrency].change1h}%</td>
+    <td>{ticker[$global.referenceCurrency].change12h}%</td>
+    <td>{ticker[$global.referenceCurrency].change24h}%</td>
     <td>
         <img
             loading="lazy"
             class="graph-img"
-            class:positive={ticker.usd.change7d >= 0}
-            class:negative={ticker.usd.change7d < 0}
+            class:positive={ticker[$global.referenceCurrency].change7d >= 0}
+            class:negative={ticker[$global.referenceCurrency].change7d < 0}
             width="120"
             height="23"
             src="https://graphs{Math.random() > 0.5 ? '2' : ''}.coinpaprika.com/currency/chart/{ticker.id}/7d/chart.svg"
             alt="" />
-        {ticker.usd.change7d}%
+        {ticker[$global.referenceCurrency].change7d}%
     </td>
-    <td>{ticker.usd.change30d}%</td>
-    <td>{ticker.usd.fromAth}%</td>
+    <td>{ticker[$global.referenceCurrency].change30d}%</td>
+    <td>{ticker[$global.referenceCurrency].fromAth}%</td>
     <td class="exchanges">
         {#if ticker.exchanges}
             <ul>

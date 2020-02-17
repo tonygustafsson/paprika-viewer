@@ -1,6 +1,7 @@
 <script>
     import { filteredTickers } from '../stores/filteredTickers';
     import { filter } from '../stores/filter';
+    import { global } from '../stores/global';
 
     const filterExchange = e => {
         filter.setExchange(e.target.value);
@@ -16,6 +17,10 @@
 
     const filterFavorites = e => {
         filter.setFavorites(e.target.checked);
+    };
+
+    const setReferenceCurrency = e => {
+        global.setReferenceCurrency(e.target.value);
     };
 
     const resetFilters = () => {
@@ -57,6 +62,10 @@
         color: #fff;
         font-size: 100%;
         vertical-align: middle;
+    }
+
+    input[type='radio']:nth-child(2) {
+        margin-left: 1em;
     }
 
     button {
@@ -124,13 +133,20 @@
     </div>
 
     <div class="filter-item">
-        <label for="filter-favorites">Favorites only:</label>
+        <label for="filter-favorites">Favs only:</label>
         <input
             type="checkbox"
             id="filter-favorites"
             name="filter-favorites"
             checked={$filter.favorites}
             on:change={e => filterFavorites(e)} />
+    </div>
+
+    <div class="filter-item">
+        <input type="radio" name="referenceCurrency" value="usd" checked on:change={e => setReferenceCurrency(e)} />
+        USD
+        <input type="radio" name="referenceCurrency" value="btc" on:change={e => setReferenceCurrency(e)} />
+        BTC
     </div>
 
     <button on:click={resetFilters}>Reset</button>
