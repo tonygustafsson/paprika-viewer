@@ -32,31 +32,31 @@ const orderTickers = tickers => {
             newTickers = sortTickersByLambda(newTickers, x => x.name);
             break;
         case 'price':
-            newTickers = sortTickersByLambda(newTickers, x => x.quotes.USD.price);
+            newTickers = sortTickersByLambda(newTickers, x => x.usd.price);
             break;
         case 'volume_24h':
-            newTickers = sortTickersByLambda(newTickers, x => x.quotes.USD.volume_24h);
+            newTickers = sortTickersByLambda(newTickers, x => x.usd.volume24h);
             break;
         case '1h':
-            newTickers = sortTickersByLambda(newTickers, x => x.quotes.USD.percent_change_1h);
+            newTickers = sortTickersByLambda(newTickers, x => x.usd.change1h);
             break;
         case '12h':
-            newTickers = sortTickersByLambda(newTickers, x => x.quotes.USD.percent_change_12h);
+            newTickers = sortTickersByLambda(newTickers, x => x.usd.change12h);
             break;
         case '24h':
-            newTickers = sortTickersByLambda(newTickers, x => x.quotes.USD.percent_change_24h);
+            newTickers = sortTickersByLambda(newTickers, x => x.usd.change24h);
             break;
         case '7d':
-            newTickers = sortTickersByLambda(newTickers, x => x.quotes.USD.percent_change_7d);
+            newTickers = sortTickersByLambda(newTickers, x => x.usd.change7d);
             break;
         case '30d':
-            newTickers = sortTickersByLambda(newTickers, x => x.quotes.USD.percent_change_30d);
+            newTickers = sortTickersByLambda(newTickers, x => x.usd.change30d);
             break;
         case 'ath':
-            newTickers = sortTickersByLambda(newTickers, x => x.quotes.USD.percent_from_price_ath);
+            newTickers = sortTickersByLambda(newTickers, x => x.usd.fromAth);
             break;
         default:
-            newTickers = sortTickersByLambda(newTickers, x => x.quotes.USD.market_cap);
+            newTickers = sortTickersByLambda(newTickers, x => x.usd.marketCap);
     }
 
     return newTickers;
@@ -92,103 +92,103 @@ const filteredTickersStore = () => {
                 }
 
                 if ($filter.volume === '0') {
-                    newTickers = newTickers.filter(ticker => ticker.quotes.USD.volume_24h < 100000);
+                    newTickers = newTickers.filter(ticker => ticker.usd.volume24h < 100000);
                 }
 
                 if ($filter.volume === '100000') {
                     newTickers = newTickers.filter(
-                        ticker => ticker.quotes.USD.volume_24h >= 100000 && ticker.quotes.USD.volume_24h <= 250000
+                        ticker => ticker.usd.volume_24h >= 100000 && ticker.usd.volume24h <= 250000
                     );
                 }
 
                 if ($filter.volume === '250000') {
                     newTickers = newTickers.filter(
-                        ticker => ticker.quotes.USD.volume_24h > 250000 && ticker.quotes.USD.volume_24h <= 500000
+                        ticker => ticker.usd.volume_24h > 250000 && ticker.usd.volume24h <= 500000
                     );
                 }
 
                 if ($filter.volume === '500000') {
                     newTickers = newTickers.filter(
-                        ticker => ticker.quotes.USD.volume_24h > 500000 && ticker.quotes.USD.volume_24h <= 1000000
+                        ticker => ticker.usd.volume_24h > 500000 && ticker.usd.volume24h <= 1000000
                     );
                 }
 
                 if ($filter.volume === '1000000') {
                     newTickers = newTickers.filter(
-                        ticker => ticker.quotes.USD.volume_24h > 1000000 && ticker.quotes.USD.volume_24h <= 5000000
+                        ticker => ticker.usd.volume_24h > 1000000 && ticker.usd.volume24h <= 5000000
                     );
                 }
 
                 if ($filter.volume === '5000000') {
                     newTickers = newTickers.filter(
-                        ticker => ticker.quotes.USD.volume_24h > 5000000 && ticker.quotes.USD.volume_24h <= 10000000
+                        ticker => ticker.usd.volume_24h > 5000000 && ticker.usd.volume24h <= 10000000
                     );
                 }
 
                 if ($filter.volume === '10000000') {
                     newTickers = newTickers.filter(
-                        ticker => ticker.quotes.USD.volume_24h > 10000000 && ticker.quotes.USD.volume_24h <= 20000000
+                        ticker => ticker.usd.volume_24h > 10000000 && ticker.usd.volume24h <= 20000000
                     );
                 }
 
                 if ($filter.volume === '20000000') {
                     newTickers = newTickers.filter(
-                        ticker => ticker.quotes.USD.volume_24h > 20000000 && ticker.quotes.USD.volume_24h <= 50000000
+                        ticker => ticker.usd.volume_24h > 20000000 && ticker.usd.volume24h <= 50000000
                     );
                 }
 
                 if ($filter.volume === '50000000') {
-                    newTickers = newTickers.filter(ticker => ticker.quotes.USD.volume_24h > 50000000);
+                    newTickers = newTickers.filter(ticker => ticker.usd.volume24h > 50000000);
                 }
 
                 if ($filter.marketCap === '0') {
-                    newTickers = newTickers.filter(ticker => ticker.quotes.USD.market_cap < 100000);
+                    newTickers = newTickers.filter(ticker => ticker.usd.marketCap < 100000);
                 }
 
                 if ($filter.marketCap === '100000') {
                     newTickers = newTickers.filter(
-                        ticker => ticker.quotes.USD.market_cap >= 100000 && ticker.quotes.USD.market_cap <= 250000
+                        ticker => ticker.usd.marketCap >= 100000 && ticker.usd.marketCap <= 250000
                     );
                 }
 
                 if ($filter.marketCap === '250000') {
                     newTickers = newTickers.filter(
-                        ticker => ticker.quotes.USD.market_cap > 250000 && ticker.quotes.USD.market_cap <= 500000
+                        ticker => ticker.usd.marketCap > 250000 && ticker.usd.marketCap <= 500000
                     );
                 }
 
                 if ($filter.marketCap === '500000') {
                     newTickers = newTickers.filter(
-                        ticker => ticker.quotes.USD.market_cap > 500000 && ticker.quotes.USD.market_cap <= 1000000
+                        ticker => ticker.usd.marketCap > 500000 && ticker.usd.marketCap <= 1000000
                     );
                 }
 
                 if ($filter.marketCap === '1000000') {
                     newTickers = newTickers.filter(
-                        ticker => ticker.quotes.USD.market_cap > 1000000 && ticker.quotes.USD.market_cap <= 5000000
+                        ticker => ticker.usd.marketCap > 1000000 && ticker.usd.marketCap <= 5000000
                     );
                 }
 
                 if ($filter.marketCap === '5000000') {
                     newTickers = newTickers.filter(
-                        ticker => ticker.quotes.USD.market_cap > 5000000 && ticker.quotes.USD.market_cap <= 10000000
+                        ticker => ticker.usd.marketCap > 5000000 && ticker.usd.marketCap <= 10000000
                     );
                 }
 
                 if ($filter.marketCap === '10000000') {
                     newTickers = newTickers.filter(
-                        ticker => ticker.quotes.USD.market_cap > 10000000 && ticker.quotes.USD.market_cap <= 20000000
+                        ticker => ticker.usd.marketCap > 10000000 && ticker.usd.marketCap <= 20000000
                     );
                 }
 
                 if ($filter.marketCap === '20000000') {
                     newTickers = newTickers.filter(
-                        ticker => ticker.quotes.USD.market_cap > 20000000 && ticker.quotes.USD.market_cap <= 50000000
+                        ticker => ticker.usd.marketCap > 20000000 && ticker.usd.marketCap <= 50000000
                     );
                 }
 
                 if ($filter.marketCap === '50000000') {
-                    newTickers = newTickers.filter(ticker => ticker.quotes.USD.market_cap > 50000000);
+                    newTickers = newTickers.filter(ticker => ticker.usd.marketCap > 50000000);
                 }
 
                 return newTickers;

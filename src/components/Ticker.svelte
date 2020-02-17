@@ -53,26 +53,26 @@
     <td>
         <a href on:click|preventDefault={() => selectTicker(ticker)}>{ticker.name}</a>
     </td>
-    <td>${ticker.quotes.USD.price.toFixed(2)}</td>
-    <td>${ticker.quotes.USD.market_cap}</td>
-    <td>${ticker.quotes.USD.volume_24h.toFixed(0)}</td>
-    <td>{ticker.quotes.USD.percent_change_1h}%</td>
-    <td>{ticker.quotes.USD.percent_change_12h}%</td>
-    <td>{ticker.quotes.USD.percent_change_24h}%</td>
+    <td>${ticker.usd.price}</td>
+    <td>${ticker.usd.marketCap}</td>
+    <td>${ticker.usd.volume24h.toFixed(0)}</td>
+    <td>{ticker.usd.change1h}%</td>
+    <td>{ticker.usd.change12h}%</td>
+    <td>{ticker.usd.change24h}%</td>
     <td>
         <img
             loading="lazy"
             class="graph-img"
-            class:positive={ticker.quotes.USD.percent_change_7d >= 0}
-            class:negative={ticker.quotes.USD.percent_change_7d < 0}
+            class:positive={ticker.usd.change7d >= 0}
+            class:negative={ticker.usd.change7d < 0}
             width="120"
             height="23"
             src="https://graphs{Math.random() > 0.5 ? '2' : ''}.coinpaprika.com/currency/chart/{ticker.id}/7d/chart.svg"
             alt="" />
-        {ticker.quotes.USD.percent_change_7d}%
+        {ticker.usd.change7d}%
     </td>
-    <td>{ticker.quotes.USD.percent_change_30d}%</td>
-    <td>{ticker.quotes.USD.percent_from_price_ath}%</td>
+    <td>{ticker.usd.change30d}%</td>
+    <td>{ticker.usd.fromAth}%</td>
     <td class="exchanges">
         {#if ticker.exchanges}
             <ul>

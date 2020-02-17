@@ -85,18 +85,18 @@
         <div class="content">
             <p class="name">
                 <a target="_blank" href="https://coinpaprika.com/coin/{$selectedTicker.id}">{$selectedTicker.name}</a>
-                ${$selectedTicker.quotes.USD.price.toFixed(2)}
+                ${$selectedTicker.usd.price}
             </p>
 
             <div class="graphs">
                 <div class="graph-item">
-                    <span class="graph-label">24h ({$selectedTicker.quotes.USD.percent_change_24h}%):</span>
+                    <span class="graph-label">24h ({$selectedTicker.usd.change24h}%):</span>
 
                     <img
                         loading="lazy"
                         class="graph-img"
-                        class:positive={$selectedTicker.quotes.USD.percent_change_24h >= 0}
-                        class:negative={$selectedTicker.quotes.USD.percent_change_24h < 0}
+                        class:positive={$selectedTicker.usd.change24h >= 0}
+                        class:negative={$selectedTicker.usd.change24h < 0}
                         width="120"
                         height="23"
                         src="https://graphs{Math.random() > 0.5 ? '2' : ''}.coinpaprika.com/currency/chart/{$selectedTicker.id}/24h/chart.svg"
@@ -104,13 +104,13 @@
                 </div>
 
                 <div class="graph-item">
-                    <span class="graph-label">7d ({$selectedTicker.quotes.USD.percent_change_7d}%):</span>
+                    <span class="graph-label">7d ({$selectedTicker.usd.change_7d}%):</span>
 
                     <img
                         loading="lazy"
                         class="graph-img"
-                        class:positive={$selectedTicker.quotes.USD.percent_change_7d >= 0}
-                        class:negative={$selectedTicker.quotes.USD.percent_change_7d < 0}
+                        class:positive={$selectedTicker.usd.change7d >= 0}
+                        class:negative={$selectedTicker.usd.change7d < 0}
                         width="120"
                         height="23"
                         src="https://graphs{Math.random() > 0.5 ? '2' : ''}.coinpaprika.com/currency/chart/{$selectedTicker.id}/7d/chart.svg"
@@ -118,13 +118,13 @@
                 </div>
 
                 <div class="graph-item">
-                    <span class="graph-label">30d ({$selectedTicker.quotes.USD.percent_change_30d}%):</span>
+                    <span class="graph-label">30d ({$selectedTicker.usd.change30d}%):</span>
 
                     <img
                         loading="lazy"
                         class="graph-img"
-                        class:positive={$selectedTicker.quotes.USD.percent_change_30d >= 0}
-                        class:negative={$selectedTicker.quotes.USD.percent_change_30d < 0}
+                        class:positive={$selectedTicker.usd.change30d >= 0}
+                        class:negative={$selectedTicker.usd.change30d < 0}
                         width="120"
                         height="23"
                         src="https://graphs{Math.random() > 0.5 ? '2' : ''}.coinpaprika.com/currency/chart/{$selectedTicker.id}/30d/chart.svg"

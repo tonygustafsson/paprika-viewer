@@ -46,7 +46,7 @@ export const getTickers = async () => {
 
     if (tickersFromStorage) {
         // If tickers are saved in localForage, use that
-        tickers.updateAll(tickersFromStorage);
+        tickers.save(tickersFromStorage);
         global.isLoading(false);
     } else {
         // If it's not stored, get the data from API
@@ -60,7 +60,7 @@ export const getTickers = async () => {
             tickersResponse = await addMarketToTickers(tickersResponse, 'kucoin');
             tickersResponse = await addMarketToTickers(tickersResponse, 'okex');
 
-            tickers.updateAll(tickersResponse);
+            tickers.save(tickersResponse);
             global.isLoading(false);
 
             // Save the API data to localForage
