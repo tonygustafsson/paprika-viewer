@@ -15,12 +15,12 @@ export const getGlobalMarket = async () => {
 
     if (globalMarketFromStorage) {
         // If global markets are saved in localForage, use that
-        globalMarket.updateAll(globalMarketFromStorage);
+        globalMarket.save(globalMarketFromStorage);
     } else {
         // If it's not stored, get the data from API
         console.log(`Fetching global markets from API.`);
         getGlobalMarketFromApi().then(async globalMarketsResponse => {
-            globalMarket.updateAll(globalMarketsResponse);
+            globalMarket.save(globalMarketsResponse);
 
             // Save the API data to localForage
             saveToStorage(localStorageGlobalMarketTable, globalMarketsResponse);

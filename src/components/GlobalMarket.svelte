@@ -33,7 +33,7 @@
 </style>
 
 <ul>
-    <li>Total marketcap: ${$globalMarket.market_cap_usd}</li>
-    <li>Total 24h volume: ${$globalMarket.volume_24h_usd}</li>
-    <li>BTC Dominance: {$globalMarket.bitcoin_dominance_percentage}%</li>
+    <li>Total marketcap: ${$globalMarket.marketCap}</li>
+    <li>Total 24h volume: ${$globalMarket.volume24h}</li>
+    <li>BTC Dominance: {$globalMarket.btcDominance}%</li>
 </ul>
