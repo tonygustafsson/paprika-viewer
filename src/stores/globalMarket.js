@@ -12,7 +12,7 @@ const globalMarketStore = () => {
     return {
         subscribe,
         save: data => {
-            var newData = {
+            const newData = {
                 marketCap: data.market_cap_usd,
                 volume24h: data.volume_24h_usd,
                 btcDominance: data.bitcoin_dominance_percentage
