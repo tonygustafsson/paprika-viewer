@@ -83,7 +83,7 @@
 <div class="filters">
     <div class="filter-item">
         <label for="filter-exchange">Exchange:</label>
-        <select id="filter-exchange" name="filter-exchange" value={$filter.exchange} on:change={e => filterExchange(e)}>
+        <select id="filter-exchange" name="filter-exchange" value={$filter.exchange} on:blur={e => filterExchange(e)}>
             <option value="all">All</option>
             <option value="any">Any</option>
             <option value="binance">Binance</option>
@@ -93,6 +93,7 @@
             <option value="kraken">Kraken</option>
             <option value="kucoin">Kucoin</option>
             <option value="okex">OKEx</option>
+            <option value="uniswap">UniSwap</option>
         </select>
     </div>
 
@@ -102,7 +103,7 @@
             id="filter-marketcap"
             name="filter-marketcap"
             value={$filter.marketCap}
-            on:change={e => filterMarketCap(e)}>
+            on:blur={e => filterMarketCap(e)}>
             <option value="all">All</option>
             <option value="0">0 - 100k</option>
             <option value="100000">100k - 250k</option>
@@ -118,7 +119,7 @@
 
     <div class="filter-item">
         <label for="filter-volume">Volume:</label>
-        <select id="filter-volume" name="filter-volume" value={$filter.volume} on:change={e => filterVolume(e)}>
+        <select id="filter-volume" name="filter-volume" value={$filter.volume} on:blue={e => filterVolume(e)}>
             <option value="all">All</option>
             <option value="0">0 - 100k</option>
             <option value="100000">100k - 250k</option>
@@ -139,7 +140,7 @@
             id="filter-favorites"
             name="filter-favorites"
             checked={$filter.favorites}
-            on:change={e => filterFavorites(e)} />
+            on:blur={e => filterFavorites(e)} />
     </div>
 
     <div class="filter-item">

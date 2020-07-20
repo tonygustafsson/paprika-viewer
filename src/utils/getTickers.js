@@ -59,6 +59,7 @@ export const getTickers = async () => {
             tickersResponse = await addMarketToTickers(tickersResponse, 'kraken');
             tickersResponse = await addMarketToTickers(tickersResponse, 'kucoin');
             tickersResponse = await addMarketToTickers(tickersResponse, 'okex');
+            tickersResponse = await addMarketToTickers(tickersResponse, 'uniswap');
 
             tickers.save(tickersResponse);
             global.isLoading(false);

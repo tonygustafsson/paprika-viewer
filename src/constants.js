@@ -8,7 +8,8 @@ export const apiUrls = {
         coinbasePro: 'https://api.coinpaprika.com/v1/exchanges/coinbase-pro/markets',
         kraken: 'https://api.coinpaprika.com/v1/exchanges/kraken/markets',
         kucoin: 'https://api.coinpaprika.com/v1/exchanges/kucoin/markets',
-        okex: 'https://api.coinpaprika.com/v1/exchanges/okex/markets'
+        okex: 'https://api.coinpaprika.com/v1/exchanges/okex/markets',
+        uniswap: 'https://api.coinpaprika.com/v1/exchanges/uniswap/markets'
     }
 };
 
