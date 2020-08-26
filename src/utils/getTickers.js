@@ -25,7 +25,8 @@ const addMarketToTickers = async (tickersResponse, exchange) => {
     const markets = await response.json();
 
     markets.forEach(market => {
-        const matchingTicker = tickersResponse.find(x => x.id === market.base_currency_id);
+        const matcher = exchange === 'uniswap' ? market.quote_currency_id : market.base_currency_id;
+        const matchingTicker = tickersResponse.find(x => x.id === matcher);
 
         if (matchingTicker) {
             if (!matchingTicker.exchanges) matchingTicker.exchanges = [];
