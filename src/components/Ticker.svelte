@@ -27,7 +27,19 @@
     <td>{$global.currencySymbol}{ticker[$global.referenceCurrency].volume24h.toFixed(0)}</td>
     <td>{ticker[$global.referenceCurrency].change1h}%</td>
     <td>{ticker[$global.referenceCurrency].change12h}%</td>
-    <td>{ticker[$global.referenceCurrency].change24h}%</td>
+    <td>
+        <img
+            loading="lazy"
+            class="graph-img"
+            class:positive={ticker[$global.referenceCurrency].change24h >= 0}
+            class:negative={ticker[$global.referenceCurrency].change24h < 0}
+            width="120"
+            height="23"
+            src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/24h/chart.svg"
+            alt=""
+        />
+        {ticker[$global.referenceCurrency].change24h}%
+    </td>
     <td>
         <img
             loading="lazy"
@@ -41,7 +53,20 @@
         />
         {ticker[$global.referenceCurrency].change7d}%
     </td>
-    <td>{ticker[$global.referenceCurrency].change30d}%</td>
+    <td>
+        <img
+            loading="lazy"
+            class="graph-img"
+            class:positive={ticker[$global.referenceCurrency].change30d >= 0}
+            class:negative={ticker[$global.referenceCurrency].change30d < 0}
+            width="120"
+            height="23"
+            src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/24h/chart.svg"
+            alt=""
+        />
+
+        {ticker[$global.referenceCurrency].change30d}%
+    </td>
     <td>{ticker[$global.referenceCurrency].fromAth}%</td>
     <td class="exchanges">
         {#if ticker.exchanges}
