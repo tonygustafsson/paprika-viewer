@@ -19,12 +19,31 @@ const globalStore = () => {
             });
         },
         setReferenceCurrency: currency => {
-            if (currency !== 'usd' && currency !== 'btc') return;
+            if (currency !== 'usd' && currency !== 'sek' && currency !== 'btc' && currency !== 'eth') {
+                return;
+            }
 
             update(global => {
                 let newGlobal = { ...global };
                 newGlobal.referenceCurrency = currency;
-                newGlobal.currencySymbol = currency === 'usd' ? '$' : '₿';
+
+                let currencySymbol = '';
+
+                switch (currency) {
+                    case 'sek':
+                        currencySymbol = 'kr';
+                        break;
+                    case 'btc':
+                        currencySymbol = '₿';
+                        break;
+                    case 'eth':
+                        currencySymbol = 'E';
+                        break;
+                    default:
+                        currencySymbol = '$';
+                }
+
+                newGlobal.currencySymbol = currencySymbol;
                 return newGlobal;
             });
         }

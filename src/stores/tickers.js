@@ -2,9 +2,16 @@ import { writable } from 'svelte/store';
 
 const initValue = [];
 
+const getDecimalsForPrice = price => {
+    if (price > 1) return price.toFixed(2);
+    if (price < 0.001) return price.toFixed(8);
+
+    return price.toFixed(6);
+};
+
 const getQuotes = quotes => {
     return {
-        price: quotes.price.toFixed(8),
+        price: getDecimalsForPrice(quotes.price),
         volume24h: quotes.volume_24h,
         marketCap: quotes.market_cap,
         change1h: quotes.percent_change_1h,
@@ -23,7 +30,9 @@ const getTickerData = ticker => {
         name: ticker.name,
         rank: ticker.rank,
         usd: getQuotes(ticker.quotes.USD),
+        sek: getQuotes(ticker.quotes.SEK),
         btc: getQuotes(ticker.quotes.BTC),
+        eth: getQuotes(ticker.quotes.ETH),
         exchanges: ticker.exchanges
     };
 };

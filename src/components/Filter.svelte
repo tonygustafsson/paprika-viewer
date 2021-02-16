@@ -98,8 +98,12 @@
     <div class="filter-item">
         <input type="radio" name="referenceCurrency" value="usd" checked on:change={e => setReferenceCurrency(e)} />
         USD
+        <input type="radio" name="referenceCurrency" value="sek" on:change={e => setReferenceCurrency(e)} />
+        SEK
         <input type="radio" name="referenceCurrency" value="btc" on:change={e => setReferenceCurrency(e)} />
         BTC
+        <input type="radio" name="referenceCurrency" value="eth" on:change={e => setReferenceCurrency(e)} />
+        ETH
     </div>
 
     <button on:click={resetFilters}>Reset</button>
