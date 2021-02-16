@@ -124,7 +124,7 @@
     }
 
     .graph-img.positive {
-        filter: hue-rotate(210deg);
+        filter: hue-rotate(230deg);
     }
 
     .graph-img.negative {
