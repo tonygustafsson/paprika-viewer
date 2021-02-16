@@ -56,7 +56,6 @@ export const getTickers = async () => {
             tickersResponse = await addMarketToTickers(tickersResponse, 'coinbasePro');
             tickersResponse = await addMarketToTickers(tickersResponse, 'binance');
             tickersResponse = await addMarketToTickers(tickersResponse, 'idex');
-            tickersResponse = await addMarketToTickers(tickersResponse, 'idax');
             tickersResponse = await addMarketToTickers(tickersResponse, 'kraken');
             tickersResponse = await addMarketToTickers(tickersResponse, 'kucoin');
             tickersResponse = await addMarketToTickers(tickersResponse, 'okex');
