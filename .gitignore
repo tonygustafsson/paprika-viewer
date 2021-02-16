@@ -3,3 +3,4 @@ node_modules
 public/bundle.*
 public/public/bundle.css
 public/public/bundle.css.map
+public/build/*
