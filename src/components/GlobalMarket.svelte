@@ -8,6 +8,12 @@
     });
 </script>
 
+<ul>
+    <li>Total marketcap: ${$globalMarket.marketCap}</li>
+    <li>Total 24h volume: ${$globalMarket.volume24h}</li>
+    <li>BTC Dominance: {$globalMarket.btcDominance}%</li>
+</ul>
+
 <style>
     ul {
         list-style: none;
@@ -31,9 +37,3 @@
         }
     }
 </style>
-
-<ul>
-    <li>Total marketcap: ${$globalMarket.marketCap}</li>
-    <li>Total 24h volume: ${$globalMarket.volume24h}</li>
-    <li>BTC Dominance: {$globalMarket.btcDominance}%</li>
-</ul>

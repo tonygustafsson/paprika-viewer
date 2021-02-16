@@ -2,6 +2,15 @@
     import { global } from '../stores/global';
 </script>
 
+{#if $global.loading}
+    <div class="lds-ring">
+        <div />
+        <div />
+        <div />
+        <div />
+    </div>
+{/if}
+
 <style>
     .lds-ring {
         display: inline-block;
@@ -46,12 +55,3 @@
         }
     }
 </style>
-
-{#if $global.loading}
-    <div class="lds-ring">
-        <div />
-        <div />
-        <div />
-        <div />
-    </div>
-{/if}

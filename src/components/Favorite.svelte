@@ -8,6 +8,10 @@
     };
 </script>
 
+<span on:click={() => toggleFavorite(tickerSymbol)} class="favorite">
+    {#if $favorites[tickerSymbol]}★{:else}☆{/if}
+</span>
+
 <style>
     .favorite {
         font-size: 200%;
@@ -26,7 +30,3 @@
         }
     }
 </style>
-
-<span on:click={() => toggleFavorite(tickerSymbol)} class="favorite">
-    {#if $favorites[tickerSymbol]}★{:else}☆{/if}
-</span>

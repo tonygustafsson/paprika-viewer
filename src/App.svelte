@@ -13,24 +13,6 @@
     });
 </script>
 
-<style>
-    .container {
-        width: 100%;
-        margin: 0 auto;
-    }
-
-    .logo-link {
-        color: #fff;
-        text-decoration: none;
-    }
-
-    @media screen and (min-width: 1000px) {
-        .container {
-            width: 80%;
-        }
-    }
-</style>
-
 <Loader />
 
 <div class="container">
@@ -50,3 +32,21 @@
         <Tickers />
     {/if}
 </div>
+
+<style>
+    .container {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .logo-link {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    @media screen and (min-width: 1000px) {
+        .container {
+            width: 80%;
+        }
+    }
+</style>

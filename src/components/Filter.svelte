@@ -28,6 +28,84 @@
     };
 </script>
 
+<div class="filters">
+    <div class="filter-item">
+        <label for="filter-exchange">Exchange:</label>
+        <!-- svelte-ignore a11y-no-onchange -->
+        <select id="filter-exchange" name="filter-exchange" value={$filter.exchange} on:change={e => filterExchange(e)}>
+            <option value="all">All</option>
+            <option value="any">Any</option>
+            <option value="binance">Binance</option>
+            <option value="coinbase">Coinbase</option>
+            <option value="idax">IDAX</option>
+            <option value="idex">IDEX</option>
+            <option value="kraken">Kraken</option>
+            <option value="kucoin">Kucoin</option>
+            <option value="okex">OKEx</option>
+            <option value="uniswap">UniSwap</option>
+        </select>
+    </div>
+
+    <div class="filter-item">
+        <label for="filter-marketcap">MarketCap:</label>
+        <!-- svelte-ignore a11y-no-onchange -->
+        <select
+            id="filter-marketcap"
+            name="filter-marketcap"
+            value={$filter.marketCap}
+            on:change={e => filterMarketCap(e)}
+        >
+            <option value="all">All</option>
+            <option value="0">0 - 100k</option>
+            <option value="100000">100k - 250k</option>
+            <option value="250000">250k - 500k</option>
+            <option value="500000">500k - 1m</option>
+            <option value="1000000">1m - 5m</option>
+            <option value="5000000">5m - 10m</option>
+            <option value="10000000">10m - 20m</option>
+            <option value="20000000">20m - 50m</option>
+            <option value="50000000">50m+</option>
+        </select>
+    </div>
+
+    <div class="filter-item">
+        <label for="filter-volume">Volume:</label>
+        <!-- svelte-ignore a11y-no-onchange -->
+        <select id="filter-volume" name="filter-volume" value={$filter.volume} on:change={e => filterVolume(e)}>
+            <option value="all">All</option>
+            <option value="0">0 - 100k</option>
+            <option value="100000">100k - 250k</option>
+            <option value="250000">250k - 500k</option>
+            <option value="500000">500k - 1m</option>
+            <option value="1000000">1m - 5m</option>
+            <option value="5000000">5m - 10m</option>
+            <option value="10000000">10m - 20m</option>
+            <option value="20000000">20m - 50m</option>
+            <option value="50000000">50m+</option>
+        </select>
+    </div>
+
+    <div class="filter-item">
+        <label for="filter-favorites">Favs only:</label>
+        <input
+            type="checkbox"
+            id="filter-favorites"
+            name="filter-favorites"
+            checked={$filter.favorites}
+            on:blur={e => filterFavorites(e)}
+        />
+    </div>
+
+    <div class="filter-item">
+        <input type="radio" name="referenceCurrency" value="usd" checked on:change={e => setReferenceCurrency(e)} />
+        USD
+        <input type="radio" name="referenceCurrency" value="btc" on:change={e => setReferenceCurrency(e)} />
+        BTC
+    </div>
+
+    <button on:click={resetFilters}>Reset</button>
+</div>
+
 <style>
     .filters {
         display: inline-flex;
@@ -79,76 +157,3 @@
         cursor: pointer;
     }
 </style>
-
-<div class="filters">
-    <div class="filter-item">
-        <label for="filter-exchange">Exchange:</label>
-        <select id="filter-exchange" name="filter-exchange" value={$filter.exchange} on:change={e => filterExchange(e)}>
-            <option value="all">All</option>
-            <option value="any">Any</option>
-            <option value="binance">Binance</option>
-            <option value="coinbase">Coinbase</option>
-            <option value="idax">IDAX</option>
-            <option value="idex">IDEX</option>
-            <option value="kraken">Kraken</option>
-            <option value="kucoin">Kucoin</option>
-            <option value="okex">OKEx</option>
-            <option value="uniswap">UniSwap</option>
-        </select>
-    </div>
-
-    <div class="filter-item">
-        <label for="filter-marketcap">MarketCap:</label>
-        <select
-            id="filter-marketcap"
-            name="filter-marketcap"
-            value={$filter.marketCap}
-            on:change={e => filterMarketCap(e)}>
-            <option value="all">All</option>
-            <option value="0">0 - 100k</option>
-            <option value="100000">100k - 250k</option>
-            <option value="250000">250k - 500k</option>
-            <option value="500000">500k - 1m</option>
-            <option value="1000000">1m - 5m</option>
-            <option value="5000000">5m - 10m</option>
-            <option value="10000000">10m - 20m</option>
-            <option value="20000000">20m - 50m</option>
-            <option value="50000000">50m+</option>
-        </select>
-    </div>
-
-    <div class="filter-item">
-        <label for="filter-volume">Volume:</label>
-        <select id="filter-volume" name="filter-volume" value={$filter.volume} on:change={e => filterVolume(e)}>
-            <option value="all">All</option>
-            <option value="0">0 - 100k</option>
-            <option value="100000">100k - 250k</option>
-            <option value="250000">250k - 500k</option>
-            <option value="500000">500k - 1m</option>
-            <option value="1000000">1m - 5m</option>
-            <option value="5000000">5m - 10m</option>
-            <option value="10000000">10m - 20m</option>
-            <option value="20000000">20m - 50m</option>
-            <option value="50000000">50m+</option>
-        </select>
-    </div>
-
-    <div class="filter-item">
-        <label for="filter-favorites">Favs only:</label>
-        <input
-            type="checkbox"
-            id="filter-favorites"
-            name="filter-favorites"
-            checked={$filter.favorites}
-            on:blur={e => filterFavorites(e)} />
-    </div>
-
-    <div class="filter-item">
-        <input type="radio" name="referenceCurrency" value="usd" checked on:change={e => setReferenceCurrency(e)} />
-        USD
-        <input type="radio" name="referenceCurrency" value="btc" on:change={e => setReferenceCurrency(e)} />
-        BTC
-    </div>
-
-    <button on:click={resetFilters}>Reset</button>
-</div>
