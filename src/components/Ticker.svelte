@@ -1,6 +1,5 @@
 <script>
     import { selectedTicker } from '../stores/selectedTicker';
-    import { favorites } from '../stores/favorites';
     import { global } from '../stores/global';
     import Favorite from './Favorite.svelte';
 
@@ -17,7 +16,18 @@
         <Favorite tickerSymbol={ticker.symbol} />
     </td>
     <td>
-        <a href on:click|preventDefault={() => selectTicker(ticker)}>{ticker.symbol}</a>
+        <img
+            width="16"
+            height="16"
+            class="ticker-icon"
+            loading="lazy"
+            src="https://cryptologos.cc/logos/thumbs/{ticker.name.toLowerCase()}.png"
+            alt=""
+        />
+
+        <a href on:click|preventDefault={() => selectTicker(ticker)}>
+            {ticker.symbol}
+        </a>
     </td>
     <td>
         <a href on:click|preventDefault={() => selectTicker(ticker)}>{ticker.name}</a>
@@ -95,6 +105,12 @@
     .exchanges ul {
         list-style: none;
         padding: 0;
+    }
+
+    .ticker-icon {
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
     }
 
     .graph-img {
