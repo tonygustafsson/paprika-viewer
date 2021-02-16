@@ -46,7 +46,7 @@
 
     @media screen and (min-width: 1000px) {
         .container {
-            width: 80%;
+            width: 95%;
         }
     }
 </style>
