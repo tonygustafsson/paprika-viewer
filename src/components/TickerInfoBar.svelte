@@ -7,6 +7,66 @@
     };
 </script>
 
+{#if $selectedTicker}
+    <div class="coin-info-bar">
+        <div class="content">
+            <p class="name">
+                <a target="_blank" href="https://coinpaprika.com/coin/{$selectedTicker.id}">{$selectedTicker.name}</a>
+                {$global.currencySymbol}{$selectedTicker[$global.referenceCurrency].price}
+            </p>
+
+            <div class="graphs">
+                <div class="graph-item">
+                    <span class="graph-label">24h ({$selectedTicker[$global.referenceCurrency].change24h}%):</span>
+
+                    <img
+                        loading="lazy"
+                        class="graph-img"
+                        class:positive={$selectedTicker[$global.referenceCurrency].change24h >= 0}
+                        class:negative={$selectedTicker[$global.referenceCurrency].change24h < 0}
+                        width="120"
+                        height="23"
+                        src="https://graphs.coinpaprika.com/currency/chart/{$selectedTicker.id}/24h/chart.svg"
+                        alt=""
+                    />
+                </div>
+
+                <div class="graph-item">
+                    <span class="graph-label">7d ({$selectedTicker[$global.referenceCurrency].change7d}%):</span>
+
+                    <img
+                        loading="lazy"
+                        class="graph-img"
+                        class:positive={$selectedTicker[$global.referenceCurrency].change7d >= 0}
+                        class:negative={$selectedTicker[$global.referenceCurrency].change7d < 0}
+                        width="120"
+                        height="23"
+                        src="https://graphs.coinpaprika.com/currency/chart/{$selectedTicker.id}/7d/chart.svg"
+                        alt=""
+                    />
+                </div>
+
+                <div class="graph-item">
+                    <span class="graph-label">30d ({$selectedTicker[$global.referenceCurrency].change30d}%):</span>
+
+                    <img
+                        loading="lazy"
+                        class="graph-img"
+                        class:positive={$selectedTicker[$global.referenceCurrency].change30d >= 0}
+                        class:negative={$selectedTicker[$global.referenceCurrency].change30d < 0}
+                        width="120"
+                        height="23"
+                        src="https://graphs.coinpaprika.com/currency/chart/{$selectedTicker.id}/30d/chart.svg"
+                        alt=""
+                    />
+                </div>
+            </div>
+        </div>
+
+        <a class="close-button" href on:click|preventDefault={() => closeBar()}>×</a>
+    </div>
+{/if}
+
 <style>
     .coin-info-bar {
         position: fixed;
@@ -80,60 +140,3 @@
         }
     }
 </style>
-
-{#if $selectedTicker}
-    <div class="coin-info-bar">
-        <div class="content">
-            <p class="name">
-                <a target="_blank" href="https://coinpaprika.com/coin/{$selectedTicker.id}">{$selectedTicker.name}</a>
-                {$global.currencySymbol}{$selectedTicker[$global.referenceCurrency].price}
-            </p>
-
-            <div class="graphs">
-                <div class="graph-item">
-                    <span class="graph-label">24h ({$selectedTicker[$global.referenceCurrency].change24h}%):</span>
-
-                    <img
-                        loading="lazy"
-                        class="graph-img"
-                        class:positive={$selectedTicker[$global.referenceCurrency].change24h >= 0}
-                        class:negative={$selectedTicker[$global.referenceCurrency].change24h < 0}
-                        width="120"
-                        height="23"
-                        src="https://graphs{Math.random() > 0.5 ? '2' : ''}.coinpaprika.com/currency/chart/{$selectedTicker.id}/24h/chart.svg"
-                        alt="" />
-                </div>
-
-                <div class="graph-item">
-                    <span class="graph-label">7d ({$selectedTicker[$global.referenceCurrency].change7d}%):</span>
-
-                    <img
-                        loading="lazy"
-                        class="graph-img"
-                        class:positive={$selectedTicker[$global.referenceCurrency].change7d >= 0}
-                        class:negative={$selectedTicker[$global.referenceCurrency].change7d < 0}
-                        width="120"
-                        height="23"
-                        src="https://graphs{Math.random() > 0.5 ? '2' : ''}.coinpaprika.com/currency/chart/{$selectedTicker.id}/7d/chart.svg"
-                        alt="" />
-                </div>
-
-                <div class="graph-item">
-                    <span class="graph-label">30d ({$selectedTicker[$global.referenceCurrency].change30d}%):</span>
-
-                    <img
-                        loading="lazy"
-                        class="graph-img"
-                        class:positive={$selectedTicker[$global.referenceCurrency].change30d >= 0}
-                        class:negative={$selectedTicker[$global.referenceCurrency].change30d < 0}
-                        width="120"
-                        height="23"
-                        src="https://graphs{Math.random() > 0.5 ? '2' : ''}.coinpaprika.com/currency/chart/{$selectedTicker.id}/30d/chart.svg"
-                        alt="" />
-                </div>
-            </div>
-        </div>
-
-        <a class="close-button" href on:click|preventDefault={() => closeBar()}>×</a>
-    </div>
-{/if}
