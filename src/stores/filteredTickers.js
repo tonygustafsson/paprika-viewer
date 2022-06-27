@@ -4,7 +4,7 @@ import { order } from './order';
 import { global } from './global';
 import { filter } from './filter';
 import { favorites } from './favorites';
-import sort from 'fast-sort';
+import { sort } from 'fast-sort';
 
 const initValue = [];
 
