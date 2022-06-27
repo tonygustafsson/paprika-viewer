@@ -19,7 +19,7 @@ const globalStore = () => {
             });
         },
         setReferenceCurrency: currency => {
-            if (currency !== 'usd' && currency !== 'sek' && currency !== 'btc' && currency !== 'eth') {
+            if (currency !== 'usd' && currency !== 'sek' && currency !== 'btc') {
                 return;
             }
 
@@ -35,9 +35,6 @@ const globalStore = () => {
                         break;
                     case 'btc':
                         currencySymbol = '₿';
-                        break;
-                    case 'eth':
-                        currencySymbol = 'E';
                         break;
                     default:
                         currencySymbol = '$';

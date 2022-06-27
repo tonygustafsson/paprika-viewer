@@ -32,7 +32,6 @@ const getTickerData = ticker => {
         usd: getQuotes(ticker.quotes.USD),
         sek: getQuotes(ticker.quotes.SEK),
         btc: getQuotes(ticker.quotes.BTC),
-        eth: getQuotes(ticker.quotes.ETH),
         exchanges: ticker.exchanges
     };
 };

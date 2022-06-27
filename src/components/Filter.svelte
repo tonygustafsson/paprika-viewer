@@ -102,8 +102,6 @@
         SEK
         <input type="radio" name="referenceCurrency" value="btc" on:change={e => setReferenceCurrency(e)} />
         BTC
-        <input type="radio" name="referenceCurrency" value="eth" on:change={e => setReferenceCurrency(e)} />
-        ETH
     </div>
 
     <button on:click={resetFilters}>Reset</button>
