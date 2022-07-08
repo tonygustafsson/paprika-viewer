@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
-public/bundle.*
-public/public/bundle.css
-public/public/bundle.css.map
-public/build/*
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example
