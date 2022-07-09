@@ -41,11 +41,9 @@
 			<option value="any">Any</option>
 			<option value="binance">Binance</option>
 			<option value="coinbasePro">Coinbase</option>
-			<option value="idex">IDEX</option>
 			<option value="kraken">Kraken</option>
 			<option value="kucoin">Kucoin</option>
 			<option value="okex">OKEx</option>
-			<option value="uniswap">UniSwap</option>
 		</select>
 	</div>
 

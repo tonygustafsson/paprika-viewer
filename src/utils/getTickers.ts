@@ -7,7 +7,7 @@ import {
 	localStorageTickersTable
 } from '../constants';
 import { getFromStorage, saveToStorage } from '../utils/storage';
-import type { Exchange, Market, Ticker } from 'src/types';
+import type { Market, Ticker } from 'src/types';
 
 const getTickersFromApi = async () => {
 	const tickersResponse = await fetch(apiUrls.tickers);
@@ -26,24 +26,40 @@ const getTickersFromApi = async () => {
 	return tickersJson;
 };
 
-const addMarketToTickers = async (tickersResponse: Ticker[], exchange: Exchange) => {
-	const response = await fetch(apiUrls.markets[exchange]);
-	const markets: Market[] = await response.json();
+const getExchangeNameFromUrl = (url: string) => {
+	if (url.includes('binance')) return 'Binance';
+	if (url.includes('coinbase')) return 'Coinbase';
+	if (url.includes('kraken')) return 'Kraken';
+	if (url.includes('kucoin')) return 'Kucoin';
+	if (url.includes('okx')) return 'OKEx';
+	return 'Unknown';
+};
 
-	markets.forEach((market) => {
-		const matcher = market.base_currency_id;
-		const matchingTicker = tickersResponse.find((x) => x.id === matcher);
+const fetchExchanges = async () =>
+	(await Promise.all([
+		(await fetch(apiUrls.markets.binance)).json(),
+		(await fetch(apiUrls.markets.coinbasePro)).json(),
+		(await fetch(apiUrls.markets.kraken)).json(),
+		(await fetch(apiUrls.markets.kucoin)).json(),
+		(await fetch(apiUrls.markets.okex)).json()
+	])) as unknown as Market[][];
 
-		if (matchingTicker) {
-			if (!matchingTicker.exchanges) matchingTicker.exchanges = [];
+const addMarketsToTickers = (tickers: Ticker[], exchanges: Array<Market[]>) => {
+	exchanges.forEach((exchange) => {
+		exchange.forEach((market) => {
+			const ticker = tickers.find((t) => t.id === market.base_currency_id);
 
-			if (!matchingTicker.exchanges.includes(exchange)) {
-				matchingTicker.exchanges.push(exchange);
-			}
-		}
+			if (!ticker) return;
+
+			if (!ticker.exchanges) ticker.exchanges = [];
+
+			const exchangeName = getExchangeNameFromUrl(market.market_url);
+
+			if (ticker.exchanges.includes(exchangeName)) return;
+
+			ticker.exchanges.push(exchangeName);
+		});
 	});
-
-	return tickersResponse;
 };
 
 export const getTickers = async () => {
@@ -56,14 +72,10 @@ export const getTickers = async () => {
 	} else {
 		// If it's not stored, get the data from API
 		console.log(`Fetching tickers from API.`);
+
 		getTickersFromApi().then(async (tickersResponse) => {
-			tickersResponse = await addMarketToTickers(tickersResponse, 'coinbasePro');
-			tickersResponse = await addMarketToTickers(tickersResponse, 'binance');
-			tickersResponse = await addMarketToTickers(tickersResponse, 'idex');
-			tickersResponse = await addMarketToTickers(tickersResponse, 'kraken');
-			tickersResponse = await addMarketToTickers(tickersResponse, 'kucoin');
-			tickersResponse = await addMarketToTickers(tickersResponse, 'okex');
-			tickersResponse = await addMarketToTickers(tickersResponse, 'uniswap');
+			const exchanges = await fetchExchanges();
+			addMarketsToTickers(tickersResponse, exchanges);
 
 			tickers.save(tickersResponse);
 			settings.isLoading(false);

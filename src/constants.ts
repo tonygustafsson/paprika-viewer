@@ -3,12 +3,10 @@ export const apiUrls = {
 	globalMarket: 'https://api.coinpaprika.com/v1/global',
 	markets: {
 		binance: 'https://api.coinpaprika.com/v1/exchanges/binance/markets',
-		idex: 'https://api.coinpaprika.com/v1/exchanges/idex/markets',
 		coinbasePro: 'https://api.coinpaprika.com/v1/exchanges/coinbase-pro/markets',
 		kraken: 'https://api.coinpaprika.com/v1/exchanges/kraken/markets',
 		kucoin: 'https://api.coinpaprika.com/v1/exchanges/kucoin/markets',
-		okex: 'https://api.coinpaprika.com/v1/exchanges/okex/markets',
-		uniswap: 'https://api.coinpaprika.com/v1/exchanges/uniswap/markets'
+		okex: 'https://api.coinpaprika.com/v1/exchanges/okex/markets'
 	}
 };
 

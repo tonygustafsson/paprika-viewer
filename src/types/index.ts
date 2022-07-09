@@ -63,14 +63,7 @@ export type GlobalMarket = {
 	volume_24h_usd: number;
 };
 
-export type Exchange =
-	| 'binance'
-	| 'coinbasePro'
-	| 'idex'
-	| 'kraken'
-	| 'kucoin'
-	| 'okex'
-	| 'uniswap';
+export type Exchange = 'binance' | 'coinbasePro' | 'kraken' | 'kucoin' | 'okex';
 
 export type Favorites = Record<string, boolean>;
 
