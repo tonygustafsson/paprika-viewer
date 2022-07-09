@@ -2,6 +2,7 @@
 	import type { Currency, Exchange } from 'src/types';
 
 	import { filter } from '../stores/filter';
+	import { sort } from '../stores/sort';
 	import { settings } from '../stores/settings';
 
 	const filterExchange = (e: Event) => {
@@ -24,7 +25,8 @@
 		settings.setReferenceCurrency((e.target as HTMLInputElement).value as Currency);
 	};
 
-	const resetFilters = () => {
+	const reset = () => {
+		sort.reset();
 		filter.reset();
 	};
 </script>
@@ -129,7 +131,7 @@
 		BTC
 	</div>
 
-	<button on:click={resetFilters}>Reset</button>
+	<button on:click={reset}>Reset</button>
 </div>
 
 <style>

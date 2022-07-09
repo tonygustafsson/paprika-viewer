@@ -12,7 +12,7 @@ const initValue: Sort = {
 };
 
 const sortStore = () => {
-	const { subscribe, update } = writable(initValue);
+	const { subscribe, update, set } = writable(initValue);
 
 	return {
 		subscribe,
@@ -21,7 +21,8 @@ const sortStore = () => {
 				by: sortBy,
 				direction: sort.direction === 'asc' ? 'desc' : 'asc'
 			}));
-		}
+		},
+		reset: () => set(initValue)
 	};
 };
 
