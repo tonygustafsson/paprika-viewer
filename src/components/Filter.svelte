@@ -1,25 +1,27 @@
 <script lang="ts">
+	import type { Currency, Exchange } from 'src/types';
+
 	import { filter } from '../stores/filter';
 	import { settings } from '../stores/settings';
 
-	const filterExchange = (e: any) => {
-		filter.setExchange(e.target.value);
+	const filterExchange = (e: Event) => {
+		filter.setExchange((e.target as HTMLSelectElement).value as Exchange);
 	};
 
-	const filterVolume = (e: any) => {
-		filter.setVolume(e.target.value);
+	const filterVolume = (e: Event) => {
+		filter.setVolume((e.target as HTMLSelectElement).value);
 	};
 
-	const filterMarketCap = (e: any) => {
-		filter.setMarketCap(e.target.value);
+	const filterMarketCap = (e: Event) => {
+		filter.setMarketCap((e.target as HTMLSelectElement).value);
 	};
 
-	const filterFavorites = (e: any) => {
-		filter.setFavorites(e.target.checked);
+	const filterFavorites = (e: Event) => {
+		filter.setFavorites((e.target as HTMLInputElement).checked);
 	};
 
-	const setReferenceCurrency = (e: any) => {
-		settings.setReferenceCurrency(e.target.value);
+	const setReferenceCurrency = (e: Event) => {
+		settings.setReferenceCurrency((e.target as HTMLInputElement).value as Currency);
 	};
 
 	const resetFilters = () => {
