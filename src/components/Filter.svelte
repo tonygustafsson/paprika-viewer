@@ -41,11 +41,11 @@
 		>
 			<option value="all">All</option>
 			<option value="any">Any</option>
-			<option value="binance">Binance</option>
-			<option value="coinbasePro">Coinbase</option>
-			<option value="kraken">Kraken</option>
-			<option value="kucoin">Kucoin</option>
-			<option value="okex">OKEx</option>
+			<option value="Binance">Binance</option>
+			<option value="Coinbase">Coinbase</option>
+			<option value="Kraken">Kraken</option>
+			<option value="Kucoin">Kucoin</option>
+			<option value="OKEx">OKEx</option>
 		</select>
 	</div>
 
