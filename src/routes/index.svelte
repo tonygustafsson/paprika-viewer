@@ -20,9 +20,7 @@
 		<GlobalMarket />
 	{/if}
 
-	<h1>
-		<a class="logo-link" href="index.html">🌶️ Paprika Viewer</a>
-	</h1>
+	<h1>🌶️ Paprika Viewer</h1>
 
 	{#if !$settings.loading}
 		<TickerInfoBar />
@@ -37,11 +35,6 @@
 	.container {
 		width: 100%;
 		margin: 0 auto;
-	}
-
-	.logo-link {
-		color: #fff;
-		text-decoration: none;
 	}
 
 	@media screen and (min-width: 1000px) {
