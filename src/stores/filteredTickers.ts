@@ -268,13 +268,7 @@ const filteredTickersStore = () => {
 			});
 		},
 		sort: () => {
-			update((tickers) => {
-				const newTickers = sortTickers(tickers);
-
-				console.log({ sorted: true, newTickers });
-
-				return newTickers;
-			});
+			update((tickers) => sortTickers(tickers));
 		}
 	};
 };

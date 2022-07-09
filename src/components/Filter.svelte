@@ -100,7 +100,7 @@
 			id="filter-favorites"
 			name="filter-favorites"
 			checked={$filter.favorites}
-			on:blur={(e) => filterFavorites(e)}
+			on:change={(e) => filterFavorites(e)}
 		/>
 	</div>
 
