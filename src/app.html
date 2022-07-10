@@ -5,11 +5,16 @@
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<style>
+			@font-face {
+				font-family: 'Ubuntu';
+				src: url('Ubuntu-Regular.woff2');
+			}
+
 			body {
 				color: #fff;
 				background: #000;
 				accent-color: var(--color-primary);
-				font-family: 'Ubuntu Mono', monospace;
+				font-family: var(--font-family);
 				font-size: 14px;
 			}
 		</style>

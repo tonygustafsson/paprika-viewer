@@ -8,6 +8,7 @@
 
 <style>
 	select {
+		font-family: var(--font-family);
 		padding: 0.5em 1em;
 		margin: 0.2em 0.5em;
 		background-color: var(--color-secondary);

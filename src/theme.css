@@ -10,7 +10,8 @@
 	--color-secondary: var(--color-grey-100);
 	--color-secondary-hover: var(--color-grey-200);
 
-	/* Font sizes */
+	/* Fonts */
+	--font-family: 'Ubuntu', monospace;
 	--font-size-normal: 16px;
 
 	/* Borders */
