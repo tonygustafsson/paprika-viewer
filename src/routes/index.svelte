@@ -7,6 +7,7 @@
 	import Tickers from '../components/Tickers.svelte';
 	import Loader from '../components/Loader.svelte';
 	import TickerInfoBar from '../components/TickerInfoBar.svelte';
+	import ChiliIcon from '../components/icons/Chili.svelte';
 	import '../theme.css';
 
 	onMount(() => {
@@ -21,7 +22,7 @@
 		<GlobalMarket />
 	{/if}
 
-	<h1>🌶️ Paprika Viewer</h1>
+	<h1><ChiliIcon width={35} height={35} /> Paprika Viewer</h1>
 
 	{#if !$settings.loading}
 		<TickerInfoBar />
@@ -36,6 +37,12 @@
 	.container {
 		width: 100%;
 		margin: 0 auto;
+	}
+
+	h1 {
+		display: flex;
+		align-items: flex-end;
+		gap: 8px;
 	}
 
 	@media screen and (min-width: 1000px) {
