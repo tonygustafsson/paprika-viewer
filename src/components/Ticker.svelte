@@ -10,6 +10,13 @@
 		selectedTicker.set(ticker);
 	};
 
+	const getDecimalsForPrice = (price: number | string) => {
+		if (price > 1) return Number(price).toFixed(2);
+		if (price < 0.001) return Number(price).toFixed(8);
+
+		return Number(price).toFixed(6);
+	};
+
 	$: quote = ticker.quotes[$settings.referenceCurrency];
 </script>
 
@@ -35,7 +42,7 @@
 	<td>
 		<a href="/" on:click|preventDefault={() => selectTicker(ticker)}>{ticker.name}</a>
 	</td>
-	<td>{$settings.currencySymbol}{quote.price}</td>
+	<td>{$settings.currencySymbol}{getDecimalsForPrice(quote.price)}</td>
 	<td>{$settings.currencySymbol}{quote.market_cap}</td>
 	<td>{$settings.currencySymbol}{quote.volume_24h?.toFixed(0)}</td>
 	<td>{quote.percent_change_1h}%</td>
