@@ -1,0 +1,15 @@
+:root {
+	/* Colors */
+	--color-grey-100: #202020;
+	--color-grey-200: #303030;
+
+	/* Theme colors */
+	--color-primary: var(--color-grey-100);
+	--color-primary-hover: var(--color-grey-200);
+
+	/* Font sizes */
+	--font-size-normal: 16px;
+
+	/* Borders */
+	--border-radius: 2px;
+}

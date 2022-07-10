@@ -4,6 +4,10 @@
 	import { filter } from '../stores/filter';
 	import { sort } from '../stores/sort';
 	import { settings } from '../stores/settings';
+	import Button from './ui/Button.svelte';
+	import Select from './ui/Select.svelte';
+	import Checkbox from './ui/Checkbox.svelte';
+	import RadioGroup from './ui/RadioGroup.svelte';
 
 	const filterExchange = (e: Event) => {
 		filter.setExchange((e.target as HTMLSelectElement).value as Exchange);
@@ -35,7 +39,7 @@
 	<div class="filter-item">
 		<label for="filter-exchange">Exchange:</label>
 		<!-- svelte-ignore a11y-no-onchange -->
-		<select
+		<Select
 			id="filter-exchange"
 			name="filter-exchange"
 			value={$filter.exchange}
@@ -48,13 +52,13 @@
 			<option value="Kraken">Kraken</option>
 			<option value="Kucoin">Kucoin</option>
 			<option value="OKEx">OKEx</option>
-		</select>
+		</Select>
 	</div>
 
 	<div class="filter-item">
 		<label for="filter-marketcap">MarketCap:</label>
 		<!-- svelte-ignore a11y-no-onchange -->
-		<select
+		<Select
 			id="filter-marketcap"
 			name="filter-marketcap"
 			value={$filter.marketCap}
@@ -70,13 +74,13 @@
 			<option value="10000000">10m - 20m</option>
 			<option value="20000000">20m - 50m</option>
 			<option value="50000000">50m+</option>
-		</select>
+		</Select>
 	</div>
 
 	<div class="filter-item">
 		<label for="filter-volume">Volume:</label>
 		<!-- svelte-ignore a11y-no-onchange -->
-		<select
+		<Select
 			id="filter-volume"
 			name="filter-volume"
 			value={$filter.volume}
@@ -92,46 +96,31 @@
 			<option value="10000000">10m - 20m</option>
 			<option value="20000000">20m - 50m</option>
 			<option value="50000000">50m+</option>
-		</select>
+		</Select>
 	</div>
 
 	<div class="filter-item">
-		<label for="filter-favorites">Favs only:</label>
-		<input
-			type="checkbox"
-			id="filter-favorites"
+		<Checkbox
 			name="filter-favorites"
+			id="filter-favorites"
 			checked={$filter.favorites}
 			on:change={(e) => filterFavorites(e)}
 		/>
 	</div>
 
 	<div class="filter-item">
-		<input
-			type="radio"
+		<RadioGroup
 			name="referenceCurrency"
-			value="USD"
-			checked
 			on:change={(e) => setReferenceCurrency(e)}
+			items={[
+				{ label: 'USD', value: 'USD', checked: true },
+				{ label: 'BTC', value: 'BTC' },
+				{ label: 'SEK', value: 'SEK' }
+			]}
 		/>
-		USD
-		<input
-			type="radio"
-			name="referenceCurrency"
-			value="SEK"
-			on:change={(e) => setReferenceCurrency(e)}
-		/>
-		SEK
-		<input
-			type="radio"
-			name="referenceCurrency"
-			value="BTC"
-			on:change={(e) => setReferenceCurrency(e)}
-		/>
-		BTC
 	</div>
 
-	<button on:click={reset}>Reset</button>
+	<Button on:click={reset}>Reset</Button>
 </div>
 
 <style>
@@ -145,43 +134,5 @@
 		align-items: center;
 		display: flex;
 		margin: 0 12px;
-	}
-
-	select {
-		padding: 0.2em 0.5em;
-		margin: 0.2em 0.5em;
-		background-color: #202020;
-		color: #fff;
-		font-size: 100%;
-		border: 0;
-		vertical-align: middle;
-	}
-
-	label {
-		min-width: 5em;
-		text-align: right;
-	}
-
-	input[type='checkbox'] {
-		margin: 0.2em 0.5em;
-		background-color: #202020;
-		color: #fff;
-		font-size: 100%;
-		vertical-align: middle;
-	}
-
-	input[type='radio']:nth-child(2) {
-		margin-left: 1em;
-	}
-
-	button {
-		padding: 0.2em 0.5em;
-		margin: 1em 0.5em;
-		background-color: #202020;
-		color: #fff;
-		border: 0;
-		font-size: 100%;
-		vertical-align: middle;
-		cursor: pointer;
 	}
 </style>

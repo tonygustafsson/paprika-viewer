@@ -7,6 +7,7 @@
 	import Tickers from '../components/Tickers.svelte';
 	import Loader from '../components/Loader.svelte';
 	import TickerInfoBar from '../components/TickerInfoBar.svelte';
+	import '../theme.css';
 
 	onMount(() => {
 		getTickers();
