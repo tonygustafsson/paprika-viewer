@@ -27,7 +27,7 @@
 		cursor: pointer;
 		width: 30px;
 		height: 15px;
-		background: var(--color-primary);
+		background: var(--color-secondary);
 		display: block;
 		border-radius: 4px;
 		position: relative;
@@ -46,7 +46,7 @@
 	}
 
 	input:checked + .switch {
-		background: var(--color-cta);
+		background: var(--color-primary);
 	}
 
 	input:checked + .switch:after {

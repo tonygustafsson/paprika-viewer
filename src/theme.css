@@ -1,13 +1,14 @@
 :root {
 	/* Colors */
 	--color-grey-100: #202020;
-	--color-grey-200: #303030;
-	--color-red: #a2005a;
+	--color-grey-200: #2e2e2e;
+	--color-grey-500: #151515;
+	--color-red-500: #a2005a;
 
 	/* Theme colors */
-	--color-primary: var(--color-grey-100);
-	--color-primary-hover: var(--color-grey-200);
-	--color-cta: var(--color-red);
+	--color-primary: var(--color-red-500);
+	--color-secondary: var(--color-grey-100);
+	--color-secondary-hover: var(--color-grey-200);
 
 	/* Font sizes */
 	--font-size-normal: 16px;

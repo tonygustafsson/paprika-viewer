@@ -24,7 +24,7 @@
 
 	li {
 		display: block;
-		color: #8b8b8b;
+		color: #fff;
 	}
 
 	@media screen and (min-width: 1000px) {

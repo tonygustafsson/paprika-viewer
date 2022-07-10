@@ -10,7 +10,7 @@
 	select {
 		padding: 0.5em 1em;
 		margin: 0.2em 0.5em;
-		background-color: var(--color-primary);
+		background-color: var(--color-secondary);
 		border-radius: var(--border-radius);
 		color: #fff;
 		font-size: 100%;
@@ -20,6 +20,6 @@
 	}
 
 	select:hover {
-		background-color: var(--color-primary-hover);
+		background-color: var(--color-secondary-hover);
 	}
 </style>

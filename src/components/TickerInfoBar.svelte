@@ -90,8 +90,9 @@
 		align-items: center;
 		width: 100%;
 		min-height: 100px;
-		background-color: #111;
-		border-top: 1px #383838 solid;
+		background-color: var(--color-grey-500);
+		border-top: 1px var(--color-grey-200) solid;
+		box-shadow: 0px -6px 10px 0px #000;
 		z-index: 2;
 		padding: 10px 0;
 	}

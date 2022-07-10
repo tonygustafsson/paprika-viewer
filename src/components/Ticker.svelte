@@ -100,8 +100,8 @@
 </tr>
 
 <style>
-	tr:nth-child(2n + 1) {
-		background-color: #111;
+	tr:nth-child(odd) {
+		background-color: var(--color-grey-500);
 	}
 
 	td {

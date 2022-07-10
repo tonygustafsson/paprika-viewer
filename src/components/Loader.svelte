@@ -28,10 +28,10 @@
 		width: 108px;
 		height: 108px;
 		margin: 10px;
-		border: 10px solid #f10;
+		border: 10px solid var(--color-red-500);
 		border-radius: 50%;
 		animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-		border-color: #f10 transparent transparent transparent;
+		border-color: var(--color-red-500) transparent transparent transparent;
 	}
 
 	.lds-ring div:nth-child(1) {

@@ -7,7 +7,7 @@
 	button {
 		padding: 0.5em 1em;
 		margin: 1em 0.5em;
-		background-color: var(--color-primary);
+		background-color: var(--color-secondary);
 		border-radius: var(--border-radius);
 		color: #fff;
 		border: 0;
@@ -17,6 +17,6 @@
 	}
 
 	button:hover {
-		background-color: var(--color-primary-hover);
+		background-color: var(--color-secondary-hover);
 	}
 </style>

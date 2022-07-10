@@ -92,7 +92,7 @@
 	}
 	.table-responsive::-webkit-scrollbar-thumb {
 		width: 5px;
-		background-color: #f10;
+		background-color: var(--color-red-500);
 	}
 	table {
 		width: 100%;
@@ -101,7 +101,7 @@
 		position: sticky;
 		top: 0;
 		left: 0;
-		background: #111;
+		background-color: var(--color-grey-500);
 		text-align: left;
 		cursor: pointer;
 		padding: 0.5em;
