@@ -2,10 +2,12 @@
 	/* Colors */
 	--color-grey-100: #202020;
 	--color-grey-200: #303030;
+	--color-red: #a2005a;
 
 	/* Theme colors */
 	--color-primary: var(--color-grey-100);
 	--color-primary-hover: var(--color-grey-200);
+	--color-cta: var(--color-red);
 
 	/* Font sizes */
 	--font-size-normal: 16px;

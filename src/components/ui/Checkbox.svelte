@@ -1,12 +1,12 @@
 <script lang="ts">
+	export let label: string;
 	export let name: string;
-	export let id: string;
 	export let checked: boolean;
 </script>
 
-<label for="filter-favorites">
-	Favs only:
-	<input type="checkbox" {id} {name} {checked} on:change />
+<label>
+	{label}
+	<input type="checkbox" {name} {checked} on:change />
 </label>
 
 <style>

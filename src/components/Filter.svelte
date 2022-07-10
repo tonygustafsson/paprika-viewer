@@ -6,7 +6,7 @@
 	import { settings } from '../stores/settings';
 	import Button from './ui/Button.svelte';
 	import Select from './ui/Select.svelte';
-	import Checkbox from './ui/Checkbox.svelte';
+	import Switch from './ui/Switch.svelte';
 	import RadioGroup from './ui/RadioGroup.svelte';
 
 	const filterExchange = (e: Event) => {
@@ -100,9 +100,9 @@
 	</div>
 
 	<div class="filter-item">
-		<Checkbox
+		<Switch
+			label="Favs only"
 			name="filter-favorites"
-			id="filter-favorites"
 			checked={$filter.favorites}
 			on:change={(e) => filterFavorites(e)}
 		/>
