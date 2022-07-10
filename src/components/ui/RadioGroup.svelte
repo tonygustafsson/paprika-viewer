@@ -24,6 +24,8 @@
 
 	input {
 		margin: 2px 0 0 0;
+		width: 16px;
+		height: 16px;
 	}
 
 	label {
