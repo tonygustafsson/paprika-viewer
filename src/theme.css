@@ -4,6 +4,7 @@
 	--color-grey-200: #2e2e2e;
 	--color-grey-500: #151515;
 	--color-red-500: #e62128;
+	--color-red-600: #ce0007;
 
 	/* Theme colors */
 	--color-primary: var(--color-red-500);
