@@ -63,7 +63,7 @@ export type GlobalMarket = {
 	volume_24h_usd: number;
 };
 
-export type Exchange = 'binance' | 'coinbasePro' | 'kraken' | 'kucoin' | 'okex';
+export type Exchange = 'any' | 'binance' | 'coinbasePro' | 'kraken' | 'kucoin' | 'okex';
 
 export type Favorites = Record<string, boolean>;
 
@@ -97,3 +97,27 @@ export type SortBy =
 	| 'percent_change_30d'
 	| 'percent_change_1y'
 	| 'percent_from_price_ath';
+
+export type Volume =
+	| 'all'
+	| 0
+	| 100000
+	| 250000
+	| 500000
+	| 1000000
+	| 5000000
+	| 10000000
+	| 20000000
+	| 50000000;
+
+export type MarketCap =
+	| 'all'
+	| 0
+	| 100000
+	| 250000
+	| 500000
+	| 1000000
+	| 5000000
+	| 10000000
+	| 20000000
+	| 50000000;

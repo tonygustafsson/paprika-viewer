@@ -1,8 +1,5 @@
-import type { Exchange } from 'src/types';
+import type { Exchange, MarketCap, Volume } from 'src/types';
 import { writable } from 'svelte/store';
-
-type Volume = 'all' | string;
-type MarketCap = 'all' | string;
 
 type Filter = {
 	exchange: Exchange | 'any' | 'all';

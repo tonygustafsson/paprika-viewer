@@ -1,5 +1,7 @@
 <script lang="ts">
-	import type { Currency, Exchange } from 'src/types';
+	import { volumeToHuman } from './../utils/volumeToHuman';
+	import { marketCapToHuman } from './../utils/marketCapToHuman';
+	import type { Currency, Exchange, MarketCap, Volume } from 'src/types';
 
 	import { filter } from '../stores/filter';
 	import { sort } from '../stores/sort';
@@ -13,16 +15,44 @@
 
 	$: filterDialogOpen = false;
 
+	const filterItems: Volume[] = [
+		'all',
+		0,
+		100000,
+		250000,
+		500000,
+		1000000,
+		5000000,
+		10000000,
+		20000000,
+		50000000
+	];
+
+	const marketCapItems: MarketCap[] = [
+		'all',
+		0,
+		100000,
+		250000,
+		500000,
+		1000000,
+		5000000,
+		10000000,
+		20000000,
+		50000000
+	];
+
+	$: volumeFilter = $filter.volume !== 'all' ? ($filter.volume as Volume) : (0 as Volume);
+
 	const filterExchange = (e: Event) => {
 		filter.setExchange((e.target as HTMLSelectElement).value as Exchange);
 	};
 
 	const filterVolume = (e: Event) => {
-		filter.setVolume((e.target as HTMLSelectElement).value);
+		filter.setVolume((e.target as HTMLSelectElement).value as Volume);
 	};
 
 	const filterMarketCap = (e: Event) => {
-		filter.setMarketCap((e.target as HTMLSelectElement).value);
+		filter.setMarketCap((e.target as HTMLSelectElement).value as MarketCap);
 	};
 
 	const filterFavorites = (e: Event) => {
@@ -75,19 +105,12 @@
 					id="filter-marketcap"
 					name="filter-marketcap"
 					label="Market cap"
-					value={$filter.marketCap}
+					value={$filter.marketCap.toString()}
 					on:change={(e) => filterMarketCap(e)}
 				>
-					<option value="all">All</option>
-					<option value="0">0 - 100k</option>
-					<option value="100000">100k - 250k</option>
-					<option value="250000">250k - 500k</option>
-					<option value="500000">500k - 1m</option>
-					<option value="1000000">1m - 5m</option>
-					<option value="5000000">5m - 10m</option>
-					<option value="10000000">10m - 20m</option>
-					<option value="20000000">20m - 50m</option>
-					<option value="50000000">50m+</option>
+					{#each marketCapItems as item}
+						<option value={item.toString()}>{marketCapToHuman(item)}</option>
+					{/each}
 				</Select>
 			</div>
 
@@ -96,19 +119,12 @@
 					label="Volume"
 					id="filter-volume"
 					name="filter-volume"
-					value={$filter.volume}
+					value={$filter.volume.toString()}
 					on:change={(e) => filterVolume(e)}
 				>
-					<option value="all">All</option>
-					<option value="0">0 - 100k</option>
-					<option value="100000">100k - 250k</option>
-					<option value="250000">250k - 500k</option>
-					<option value="500000">500k - 1m</option>
-					<option value="1000000">1m - 5m</option>
-					<option value="5000000">5m - 10m</option>
-					<option value="10000000">10m - 20m</option>
-					<option value="20000000">20m - 50m</option>
-					<option value="50000000">50m+</option>
+					{#each filterItems as item}
+						<option value={item.toString()}>{volumeToHuman(item)}</option>
+					{/each}
 				</Select>
 			</div>
 

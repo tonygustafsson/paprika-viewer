@@ -4,6 +4,7 @@
 	import { getTickers } from '../utils/getTickers';
 	import GlobalMarket from '../components/GlobalMarket.svelte';
 	import Filter from '../components/Filter.svelte';
+	import SelectedFilters from '../components/SelectedFilters.svelte';
 	import Tickers from '../components/Tickers.svelte';
 	import Loader from '../components/Loader.svelte';
 	import TickerInfoBar from '../components/TickerInfoBar.svelte';
@@ -28,6 +29,7 @@
 		<TickerInfoBar />
 
 		<Filter />
+		<SelectedFilters />
 
 		<Tickers />
 	{/if}
