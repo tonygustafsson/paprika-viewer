@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { volumeToHuman } from './../utils/volumeToHuman';
+	import { volumeToHuman } from './../utils/number';
 	import { marketCapToHuman } from './../utils/marketCapToHuman';
 	import type { Currency, Exchange, MarketCap, Volume } from 'src/types';
 

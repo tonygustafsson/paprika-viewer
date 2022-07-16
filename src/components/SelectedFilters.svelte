@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { marketCapToHuman } from '../utils/marketCapToHuman';
-	import { volumeToHuman } from '../utils/volumeToHuman';
+	import { volumeToHuman } from '../utils/number';
 	import { filter } from '../stores/filter';
 	import Chip from '../components/ui/Chip.svelte';
 </script>

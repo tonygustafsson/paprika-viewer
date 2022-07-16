@@ -4,6 +4,7 @@
 	import Favorite from './Favorite.svelte';
 	import type { Ticker } from 'src/types';
 	import { onMount } from 'svelte';
+	import { getDecimalsForPrice, priceToHuman } from 'src/utils/number';
 
 	export let ticker: Ticker;
 
@@ -14,13 +15,6 @@
 
 	const selectTicker = (ticker: Ticker) => {
 		selectedTicker.set(ticker);
-	};
-
-	const getDecimalsForPrice = (price: number | string) => {
-		if (price > 1) return Number(price).toFixed(2);
-		if (price < 0.001) return Number(price).toFixed(8);
-
-		return Number(price).toFixed(6);
 	};
 
 	const observer = new IntersectionObserver((entries) => {
@@ -58,8 +52,8 @@
 			<a href="/" on:click|preventDefault={() => selectTicker(ticker)}>{ticker.name}</a>
 		</td>
 		<td>{$settings.currencySymbol}{getDecimalsForPrice(quote.price)}</td>
-		<td>{$settings.currencySymbol}{quote.market_cap}</td>
-		<td>{$settings.currencySymbol}{quote.volume_24h?.toFixed(0)}</td>
+		<td>{$settings.currencySymbol}{priceToHuman(quote.market_cap)}</td>
+		<td>{$settings.currencySymbol}{priceToHuman(quote.volume_24h)}</td>
 		<td>{quote.percent_change_1h}%</td>
 		<td>{quote.percent_change_12h}%</td>
 		<td>

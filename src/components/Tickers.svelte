@@ -119,4 +119,8 @@
 		padding: 0.5em;
 		z-index: 1;
 	}
+
+	th:nth-child(1) {
+		width: 50px;
+	}
 </style>

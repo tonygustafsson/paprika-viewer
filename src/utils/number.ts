@@ -34,3 +34,23 @@ export const volumeToHuman = (volume: Volume) => {
 		}
 	}
 };
+
+export const getDecimalsForPrice = (price: number | string) => {
+	if (price > 1) return Number(price).toFixed(2);
+	if (price < 0.001) return Number(price).toFixed(8);
+
+	return Number(price).toFixed(6);
+};
+
+export const priceToHuman = (price: number) => {
+	if (price > 1_000_000_000_000) {
+		return `${(price / 1_000_000_000_000).toFixed(2)} T`;
+	}
+	if (price > 1_000_000_000) {
+		return `${(price / 1_000_000_000).toFixed(2)} B`;
+	}
+	if (price > 1_000_000) {
+		return `${(price / 1_000_000).toFixed(2)} M`;
+	}
+	return price.toLocaleString();
+};
