@@ -99,6 +99,13 @@
 					</th>
 				{/if}
 
+				{#if $columns.change_1y}
+					<th on:click={() => handleSort('percent_change_1y')}>
+						1y
+						{#if $sort.by === 'percent_change_1y'}{orderSymbol}{/if}
+					</th>
+				{/if}
+
 				{#if $columns.ath}
 					<th on:click={() => handleSort('percent_from_price_ath')}>
 						From ATH

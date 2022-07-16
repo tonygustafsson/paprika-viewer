@@ -74,11 +74,35 @@
 		{/if}
 
 		{#if $columns.change_1h}
-			<td>{quote.percent_change_1h}%</td>
+			<td>
+				<img
+					loading="lazy"
+					class="graph-img"
+					class:positive={quote.percent_change_24h >= 0}
+					class:negative={quote.percent_change_24h < 0}
+					width="120"
+					height="23"
+					src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/1h/chart.svg"
+					alt=""
+				/>
+				{quote.percent_change_1h}%
+			</td>
 		{/if}
 
 		{#if $columns.change_12h}
-			<td>{quote.percent_change_12h}%</td>
+			<td>
+				<img
+					loading="lazy"
+					class="graph-img"
+					class:positive={quote.percent_change_24h >= 0}
+					class:negative={quote.percent_change_24h < 0}
+					width="120"
+					height="23"
+					src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/12h/chart.svg"
+					alt=""
+				/>
+				{quote.percent_change_12h}%
+			</td>
 		{/if}
 
 		{#if $columns.change_24h}
@@ -130,6 +154,23 @@
 			</td>
 		{/if}
 
+		{#if $columns.change_1y}
+			<td>
+				<img
+					loading="lazy"
+					class="graph-img"
+					class:positive={quote.percent_change_1y >= 0}
+					class:negative={quote.percent_change_1y < 0}
+					width="120"
+					height="23"
+					src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/1y/chart.svg"
+					alt=""
+				/>
+
+				{quote.percent_change_1y}%
+			</td>
+		{/if}
+
 		{#if $columns.ath}
 			<td>{quote.percent_from_price_ath}%</td>
 		{/if}
@@ -160,6 +201,9 @@
 
 	td {
 		padding: 0.5em;
+	}
+
+	td:not(:has(img)) {
 		white-space: nowrap;
 	}
 
@@ -179,7 +223,9 @@
 	}
 
 	.graph-img {
-		margin: 0 4px 4px 0;
+		width: 100%;
+		min-width: 120px;
+		margin-bottom: 12px;
 		vertical-align: middle;
 	}
 
