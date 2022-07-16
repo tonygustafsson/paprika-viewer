@@ -16,10 +16,12 @@ export const localStorageDatabaseName = 'paprika-viewer';
 export const localStorageTickersTable = 'tickers';
 export const localStorageGlobalMarketTable = 'globalMarket';
 export const localStorageFavoritesTable = 'favorites';
+export const localStorageColumnsTable = 'columns';
 export const localStorageFetchTimeTablePrefix = 'fetchTime';
 
 export const localStorageCacheTimeout = {
 	tickers: 5 * 60 * 1000, // 5 minutes,
 	globalMarket: 5 * 60 * 1000, // 5 minutes,
-	favorites: 0
+	favorites: 0,
+	columns: 0
 };

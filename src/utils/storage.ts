@@ -11,7 +11,9 @@ localforage.config({
 	storeName: localStorageDatabaseName
 });
 
-export const getFromStorage = async (table: 'tickers' | 'globalMarket' | 'favorites') => {
+export const getFromStorage = async (
+	table: 'tickers' | 'globalMarket' | 'favorites' | 'columns'
+) => {
 	if (localStorageCacheTimeout[table] && localStorageCacheTimeout[table] > 0) {
 		const fetchTime = (await localforage
 			.getItem(`${localStorageFetchTimeTablePrefix}_${table}`)
@@ -35,7 +37,7 @@ export const getFromStorage = async (table: 'tickers' | 'globalMarket' | 'favori
 };
 
 export const saveToStorage = async (
-	table: 'tickers' | 'globalMarket' | 'favorites',
+	table: 'tickers' | 'globalMarket' | 'favorites' | 'columns',
 	data: Ticker[] | GlobalMarket | Favorites
 ) => {
 	try {

@@ -1,3 +1,5 @@
+import { localStorageColumnsTable } from '../constants';
+import { getFromStorage, saveToStorage } from '../utils/storage';
 import { writable } from 'svelte/store';
 
 type Column =
@@ -16,7 +18,9 @@ type Column =
 	| 'ath'
 	| 'exchanges';
 
-const initValue: Record<Column, boolean> = {
+type Columns = Record<Column, boolean>;
+
+const initValue: Columns = {
 	rank: true,
 	symbol: true,
 	name: true,
@@ -38,6 +42,7 @@ const columnsStore = () => {
 
 	return {
 		subscribe,
+		set: (columns: Columns) => set(columns),
 		toggle: (column: Column) => update((columns) => ({ ...columns, [column]: !columns[column] })),
 		add: (column: Column) => update((columns) => ({ ...columns, [column]: true })),
 		remove: (column: Column) => update((columns) => ({ ...columns, [column]: false })),
@@ -46,3 +51,18 @@ const columnsStore = () => {
 };
 
 export const columns = columnsStore();
+
+const getColumnsFromStorage = async () => {
+	const columnsFromLocaleStorage = (await getFromStorage(localStorageColumnsTable)) as Columns;
+
+	if (columnsFromLocaleStorage) {
+		columns.set(columnsFromLocaleStorage);
+	}
+};
+
+getColumnsFromStorage().then(() => {
+	// Auto save changes to storage
+	columns.subscribe((columns) => {
+		saveToStorage(localStorageColumnsTable, columns);
+	});
+});
