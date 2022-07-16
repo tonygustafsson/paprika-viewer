@@ -3,6 +3,9 @@
 	import { sort } from '../stores/sort';
 	import Ticker from './Ticker.svelte';
 	import type { SortBy } from 'src/types';
+	import ScrollToTop from './ScrollToTop.svelte';
+
+	let scrollTable: HTMLDivElement;
 
 	const handleSort = (sortBy: SortBy) => {
 		sort.set(sortBy);
@@ -15,7 +18,7 @@
 <p>Visible coins: {$filteredTickers.length}.</p>
 
 {#if $filteredTickers.length > 0}
-	<div class="table-responsive">
+	<div class="table-responsive" bind:this={scrollTable}>
 		<table>
 			<tr>
 				<th on:click={() => handleSort('rank')}>
@@ -79,6 +82,8 @@
 		<em>No matching coins...</em>
 	</p>
 {/if}
+
+<ScrollToTop {scrollTable} />
 
 <style>
 	.table-responsive {
