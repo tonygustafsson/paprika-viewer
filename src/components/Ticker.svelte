@@ -4,7 +4,7 @@
 	import Favorite from './Favorite.svelte';
 	import type { Ticker } from 'src/types';
 	import { onMount } from 'svelte';
-	import { getDecimalsForPrice, priceToHuman } from 'src/utils/number';
+	import { getDecimalsForPrice, priceToHuman } from '../utils/number';
 
 	export let ticker: Ticker;
 
