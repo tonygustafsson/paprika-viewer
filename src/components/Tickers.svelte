@@ -100,9 +100,15 @@
 		background-color: var(--color-red-500);
 	}
 	table {
-		width: 100%;
 		table-layout: fixed;
 	}
+
+	@media screen and (min-width: 1000px) {
+		table {
+			width: 100%;
+		}
+	}
+
 	th {
 		position: sticky;
 		top: 0;
