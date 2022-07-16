@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { filteredTickers } from '../stores/filteredTickers';
 	import { sort } from '../stores/sort';
+	import { columns } from '../stores/columns';
 	import Ticker from './Ticker.svelte';
 	import type { SortBy } from 'src/types';
 	import ScrollToTop from './ScrollToTop.svelte';
@@ -21,55 +22,93 @@
 	<div class="table-responsive" bind:this={scrollTable}>
 		<table>
 			<tr>
-				<th on:click={() => handleSort('rank')}>
-					#
-					{#if $sort.by === 'rank'}{orderSymbol}{/if}
-				</th>
-				<th on:click={() => handleSort('symbol')}>
-					Symbol
-					{#if $sort.by === 'symbol'}{orderSymbol}{/if}
-				</th>
-				<th on:click={() => handleSort('name')}>
-					Name
-					{#if $sort.by === 'name'}{orderSymbol}{/if}
-				</th>
-				<th on:click={() => handleSort('price')}>
-					Price
-					{#if $sort.by === 'price'}{orderSymbol}{/if}
-				</th>
-				<th on:click={() => handleSort('market_cap')}>
-					Marketcap
-					{#if $sort.by === 'market_cap'}{orderSymbol}{/if}
-				</th>
-				<th on:click={() => handleSort('volume_24h')}>
-					Volume 24h
-					{#if $sort.by === 'volume_24h'}{orderSymbol}{/if}
-				</th>
-				<th on:click={() => handleSort('percent_change_1h')}>
-					1h
-					{#if $sort.by === 'percent_change_1h'}{orderSymbol}{/if}
-				</th>
-				<th on:click={() => handleSort('percent_change_12h')}>
-					12h
-					{#if $sort.by === 'percent_change_12h'}{orderSymbol}{/if}
-				</th>
-				<th on:click={() => handleSort('percent_change_24h')}>
-					24h
-					{#if $sort.by === 'percent_change_24h'}{orderSymbol}{/if}
-				</th>
-				<th on:click={() => handleSort('percent_change_7d')}>
-					7d
-					{#if $sort.by === 'percent_change_7d'}{orderSymbol}{/if}
-				</th>
-				<th on:click={() => handleSort('percent_change_30d')}>
-					30d
-					{#if $sort.by === 'percent_change_30d'}{orderSymbol}{/if}
-				</th>
-				<th on:click={() => handleSort('percent_from_price_ath')}>
-					From ATH
-					{#if $sort.by === 'percent_from_price_ath'}{orderSymbol}{/if}
-				</th>
-				<th>Exchanges</th>
+				{#if $columns.rank}
+					<th on:click={() => handleSort('rank')}>
+						#
+						{#if $sort.by === 'rank'}{orderSymbol}{/if}
+					</th>
+				{/if}
+
+				{#if $columns.symbol}
+					<th on:click={() => handleSort('symbol')}>
+						Symbol
+						{#if $sort.by === 'symbol'}{orderSymbol}{/if}
+					</th>
+				{/if}
+
+				{#if $columns.name}
+					<th on:click={() => handleSort('name')}>
+						Name
+						{#if $sort.by === 'name'}{orderSymbol}{/if}
+					</th>
+				{/if}
+
+				{#if $columns.price}
+					<th on:click={() => handleSort('price')}>
+						Price
+						{#if $sort.by === 'price'}{orderSymbol}{/if}
+					</th>
+				{/if}
+
+				{#if $columns.marketcap}
+					<th on:click={() => handleSort('market_cap')}>
+						Marketcap
+						{#if $sort.by === 'market_cap'}{orderSymbol}{/if}
+					</th>
+				{/if}
+
+				{#if $columns.volume_24h}
+					<th on:click={() => handleSort('volume_24h')}>
+						Volume 24h
+						{#if $sort.by === 'volume_24h'}{orderSymbol}{/if}
+					</th>
+				{/if}
+
+				{#if $columns.change_1h}
+					<th on:click={() => handleSort('percent_change_1h')}>
+						1h
+						{#if $sort.by === 'percent_change_1h'}{orderSymbol}{/if}
+					</th>
+				{/if}
+
+				{#if $columns.change_12h}
+					<th on:click={() => handleSort('percent_change_12h')}>
+						12h
+						{#if $sort.by === 'percent_change_12h'}{orderSymbol}{/if}
+					</th>
+				{/if}
+
+				{#if $columns.change_24h}
+					<th on:click={() => handleSort('percent_change_24h')}>
+						24h
+						{#if $sort.by === 'percent_change_24h'}{orderSymbol}{/if}
+					</th>
+				{/if}
+
+				{#if $columns.change_7d}
+					<th on:click={() => handleSort('percent_change_7d')}>
+						7d
+						{#if $sort.by === 'percent_change_7d'}{orderSymbol}{/if}
+					</th>
+				{/if}
+
+				{#if $columns.change_30d}
+					<th on:click={() => handleSort('percent_change_30d')}>
+						30d
+						{#if $sort.by === 'percent_change_30d'}{orderSymbol}{/if}
+					</th>
+				{/if}
+
+				{#if $columns.ath}
+					<th on:click={() => handleSort('percent_from_price_ath')}>
+						From ATH
+						{#if $sort.by === 'percent_from_price_ath'}{orderSymbol}{/if}
+					</th>
+				{/if}
+
+				{#if $columns.exchanges}
+					<th>Exchanges</th>
+				{/if}
 			</tr>
 
 			{#each $filteredTickers as ticker}

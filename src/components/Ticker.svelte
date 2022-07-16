@@ -5,6 +5,7 @@
 	import type { Ticker } from 'src/types';
 	import { onMount } from 'svelte';
 	import { getDecimalsForPrice, priceToHuman } from '../utils/number';
+	import { columns } from '../stores/columns';
 
 	export let ticker: Ticker;
 
@@ -30,82 +31,120 @@
 
 <tr bind:this={ref}>
 	{#if visible}
-		<td>
-			{ticker.rank}
-			<Favorite tickerSymbol={ticker.symbol} />
-		</td>
-		<td>
-			<img
-				width="16"
-				height="16"
-				class="ticker-icon"
-				loading="lazy"
-				src="https://cryptologos.cc/logos/thumbs/{ticker.name.toLowerCase()}.png"
-				alt=""
-			/>
+		{#if $columns.rank}
+			<td>
+				{ticker.rank}
+				<Favorite tickerSymbol={ticker.symbol} />
+			</td>
+		{/if}
 
-			<a href="/" on:click|preventDefault={() => selectTicker(ticker)}>
-				{ticker.symbol}
-			</a>
-		</td>
-		<td>
-			<a href="/" on:click|preventDefault={() => selectTicker(ticker)}>{ticker.name}</a>
-		</td>
-		<td>{$settings.currencySymbol}{getDecimalsForPrice(quote.price)}</td>
-		<td>{$settings.currencySymbol}{priceToHuman(quote.market_cap)}</td>
-		<td>{$settings.currencySymbol}{priceToHuman(quote.volume_24h)}</td>
-		<td>{quote.percent_change_1h}%</td>
-		<td>{quote.percent_change_12h}%</td>
-		<td>
-			<img
-				loading="lazy"
-				class="graph-img"
-				class:positive={quote.percent_change_24h >= 0}
-				class:negative={quote.percent_change_24h < 0}
-				width="120"
-				height="23"
-				src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/24h/chart.svg"
-				alt=""
-			/>
-			{quote.percent_change_24h}%
-		</td>
-		<td>
-			<img
-				loading="lazy"
-				class="graph-img"
-				class:positive={quote.percent_change_7d >= 0}
-				class:negative={quote.percent_change_7d < 0}
-				width="120"
-				height="23"
-				src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/7d/chart.svg"
-				alt=""
-			/>
-			{quote.percent_change_7d}%
-		</td>
-		<td>
-			<img
-				loading="lazy"
-				class="graph-img"
-				class:positive={quote.percent_change_30d >= 0}
-				class:negative={quote.percent_change_30d < 0}
-				width="120"
-				height="23"
-				src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/24h/chart.svg"
-				alt=""
-			/>
+		{#if $columns.symbol}
+			<td>
+				<img
+					width="16"
+					height="16"
+					class="ticker-icon"
+					loading="lazy"
+					src="https://cryptologos.cc/logos/thumbs/{ticker.name.toLowerCase()}.png"
+					alt=""
+				/>
 
-			{quote.percent_change_30d}%
-		</td>
-		<td>{quote.percent_from_price_ath}%</td>
-		<td class="exchanges">
-			{#if ticker.exchanges}
-				<ul>
-					{#each ticker.exchanges as exchange}
-						<li>{exchange}</li>
-					{/each}
-				</ul>
-			{/if}
-		</td>
+				<a href="/" on:click|preventDefault={() => selectTicker(ticker)}>
+					{ticker.symbol}
+				</a>
+			</td>
+		{/if}
+
+		{#if $columns.name}
+			<td>
+				<a href="/" on:click|preventDefault={() => selectTicker(ticker)}>{ticker.name}</a>
+			</td>
+		{/if}
+
+		{#if $columns.price}
+			<td>{$settings.currencySymbol}{getDecimalsForPrice(quote.price)}</td>
+		{/if}
+
+		{#if $columns.marketcap}
+			<td>{$settings.currencySymbol}{priceToHuman(quote.market_cap)}</td>
+		{/if}
+
+		{#if $columns.volume_24h}
+			<td>{$settings.currencySymbol}{priceToHuman(quote.volume_24h)}</td>
+		{/if}
+
+		{#if $columns.change_1h}
+			<td>{quote.percent_change_1h}%</td>
+		{/if}
+
+		{#if $columns.change_12h}
+			<td>{quote.percent_change_12h}%</td>
+		{/if}
+
+		{#if $columns.change_24h}
+			<td>
+				<img
+					loading="lazy"
+					class="graph-img"
+					class:positive={quote.percent_change_24h >= 0}
+					class:negative={quote.percent_change_24h < 0}
+					width="120"
+					height="23"
+					src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/24h/chart.svg"
+					alt=""
+				/>
+				{quote.percent_change_24h}%
+			</td>
+		{/if}
+
+		{#if $columns.change_7d}
+			<td>
+				<img
+					loading="lazy"
+					class="graph-img"
+					class:positive={quote.percent_change_7d >= 0}
+					class:negative={quote.percent_change_7d < 0}
+					width="120"
+					height="23"
+					src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/7d/chart.svg"
+					alt=""
+				/>
+				{quote.percent_change_7d}%
+			</td>
+		{/if}
+
+		{#if $columns.change_30d}
+			<td>
+				<img
+					loading="lazy"
+					class="graph-img"
+					class:positive={quote.percent_change_30d >= 0}
+					class:negative={quote.percent_change_30d < 0}
+					width="120"
+					height="23"
+					src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/24h/chart.svg"
+					alt=""
+				/>
+
+				{quote.percent_change_30d}%
+			</td>
+		{/if}
+
+		{#if $columns.ath}
+			<td>{quote.percent_from_price_ath}%</td>
+		{/if}
+
+		{#if $columns.exchanges}
+			<td class="exchanges">
+				{#if ticker.exchanges}
+					<ul>
+						{#each ticker.exchanges as exchange}
+							<li>{exchange}</li>
+						{/each}
+					</ul>
+				{/if}
+			</td>
+		{/if}
 	{/if}
 </tr>
 

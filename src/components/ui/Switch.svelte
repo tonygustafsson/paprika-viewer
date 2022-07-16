@@ -5,9 +5,9 @@
 </script>
 
 <label>
-	{label}
 	<input type="checkbox" {name} {checked} on:change />
 	<div class="switch" />
+	{label}
 </label>
 
 <style>
@@ -31,6 +31,7 @@
 		display: block;
 		border-radius: 4px;
 		position: relative;
+		margin-right: 8px;
 	}
 
 	.switch:after {
