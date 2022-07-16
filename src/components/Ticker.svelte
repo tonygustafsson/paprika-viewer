@@ -75,16 +75,6 @@
 
 		{#if $columns.change_1h}
 			<td>
-				<img
-					loading="lazy"
-					class="graph-img"
-					class:positive={quote.percent_change_24h >= 0}
-					class:negative={quote.percent_change_24h < 0}
-					width="120"
-					height="23"
-					src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/1h/chart.svg"
-					alt=""
-				/>
 				{quote.percent_change_1h}%
 			</td>
 		{/if}
