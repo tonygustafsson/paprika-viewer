@@ -284,6 +284,8 @@
 			/>
 		</div>
 	</div>
+
+	<Button on:click={() => columns.reset()}>Reset</Button>
 </Dialog>
 
 <style>

@@ -1,5 +1,4 @@
 import { writable } from 'svelte/store';
-import type { SortBy } from 'src/types';
 
 type Column =
 	| 'rank'
