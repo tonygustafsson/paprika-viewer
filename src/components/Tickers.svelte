@@ -96,6 +96,7 @@
 	}
 	table {
 		width: 100%;
+		table-layout: fixed;
 	}
 	th {
 		position: sticky;
