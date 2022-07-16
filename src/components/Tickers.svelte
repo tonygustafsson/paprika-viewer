@@ -118,6 +118,7 @@
 		cursor: pointer;
 		padding: 0.5em;
 		z-index: 1;
+		white-space: nowrap;
 	}
 
 	th:nth-child(1) {

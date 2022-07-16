@@ -121,6 +121,7 @@
 
 	td {
 		padding: 0.5em;
+		white-space: nowrap;
 	}
 
 	a {
