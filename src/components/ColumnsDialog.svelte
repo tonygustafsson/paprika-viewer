@@ -6,6 +6,11 @@
 
 	export let open: boolean;
 	export let onClose: () => void;
+
+	const reset = () => {
+		columns.reset();
+		onClose();
+	};
 </script>
 
 <Dialog title="Columns" {open} {onClose}>
@@ -124,7 +129,10 @@
 		</div>
 	</div>
 
-	<Button size="medium" on:click={() => columns.reset()}>Reset</Button>
+	<div slot="actions">
+		<Button size="medium" on:click={reset}>Reset</Button>
+		<Button variant="primary" size="medium" on:click={onClose}>Show results</Button>
+	</div>
 </Dialog>
 
 <style>
