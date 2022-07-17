@@ -19,9 +19,7 @@
 <Loader />
 
 <div class="container">
-	{#if !$settings.loading}
-		<GlobalMarket />
-	{/if}
+	<GlobalMarket loading={$settings.loading} />
 
 	<h1><ChiliIcon width={35} height={35} /> Paprika Viewer</h1>
 

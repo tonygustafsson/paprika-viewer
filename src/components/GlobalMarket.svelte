@@ -1,7 +1,11 @@
 <script lang="ts">
+	import { priceToHuman } from '../utils/number';
+
 	import { onMount } from 'svelte';
 	import { globalMarket } from '../stores/globalMarket';
 	import { getGlobalMarket } from '../utils/getGlobalMarket';
+
+	export let loading = false;
 
 	onMount(async () => {
 		getGlobalMarket();
@@ -9,31 +13,34 @@
 </script>
 
 <ul>
-	<li>Total marketcap: ${$globalMarket.market_cap_usd}</li>
-	<li>Total 24h volume: ${$globalMarket.volume_24h_usd}</li>
-	<li>BTC Dominance: {$globalMarket.bitcoin_dominance_percentage}%</li>
+	{#if !loading}
+		<li>Total marketcap: ${priceToHuman($globalMarket.market_cap_usd)}</li>
+		<li>Total 24h volume: ${priceToHuman($globalMarket.volume_24h_usd)}</li>
+		<li>BTC Dominance: {priceToHuman($globalMarket.bitcoin_dominance_percentage)}%</li>
+	{/if}
 </ul>
 
 <style>
 	ul {
+		display: flex;
+		max-width: 100%;
+		height: 16px;
+		overflow-x: auto;
 		list-style: none;
 		padding: 0;
 		margin: 0;
-		text-align: right;
+		color: #fff;
+		white-space: nowrap;
+		gap: 15px;
 	}
 
-	li {
-		display: block;
-		color: #fff;
+	ul::-webkit-scrollbar {
+		display: none;
 	}
 
 	@media screen and (min-width: 1000px) {
-		li {
-			display: inline-block;
-			margin-right: 2em;
-		}
-		li:last-child {
-			margin-right: 0;
+		ul {
+			justify-content: flex-end;
 		}
 	}
 </style>
