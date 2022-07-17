@@ -7,9 +7,9 @@
 	import SelectedFilters from '../components/SelectedFilters.svelte';
 	import Tickers from '../components/Tickers.svelte';
 	import Loader from '../components/Loader.svelte';
-	import TickerInfoBar from '../components/TickerInfoBar.svelte';
 	import ChiliIcon from '../components/icons/Chili.svelte';
 	import '../theme.css';
+	import TickerInfoDialog from '../components/TickerInfoDialog.svelte';
 
 	onMount(() => {
 		getTickers();
@@ -26,12 +26,12 @@
 	<h1><ChiliIcon width={35} height={35} /> Paprika Viewer</h1>
 
 	{#if !$settings.loading}
-		<TickerInfoBar />
-
 		<Filter />
 		<SelectedFilters />
 
 		<Tickers />
+
+		<TickerInfoDialog />
 	{/if}
 </div>
 

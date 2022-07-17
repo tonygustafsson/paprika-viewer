@@ -5,7 +5,6 @@
 	export let open = false;
 	export let onClose: (e: MouseEvent | KeyboardEvent) => void;
 	export let title: string;
-	export let actions: HTMLButtonElement[] = [];
 
 	let dialog: HTMLDialogElement;
 

@@ -3,19 +3,26 @@
 
 	import { selectedTicker } from '../stores/selectedTicker';
 	import { settings } from '../stores/settings';
+	import Dialog from './ui/Dialog.svelte';
+	import Button from './ui/Button.svelte';
 
-	const closeBar = () => {
-		selectedTicker.set(null);
+	const viewOnCoinPaprika = () => {
+		if (!$selectedTicker) return;
+
+		const url = `https://coinpaprika.com/coin/${$selectedTicker.id}`;
+		window.open(url, '_blank');
 	};
 </script>
 
 {#if $selectedTicker}
-	<div class="coin-info-bar">
-		<div class="content">
+	<Dialog
+		title={`${$selectedTicker.name} (#${$selectedTicker.rank})`}
+		open={!!selectedTicker}
+		onClose={() => selectedTicker.set(null)}
+	>
+		<div class="wrapper">
 			<p class="name">
-				<a target="_blank" href="https://coinpaprika.com/coin/{$selectedTicker.id}"
-					>{$selectedTicker.name}</a
-				>
+				Price:
 				{#if $settings.currencyPrefix}
 					{$settings.currencyPrefix}
 				{/if}
@@ -26,7 +33,7 @@
 			</p>
 
 			<div class="graphs">
-				<div class="graph-item">
+				<div>
 					<span class="graph-label"
 						>24h ({$selectedTicker.quotes[$settings.referenceCurrency].percent_change_24h}%):</span
 					>
@@ -45,7 +52,7 @@
 					/>
 				</div>
 
-				<div class="graph-item">
+				<div>
 					<span class="graph-label"
 						>7d ({$selectedTicker.quotes[$settings.referenceCurrency].percent_change_7d}%):</span
 					>
@@ -64,7 +71,7 @@
 					/>
 				</div>
 
-				<div class="graph-item">
+				<div>
 					<span class="graph-label"
 						>30d ({$selectedTicker.quotes[$settings.referenceCurrency].percent_change_30d}%):</span
 					>
@@ -82,32 +89,54 @@
 						alt=""
 					/>
 				</div>
+
+				<div>
+					<span class="graph-label">
+						1y ({$selectedTicker.quotes[$settings.referenceCurrency].percent_change_1y}%):
+					</span>
+
+					<img
+						loading="lazy"
+						class="graph-img"
+						class:positive={$selectedTicker.quotes[$settings.referenceCurrency].percent_change_1y >=
+							0}
+						class:negative={$selectedTicker.quotes[$settings.referenceCurrency].percent_change_1y <
+							0}
+						width="120"
+						height="23"
+						src="https://graphs.coinpaprika.com/currency/chart/{$selectedTicker.id}/1y/chart.svg"
+						alt=""
+					/>
+				</div>
+			</div>
+
+			<div>
+				<strong>Exchanges:</strong>
+				{$selectedTicker.exchanges?.join(', ')}.
+			</div>
+
+			<div>
+				<strong>Circulating supply:</strong>
+				{$selectedTicker.circulating_supply}.
+			</div>
+
+			<div>
+				<strong>Max supply:</strong>
+				{$selectedTicker.max_supply}.
+			</div>
+
+			<div class="coinpaprika-link">
+				<Button size="medium" on:click={viewOnCoinPaprika}>View on CoinPaprika</Button>
 			</div>
 		</div>
-
-		<a class="close-button" href="/" on:click|preventDefault={() => closeBar()}>×</a>
-	</div>
+	</Dialog>
 {/if}
 
 <style>
-	.coin-info-bar {
-		position: fixed;
-		left: 0;
-		bottom: 0;
+	.wrapper {
 		display: flex;
-		align-items: center;
-		width: 100%;
-		min-height: 100px;
-		background-color: var(--color-grey-500);
-		border-top: 1px var(--color-grey-200) solid;
-		box-shadow: 0px -6px 10px 0px #000;
-		z-index: 2;
-		padding: 10px 0;
-	}
-
-	.content {
-		width: 80%;
-		margin: 0 10%;
+		flex-direction: column;
+		gap: 12px;
 	}
 
 	.name {
@@ -115,30 +144,19 @@
 		margin: 0 0 0.5em 0;
 	}
 
-	a {
-		color: #fff;
-	}
-
-	.close-button {
-		position: absolute;
-		top: 0;
-		right: 10px;
-		text-decoration: none;
-		font-size: 200%;
+	.coinpaprika-link {
+		padding-top: 1em;
 	}
 
 	.graphs {
 		display: inline-flex;
 		flex-wrap: wrap;
-	}
-
-	.graph-item {
-		flex: 1 0 0;
-		margin-right: 15px;
+		gap: 15px;
 	}
 
 	.graph-label {
 		display: block;
+		margin-bottom: 1em;
 	}
 
 	.graph-img {
@@ -152,14 +170,5 @@
 
 	.graph-img.negative {
 		filter: hue-rotate(115deg);
-	}
-
-	@media screen and (min-width: 1000px) {
-		.graphs {
-			margin-top: 10px;
-		}
-		.graph-item {
-			margin-right: 50px;
-		}
 	}
 </style>

@@ -124,7 +124,7 @@
 		</div>
 	</div>
 
-	<Button on:click={() => columns.reset()}>Reset</Button>
+	<Button size="medium" on:click={() => columns.reset()}>Reset</Button>
 </Dialog>
 
 <style>
