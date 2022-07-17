@@ -4,7 +4,8 @@ import type { Currency, Settings } from 'src/types';
 const initValue: Settings = {
 	loading: true,
 	referenceCurrency: 'USD',
-	currencySymbol: '$'
+	currencyPrefix: '$',
+	currencySuffix: undefined
 };
 
 const settingsStore = () => {
@@ -28,20 +29,22 @@ const settingsStore = () => {
 				const newGlobal = { ...global };
 				newGlobal.referenceCurrency = currency;
 
-				let currencySymbol = '';
+				let currencyPrefix: Settings['currencyPrefix'] = undefined;
+				let currencySuffix: Settings['currencySuffix'] = undefined;
 
 				switch (currency) {
 					case 'SEK':
-						currencySymbol = 'kr';
+						currencySuffix = 'kr';
 						break;
 					case 'BTC':
-						currencySymbol = '₿';
+						currencyPrefix = '₿';
 						break;
 					default:
-						currencySymbol = '$';
+						currencyPrefix = '$';
 				}
 
-				newGlobal.currencySymbol = currencySymbol;
+				newGlobal.currencyPrefix = currencyPrefix;
+				newGlobal.currencySuffix = currencySuffix;
 				return newGlobal;
 			});
 		}

@@ -80,7 +80,8 @@ export type Currency = 'USD' | 'BTC' | 'SEK';
 export type Settings = {
 	loading: boolean;
 	referenceCurrency: Currency;
-	currencySymbol: string;
+	currencyPrefix: '$' | '₿' | undefined;
+	currencySuffix: 'kr' | undefined;
 };
 
 export type SortBy =

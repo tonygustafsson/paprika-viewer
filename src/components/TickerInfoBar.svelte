@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { priceToHuman } from '../utils/number';
+
 	import { selectedTicker } from '../stores/selectedTicker';
 	import { settings } from '../stores/settings';
 
@@ -14,7 +16,13 @@
 				<a target="_blank" href="https://coinpaprika.com/coin/{$selectedTicker.id}"
 					>{$selectedTicker.name}</a
 				>
-				{$settings.currencySymbol}{$selectedTicker.quotes[$settings.referenceCurrency].price}
+				{#if $settings.currencyPrefix}
+					{$settings.currencyPrefix}
+				{/if}
+				{priceToHuman($selectedTicker.quotes[$settings.referenceCurrency].price)}
+				{#if $settings.currencySuffix}
+					{$settings.currencySuffix}
+				{/if}
 			</p>
 
 			<div class="graphs">

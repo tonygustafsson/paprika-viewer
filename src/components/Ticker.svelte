@@ -62,15 +62,39 @@
 		{/if}
 
 		{#if $columns.price}
-			<td>{$settings.currencySymbol}{getDecimalsForPrice(quote.price)}</td>
+			<td>
+				{#if $settings.currencyPrefix}
+					{$settings.currencyPrefix}
+				{/if}
+				{getDecimalsForPrice(quote.price)}
+				{#if $settings.currencySuffix}
+					{$settings.currencySuffix}
+				{/if}
+			</td>
 		{/if}
 
 		{#if $columns.marketcap}
-			<td>{$settings.currencySymbol}{priceToHuman(quote.market_cap)}</td>
+			<td>
+				{#if $settings.currencyPrefix}
+					{$settings.currencyPrefix}
+				{/if}
+				{priceToHuman(quote.market_cap)}
+				{#if $settings.currencySuffix}
+					{$settings.currencySuffix}
+				{/if}
+			</td>
 		{/if}
 
 		{#if $columns.volume_24h}
-			<td>{$settings.currencySymbol}{priceToHuman(quote.volume_24h)}</td>
+			<td>
+				{#if $settings.currencyPrefix}
+					{$settings.currencyPrefix}
+				{/if}
+				{priceToHuman(quote.volume_24h)}
+				{#if $settings.currencySuffix}
+					{$settings.currencySuffix}
+				{/if}
+			</td>
 		{/if}
 
 		{#if $columns.change_1h}
