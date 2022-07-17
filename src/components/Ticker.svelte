@@ -215,10 +215,11 @@
 
 	td {
 		padding: 0.5em;
+		white-space: nowrap;
 	}
 
-	td:not(:has(img)) {
-		white-space: nowrap;
+	td img {
+		display: block;
 	}
 
 	a {
