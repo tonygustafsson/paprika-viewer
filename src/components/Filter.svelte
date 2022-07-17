@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from './ui/Button.svelte';
 	import FilterIcon from './icons/Filter.svelte';
+	import ColumnsIcon from './icons/Columns.svelte';
 	import FilterDialog from './FilterDialog.svelte';
 	import ColumnsDialog from './ColumnsDialog.svelte';
 
@@ -11,15 +12,15 @@
 <div class="filters">
 	<div class="filter-buttons">
 		<Button size="medium" on:click={() => (filterDialogOpen = true)}>
-			<div slot="icon">
-				<FilterIcon width={14} height={14} />
+			<div slot="icon" class="icon">
+				<FilterIcon width={16} height={16} />
 			</div>
 			Filters
 		</Button>
 
 		<Button size="medium" on:click={() => (columnsDialogOpen = true)}>
-			<div slot="icon">
-				<FilterIcon width={14} height={14} />
+			<div slot="icon" class="icon">
+				<ColumnsIcon width={16} height={16} />
 			</div>
 			Columns
 		</Button>
@@ -40,5 +41,10 @@
 		display: flex;
 		align-items: center;
 		margin: 8px 0;
+	}
+
+	.icon {
+		display: flex;
+		align-items: center;
 	}
 </style>

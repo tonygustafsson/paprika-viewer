@@ -47,7 +47,7 @@
 	.icon {
 		display: flex;
 		color: white;
-		margin-right: 0.25em;
-		vertical-align: middle;
+		margin-right: 0.5em;
+		align-items: center;
 	}
 </style>
