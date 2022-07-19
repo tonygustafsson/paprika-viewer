@@ -1,33 +1,38 @@
 # Paprika Viewer
 
-Fetches all cryptocurrencies and their tickers. Also showing which coins are listing on what exchange in the same view. This is useful since no other coin trackers are giving this ability. I often try to find coins that has gone +25% or -25% in a day, but I'm not interested in coins I cannot buy or coins with a volume that is too low.
+Showing off all cryptocurrencies, their tickers and which exchange they can be traded at. The latter is really hard to find, so that was the original idea behind this project. Sometimes you just want to see statistics of coins that you actually can trade on your favorite exchange.
 
-IDEX for instance is nice, but don't give us the ability to see winners and loosers over a week. Also most of their markets has such low volume that it's often a bad buy.
+Another unusual feature of this site is the ability to see all coins in one single table. The table is sortable, filterable and really fast! No more scrolling to the bottom and going to page 14. You can also select your favorites and filter by them, all without registering on the page.
 
-Since all coins are listed in one table, it takes a second or two to sort them. I'm using the fastest sorting algoritm I could find, but I will try to improve on this.
+A special thanks to [CoinPaprika](https://coinpaprika.com/) for providing us with the data.
 
-This project is in a really early stage, Please use it as you wish, but there are no hosted site yet.
+## Live site / demo
 
-## Tech
+[https://paprika-viewer.vercel.app/](https://paprika-viewer.vercel.app/)
 
-Built with svelte.js and is fetching live data from CoinPaprika with client AJAX calls.
-Cache the API data in localForage to avoid adding too much load on CoinPaprika.
-Using only public API so no key is needed.
+## Features
+
+- Show all coins in one table, without pagination and in a performant way.
+- Filtering on exchanges (Binance, CoinBase, Kraken, KuCoin, OKEX), market cap, volume, favorites.
+- Choosing a reference currency, USD, BTC or SEK.
+- Selectable columns.
+- Sorting on rank, symbol, name, price, marketcap, volume, market value change or all time high (ATH).
+- Graphs for 24h, 7d, 30d and 1y.
+- Global market cap, Bitcoin dominance and total 24h volume.
+- Add your favorites and filter for those only.
+- Clicking a coin and get more info.
+- Mobile support.
+- Go directly to CoinPaprika for even each coin for more info.
 
 ## Screenshot
 
 ![Paprika Viewer](paprika-viewer.png 'Paprika Viewer')
 
-## Features
+## Tech
 
--   Show all coins in one view
--   Filtering on exchanges, market cap, volume
--   Sorting on rank, symbol, name, price, marketcap, volume, market value change or all time high (ATH)
--   Listing which exchanges provide each coin on all coins at the same time
--   Graphs for 7d. Clicking on coins gives graphs for 24h, 7d and 30d
--   Global market cap, Bitcoin dominance and total 24h volume
--   Add your favorites and filter for those only
--   Go directly to CoinPaprika for each coin for more info
+Built with [SvelteKit](https://kit.svelte.dev/) and TypeScript. Fetching live data from CoinPaprika with client AJAX calls.
+Cache the API data in localForage to avoid adding too much load on CoinPaprika.
+Using only public API so no key is needed.
 
 ## Get started
 
