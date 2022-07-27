@@ -16,12 +16,11 @@ const sortStore = () => {
 
 	return {
 		subscribe,
-		set: (sortBy: SortBy) => {
+		set: (sortBy: SortBy) =>
 			update((sort) => ({
 				by: sortBy,
 				direction: sort.direction === 'asc' ? 'desc' : 'asc'
-			}));
-		},
+			})),
 		reset: () => set(initValue)
 	};
 };

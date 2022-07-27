@@ -12,9 +12,7 @@ const globalMarketStore = () => {
 
 	return {
 		subscribe,
-		save: (data: GlobalMarket) => {
-			set(data);
-		}
+		save: (data: GlobalMarket) => set(data)
 	};
 };
 

@@ -8,9 +8,7 @@ const tickersStore = () => {
 
 	return {
 		subscribe,
-		save: (data: Ticker[]) => {
-			set(data);
-		}
+		save: (data: Ticker[]) => set(data)
 	};
 };
 

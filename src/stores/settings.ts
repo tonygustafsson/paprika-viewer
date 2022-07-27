@@ -13,13 +13,7 @@ const settingsStore = () => {
 
 	return {
 		subscribe,
-		isLoading: (isLoading: boolean) => {
-			update((global) => {
-				const newGlobal = { ...global };
-				newGlobal.loading = isLoading;
-				return newGlobal;
-			});
-		},
+		isLoading: (isLoading: boolean) => update((global) => ({ ...global, loading: isLoading })),
 		setReferenceCurrency: (currency: Currency) => {
 			if (currency !== 'USD' && currency !== 'SEK' && currency !== 'BTC') {
 				return;
@@ -45,6 +39,7 @@ const settingsStore = () => {
 
 				newGlobal.currencyPrefix = currencyPrefix;
 				newGlobal.currencySuffix = currencySuffix;
+
 				return newGlobal;
 			});
 		}

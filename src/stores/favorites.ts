@@ -10,9 +10,7 @@ const favoritesStore = () => {
 
 	return {
 		subscribe,
-		updateAll: (data: Favorites) => {
-			set(data);
-		},
+		updateAll: (data: Favorites) => set(data),
 		toggle: (symbol: string) => {
 			update((favorites) => {
 				const newFavs: Favorites = { ...favorites };

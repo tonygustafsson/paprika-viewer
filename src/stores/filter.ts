@@ -20,37 +20,11 @@ const filterStore = () => {
 
 	return {
 		subscribe,
-		setExchange: (filter: Exchange) => {
-			update((filters) => {
-				const newFilter = { ...filters };
-				newFilter.exchange = filter;
-				return newFilter;
-			});
-		},
-		setVolume: (filter: Volume) => {
-			update((filters) => {
-				const newFilter = { ...filters };
-				newFilter.volume = filter;
-				return newFilter;
-			});
-		},
-		setMarketCap: (filter: MarketCap) => {
-			update((filters) => {
-				const newFilter = { ...filters };
-				newFilter.marketCap = filter;
-				return newFilter;
-			});
-		},
-		setFavorites: (filter: boolean) => {
-			update((filters) => {
-				const newFilter = { ...filters };
-				newFilter.favorites = filter;
-				return newFilter;
-			});
-		},
-		reset: () => {
-			set(initValue);
-		}
+		setExchange: (filter: Exchange) => update((filters) => ({ ...filters, exchange: filter })),
+		setVolume: (filter: Volume) => update((filters) => ({ ...filters, volume: filter })),
+		setMarketCap: (filter: MarketCap) => update((filters) => ({ ...filters, marketCap: filter })),
+		setFavorites: (filter: boolean) => update((filters) => ({ ...filters, favorites: filter })),
+		reset: () => set(initValue)
 	};
 };
 
