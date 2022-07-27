@@ -1,7 +1,8 @@
 import { exchanges } from '../stores/exchanges';
 import { apiUrls, localStorageExchangesTable } from '../constants';
 import type { Exchanges, Market } from 'src/types';
-import { getFromStorage, saveToStorage } from './storage';
+import { get } from 'svelte/store';
+import { getFromStorage } from './storage';
 
 const getExchangeNameFromUrl = (url: string) => {
 	if (url.includes('binance')) return 'Binance';
@@ -12,14 +13,31 @@ const getExchangeNameFromUrl = (url: string) => {
 	return 'Unknown';
 };
 
-const fetchExchanges = async () =>
-	(await Promise.all([
-		(await fetch(apiUrls.markets.binance)).json(),
-		(await fetch(apiUrls.markets.coinbasePro)).json(),
-		(await fetch(apiUrls.markets.kraken)).json(),
-		(await fetch(apiUrls.markets.kucoin)).json(),
-		(await fetch(apiUrls.markets.okex)).json()
-	])) as unknown as Market[][];
+const addExchangeData = async (url: string) => {
+	const data = (await (await fetch(url)).json()) as unknown as Market[];
+
+	if (!data || data.length === 0) {
+		return;
+	}
+
+	const $exchanges = get(exchanges);
+	const output = { ...$exchanges } as Exchanges;
+	const exchangeName = getExchangeNameFromUrl(data[0].market_url);
+
+	data.forEach((market) => {
+		if (!output[market.base_currency_id]) {
+			output[market.base_currency_id] = [];
+		}
+
+		if (output[market.base_currency_id].includes(exchangeName)) {
+			return;
+		}
+
+		output[market.base_currency_id].push(exchangeName);
+	});
+
+	exchanges.save(output);
+};
 
 export const getExchanges = async () => {
 	const exchangesFromStorage = (await getFromStorage(localStorageExchangesTable)) as Exchanges;
@@ -28,29 +46,9 @@ export const getExchanges = async () => {
 		return exchanges.save(exchangesFromStorage);
 	}
 
-	const exchangesResponse = await fetchExchanges();
-	const simpleExchanges: Exchanges = {};
-
-	exchangesResponse.forEach((exchange) => {
-		if (!exchange || exchange.length === 0) {
-			return;
-		}
-
-		exchange.forEach((market) => {
-			const exchangeName = getExchangeNameFromUrl(market.market_url);
-
-			if (!simpleExchanges[market.base_currency_id]) {
-				simpleExchanges[market.base_currency_id] = [];
-			}
-
-			if (simpleExchanges[market.base_currency_id].includes(exchangeName)) {
-				return;
-			}
-
-			simpleExchanges[market.base_currency_id].push(exchangeName);
-		});
-	});
-
-	exchanges.save(simpleExchanges);
-	saveToStorage(localStorageExchangesTable, simpleExchanges);
+	addExchangeData(apiUrls.markets.binance);
+	addExchangeData(apiUrls.markets.coinbasePro);
+	addExchangeData(apiUrls.markets.kraken);
+	addExchangeData(apiUrls.markets.kucoin);
+	addExchangeData(apiUrls.markets.okex);
 };
