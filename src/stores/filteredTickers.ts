@@ -1,12 +1,13 @@
-import { writable, get } from 'svelte/store';
-import { tickers } from './tickers';
-import { exchanges } from './exchanges';
-import { sort } from './sort';
-import { settings } from './settings';
-import { filter } from './filter';
-import { favorites } from './favorites';
 import { orderBy } from 'lodash-es';
-import type { Ticker } from 'src/types';
+import { get, writable } from 'svelte/store';
+
+import type { Ticker } from '../types';
+import { exchanges } from './exchanges';
+import { favorites } from './favorites';
+import { filter } from './filter';
+import { settings } from './settings';
+import { sort } from './sort';
+import { tickers } from './tickers';
 
 const initValue: Ticker[] = [];
 
@@ -34,6 +35,7 @@ const sortMarketCapMap = {
 	50000000: { min: 50000000, max: Infinity }
 };
 
+// eslint-disable-next-line no-unused-vars
 const sortTickersByLambda = (tickers: Ticker[], lambda: (ticker: Ticker) => number | string) => {
 	const $sort = get(sort);
 	return orderBy(tickers, lambda, $sort.direction);

@@ -1,12 +1,13 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
+	import { columns } from '../stores/columns';
+	import { exchanges } from '../stores/exchanges';
 	import { selectedTicker } from '../stores/selectedTicker';
 	import { settings } from '../stores/settings';
-	import { exchanges } from '../stores/exchanges';
-	import Favorite from './Favorite.svelte';
-	import type { Ticker } from 'src/types';
-	import { onMount } from 'svelte';
+	import type { Ticker } from '../types';
 	import { getDecimalsForPrice, priceToHuman } from '../utils/number';
-	import { columns } from '../stores/columns';
+	import Favorite from './Favorite.svelte';
 
 	export let ticker: Ticker;
 

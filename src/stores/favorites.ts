@@ -1,7 +1,8 @@
 import { writable } from 'svelte/store';
+
 import { localStorageFavoritesTable } from '../constants';
+import type { Favorites } from '../types';
 import { getFromStorage, saveToStorage } from '../utils/storage';
-import type { Favorites } from 'src/types';
 
 const initValue: Favorites = {};
 

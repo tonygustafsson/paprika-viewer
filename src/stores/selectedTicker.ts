@@ -1,5 +1,6 @@
-import type { Ticker } from 'src/types';
 import { writable } from 'svelte/store';
+
+import type { Ticker } from '../types';
 
 const initValue = null;
 

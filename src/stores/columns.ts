@@ -1,6 +1,7 @@
+import { writable } from 'svelte/store';
+
 import { localStorageColumnsTable } from '../constants';
 import { getFromStorage, saveToStorage } from '../utils/storage';
-import { writable } from 'svelte/store';
 
 type Column =
 	| 'rank'

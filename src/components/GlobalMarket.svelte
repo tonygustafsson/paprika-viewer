@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { priceToHuman } from '../utils/number';
-
 	import { onMount } from 'svelte';
+
 	import { globalMarket } from '../stores/globalMarket';
 	import { getGlobalMarket } from '../utils/getGlobalMarket';
+	import { priceToHuman } from '../utils/number';
 
 	export let loading = false;
 

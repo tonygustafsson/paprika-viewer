@@ -1,5 +1,6 @@
 import { writable } from 'svelte/store';
-import type { Currency, Settings } from 'src/types';
+
+import type { Currency, Settings } from '../types';
 
 const initValue: Settings = {
 	loading: true,

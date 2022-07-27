@@ -1,4 +1,4 @@
-import type { MarketCap } from 'src/types';
+import type { MarketCap } from '../types';
 
 export const marketCapToHuman = (marketCap: MarketCap) => {
 	switch (marketCap.toString()) {

@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { priceToHuman } from '../utils/number';
-
 	import { selectedTicker } from '../stores/selectedTicker';
 	import { settings } from '../stores/settings';
-	import Dialog from './ui/Dialog.svelte';
+	import { priceToHuman } from '../utils/number';
 	import Button from './ui/Button.svelte';
+	import Dialog from './ui/Dialog.svelte';
 
 	const viewOnCoinPaprika = () => {
 		if (!$selectedTicker) return;

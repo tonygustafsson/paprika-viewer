@@ -1,4 +1,4 @@
-import type { Volume } from 'src/types';
+import type { Volume } from '../types';
 
 export const volumeToHuman = (volume: Volume) => {
 	switch (volume.toString()) {

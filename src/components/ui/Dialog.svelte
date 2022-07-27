@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Button from './Button.svelte';
 	import { onMount } from 'svelte';
 
 	export let open = false;

@@ -1,8 +1,8 @@
 <script lang="ts">
+	import Chip from '../components/ui/Chip.svelte';
+	import { filter } from '../stores/filter';
 	import { marketCapToHuman } from '../utils/marketCapToHuman';
 	import { volumeToHuman } from '../utils/number';
-	import { filter } from '../stores/filter';
-	import Chip from '../components/ui/Chip.svelte';
 </script>
 
 {#if $filter.exchange !== 'any'}

@@ -1,16 +1,15 @@
 <script lang="ts">
-	import { volumeToHuman } from './../utils/number';
-	import { marketCapToHuman } from './../utils/marketCapToHuman';
-	import type { Currency, Exchange, MarketCap, Volume } from 'src/types';
-
 	import { filter } from '../stores/filter';
-	import { sort } from '../stores/sort';
 	import { settings } from '../stores/settings';
+	import { sort } from '../stores/sort';
+	import type { Currency, Exchange, MarketCap, Volume } from '../types';
+	import { marketCapToHuman } from '../utils/marketCapToHuman';
+	import { volumeToHuman } from '../utils/number';
 	import Button from './ui/Button.svelte';
-	import Select from './ui/Select.svelte';
-	import Switch from './ui/Switch.svelte';
 	import Dialog from './ui/Dialog.svelte';
 	import RadioGroup from './ui/RadioGroup.svelte';
+	import Select from './ui/Select.svelte';
+	import Switch from './ui/Switch.svelte';
 
 	export let open: boolean;
 	export let onClose: () => void;

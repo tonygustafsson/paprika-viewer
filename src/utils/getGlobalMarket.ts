@@ -1,7 +1,7 @@
-import { globalMarket } from '../stores/globalMarket';
 import { apiUrls, localStorageGlobalMarketTable } from '../constants';
+import { globalMarket } from '../stores/globalMarket';
+import type { GlobalMarket } from '../types';
 import { getFromStorage, saveToStorage } from '../utils/storage';
-import type { GlobalMarket } from 'src/types';
 
 const getGlobalMarketFromApi = async () => {
 	const globalMarket = await fetch(apiUrls.globalMarket);

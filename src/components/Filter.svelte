@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Button from './ui/Button.svelte';
-	import FilterIcon from './icons/Filter.svelte';
-	import ColumnsIcon from './icons/Columns.svelte';
-	import FilterDialog from './FilterDialog.svelte';
 	import ColumnsDialog from './ColumnsDialog.svelte';
+	import FilterDialog from './FilterDialog.svelte';
+	import ColumnsIcon from './icons/Columns.svelte';
+	import FilterIcon from './icons/Filter.svelte';
+	import Button from './ui/Button.svelte';
 
 	$: filterDialogOpen = false;
 	$: columnsDialogOpen = false;

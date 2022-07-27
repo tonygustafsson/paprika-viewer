@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { columns } from '../stores/columns';
 	import Button from './ui/Button.svelte';
-	import Switch from './ui/Switch.svelte';
 	import Dialog from './ui/Dialog.svelte';
+	import Switch from './ui/Switch.svelte';
 
 	export let open: boolean;
 	export let onClose: () => void;

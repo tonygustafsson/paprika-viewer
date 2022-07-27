@@ -1,7 +1,8 @@
-import { localStorageExchangesTable } from '../constants';
-import type { Exchanges } from 'src/types';
-import { saveToStorage } from '../utils/storage';
 import { writable } from 'svelte/store';
+
+import { localStorageExchangesTable } from '../constants';
+import type { Exchanges } from '../types';
+import { saveToStorage } from '../utils/storage';
 
 const initValue: Exchanges = {};
 

@@ -1,5 +1,6 @@
-import type { Exchange, MarketCap, Volume } from 'src/types';
 import { writable } from 'svelte/store';
+
+import type { Exchange, MarketCap, Volume } from '../types';
 
 type Filter = {
 	exchange: Exchange;

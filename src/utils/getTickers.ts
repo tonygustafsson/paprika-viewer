@@ -1,13 +1,13 @@
-import { settings } from '../stores/settings';
-import { tickers } from '../stores/tickers';
 import {
 	apiUrls,
-	minVolumeToView,
+	localStorageTickersTable,
 	minMarketCapToView,
-	localStorageTickersTable
+	minVolumeToView
 } from '../constants';
+import { settings } from '../stores/settings';
+import { tickers } from '../stores/tickers';
+import type { Ticker } from '../types';
 import { getFromStorage, saveToStorage } from '../utils/storage';
-import type { Ticker } from 'src/types';
 
 const getTickersFromApi = async () => {
 	const tickersResponse = await fetch(apiUrls.tickers);

@@ -1,11 +1,11 @@
 <script lang="ts">
+	import { columns } from '../stores/columns';
 	import { filteredTickers } from '../stores/filteredTickers';
 	import { sort } from '../stores/sort';
-	import { columns } from '../stores/columns';
-	import Ticker from './Ticker.svelte';
-	import type { SortBy } from 'src/types';
-	import ScrollToTop from './ScrollToTop.svelte';
+	import type { SortBy } from '../types';
 	import Arrow from './icons/Arrow.svelte';
+	import ScrollToTop from './ScrollToTop.svelte';
+	import Ticker from './Ticker.svelte';
 
 	let scrollTable: HTMLDivElement;
 

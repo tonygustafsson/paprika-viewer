@@ -1,5 +1,6 @@
 import { writable } from 'svelte/store';
-import type { GlobalMarket } from 'src/types';
+
+import type { GlobalMarket } from '../types';
 
 const initValue: GlobalMarket = {
 	market_cap_usd: 0,

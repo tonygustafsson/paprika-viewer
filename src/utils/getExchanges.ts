@@ -1,7 +1,8 @@
-import { exchanges } from '../stores/exchanges';
-import { apiUrls, localStorageExchangesTable } from '../constants';
-import type { Exchanges, Market } from 'src/types';
 import { get } from 'svelte/store';
+
+import { apiUrls, localStorageExchangesTable } from '../constants';
+import { exchanges } from '../stores/exchanges';
+import type { Exchanges, Market } from '../types';
 import { getFromStorage } from './storage';
 
 const getExchangeNameFromUrl = (url: string) => {

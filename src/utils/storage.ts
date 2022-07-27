@@ -1,10 +1,11 @@
 import localforage from 'localforage';
+
 import {
+	localStorageCacheTimeout,
 	localStorageDatabaseName,
-	localStorageFetchTimeTablePrefix,
-	localStorageCacheTimeout
+	localStorageFetchTimeTablePrefix
 } from '../constants';
-import type { GlobalMarket, Favorites, Ticker, Exchanges } from 'src/types';
+import type { Exchanges, Favorites, GlobalMarket, Ticker } from '../types';
 
 localforage.config({
 	name: localStorageDatabaseName,
