@@ -10,6 +10,30 @@ import type { Ticker } from 'src/types';
 
 const initValue: Ticker[] = [];
 
+const sortVolumeMap = {
+	0: { min: 0, max: 100000 },
+	100000: { min: 100000, max: 250000 },
+	250000: { min: 250000, max: 500000 },
+	500000: { min: 500000, max: 1000000 },
+	1000000: { min: 1000000, max: 5000000 },
+	5000000: { min: 5000000, max: 10000000 },
+	10000000: { min: 10000000, max: 20000000 },
+	20000000: { min: 20000000, max: 50000000 },
+	50000000: { min: 50000000, max: Infinity }
+};
+
+const sortMarketCapMap = {
+	0: { min: 0, max: 100000 },
+	100000: { min: 100000, max: 250000 },
+	250000: { min: 250000, max: 500000 },
+	500000: { min: 500000, max: 1000000 },
+	1000000: { min: 1000000, max: 5000000 },
+	5000000: { min: 5000000, max: 10000000 },
+	10000000: { min: 10000000, max: 20000000 },
+	20000000: { min: 20000000, max: 50000000 },
+	50000000: { min: 50000000, max: Infinity }
+};
+
 const sortTickersByLambda = (tickers: Ticker[], lambda: (ticker: Ticker) => number | string) => {
 	const $sort = get(sort);
 	return orderBy(tickers, lambda, $sort.direction);
@@ -126,139 +150,23 @@ const filteredTickersStore = () => {
 					);
 				}
 
-				if ($filter.volume === 0) {
-					newTickers = newTickers.filter(
-						(ticker) => ticker.quotes[$settings.referenceCurrency].volume_24h < 100000
-					);
-				}
+				if ($filter.volume !== -1) {
+					const volumeMinMax = sortVolumeMap[$filter.volume];
 
-				if ($filter.volume === 100000) {
 					newTickers = newTickers.filter(
 						(ticker) =>
-							ticker.quotes[$settings.referenceCurrency].volume_24h >= 100000 &&
-							ticker.quotes[$settings.referenceCurrency].volume_24h <= 250000
+							ticker.quotes[$settings.referenceCurrency].volume_24h >= volumeMinMax.min &&
+							ticker.quotes[$settings.referenceCurrency].volume_24h <= volumeMinMax.max
 					);
 				}
 
-				if ($filter.volume === 250000) {
+				if ($filter.marketCap !== -1) {
+					const marketCapMinMax = sortMarketCapMap[$filter.marketCap];
+
 					newTickers = newTickers.filter(
 						(ticker) =>
-							ticker.quotes[$settings.referenceCurrency].volume_24h > 250000 &&
-							ticker.quotes[$settings.referenceCurrency].volume_24h <= 500000
-					);
-				}
-
-				if ($filter.volume === 500000) {
-					newTickers = newTickers.filter(
-						(ticker) =>
-							ticker.quotes[$settings.referenceCurrency].volume_24h > 500000 &&
-							ticker.quotes[$settings.referenceCurrency].volume_24h <= 1000000
-					);
-				}
-
-				if ($filter.volume === 1000000) {
-					newTickers = newTickers.filter(
-						(ticker) =>
-							ticker.quotes[$settings.referenceCurrency].volume_24h > 1000000 &&
-							ticker.quotes[$settings.referenceCurrency].volume_24h <= 5000000
-					);
-				}
-
-				if ($filter.volume === 5000000) {
-					newTickers = newTickers.filter(
-						(ticker) =>
-							ticker.quotes[$settings.referenceCurrency].volume_24h > 5000000 &&
-							ticker.quotes[$settings.referenceCurrency].volume_24h <= 10000000
-					);
-				}
-
-				if ($filter.volume === 10000000) {
-					newTickers = newTickers.filter(
-						(ticker) =>
-							ticker.quotes[$settings.referenceCurrency].volume_24h > 10000000 &&
-							ticker.quotes[$settings.referenceCurrency].volume_24h <= 20000000
-					);
-				}
-
-				if ($filter.volume === 20000000) {
-					newTickers = newTickers.filter(
-						(ticker) =>
-							ticker.quotes[$settings.referenceCurrency].volume_24h > 20000000 &&
-							ticker.quotes[$settings.referenceCurrency].volume_24h <= 50000000
-					);
-				}
-
-				if ($filter.volume === 50000000) {
-					newTickers = newTickers.filter(
-						(ticker) => ticker.quotes[$settings.referenceCurrency].volume_24h > 50000000
-					);
-				}
-
-				if ($filter.marketCap === 0) {
-					newTickers = newTickers.filter(
-						(ticker) => ticker.quotes[$settings.referenceCurrency].market_cap < 100000
-					);
-				}
-
-				if ($filter.marketCap === 100000) {
-					newTickers = newTickers.filter(
-						(ticker) =>
-							ticker.quotes[$settings.referenceCurrency].market_cap >= 100000 &&
-							ticker.quotes[$settings.referenceCurrency].market_cap <= 250000
-					);
-				}
-
-				if ($filter.marketCap === 250000) {
-					newTickers = newTickers.filter(
-						(ticker) =>
-							ticker.quotes[$settings.referenceCurrency].market_cap > 250000 &&
-							ticker.quotes[$settings.referenceCurrency].market_cap <= 500000
-					);
-				}
-
-				if ($filter.marketCap === 500000) {
-					newTickers = newTickers.filter(
-						(ticker) =>
-							ticker.quotes[$settings.referenceCurrency].market_cap > 500000 &&
-							ticker.quotes[$settings.referenceCurrency].market_cap <= 1000000
-					);
-				}
-
-				if ($filter.marketCap === 1000000) {
-					newTickers = newTickers.filter(
-						(ticker) =>
-							ticker.quotes[$settings.referenceCurrency].market_cap > 1000000 &&
-							ticker.quotes[$settings.referenceCurrency].market_cap <= 5000000
-					);
-				}
-
-				if ($filter.marketCap === 5000000) {
-					newTickers = newTickers.filter(
-						(ticker) =>
-							ticker.quotes[$settings.referenceCurrency].market_cap > 5000000 &&
-							ticker.quotes[$settings.referenceCurrency].market_cap <= 10000000
-					);
-				}
-
-				if ($filter.marketCap === 10000000) {
-					newTickers = newTickers.filter(
-						(ticker) =>
-							ticker.quotes[$settings.referenceCurrency].market_cap > 10000000 &&
-							ticker.quotes[$settings.referenceCurrency].market_cap <= 20000000
-					);
-				}
-
-				if ($filter.marketCap === 20000000) {
-					newTickers = newTickers.filter(
-						(ticker) =>
-							ticker.quotes[$settings.referenceCurrency].market_cap > 20000000 &&
-							ticker.quotes[$settings.referenceCurrency].market_cap <= 50000000
-					);
-				}
-
-				if ($filter.marketCap === 50000000) {
-					newTickers = newTickers.filter(
-						(ticker) => ticker.quotes[$settings.referenceCurrency].market_cap > 50000000
+							ticker.quotes[$settings.referenceCurrency].market_cap >= marketCapMinMax.min &&
+							ticker.quotes[$settings.referenceCurrency].market_cap <= marketCapMinMax.max
 					);
 				}
 
