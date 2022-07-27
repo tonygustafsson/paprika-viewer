@@ -10,6 +10,7 @@
 	import RadioGroup from './ui/RadioGroup.svelte';
 	import Select from './ui/Select.svelte';
 	import Switch from './ui/Switch.svelte';
+	import Textfield from './ui/Textfield.svelte';
 
 	export let open: boolean;
 	export let onClose: () => void;
@@ -38,6 +39,10 @@
 		filter.setFavorites((e.target as HTMLInputElement).checked);
 	};
 
+	const search = (e: Event) => {
+		filter.setSearch((e.target as HTMLInputElement).value);
+	};
+
 	const setReferenceCurrency = (e: Event) => {
 		settings.setReferenceCurrency((e.target as HTMLInputElement).value as Currency);
 	};
@@ -51,6 +56,16 @@
 
 <Dialog title="Filter" {open} {onClose}>
 	<div class="filters">
+		<div class="filter-item">
+			<Textfield
+				label="Search"
+				id="filter-search"
+				name="filter-search"
+				value={$filter.search}
+				on:change={search}
+			/>
+		</div>
+
 		<div class="filter-item">
 			<Select
 				id="filter-exchange"

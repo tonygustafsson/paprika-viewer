@@ -19,6 +19,10 @@
 	>
 {/if}
 
+{#if $filter.search}
+	<Chip on:click={() => filter.setSearch('')}>Search: {$filter.search}</Chip>
+{/if}
+
 {#if $filter.favorites}
 	<Chip on:click={() => filter.setFavorites(false)}>Favorites only</Chip>
 {/if}

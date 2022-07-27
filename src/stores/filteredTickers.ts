@@ -172,6 +172,12 @@ const filteredTickersStore = () => {
 					);
 				}
 
+				if ($filter.search) {
+					newTickers = newTickers.filter(
+						(ticker) => ticker.name.includes($filter.search) || ticker.id.includes($filter.search)
+					);
+				}
+
 				return newTickers;
 			});
 		},
