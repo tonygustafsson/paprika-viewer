@@ -174,7 +174,9 @@ const filteredTickersStore = () => {
 
 				if ($filter.search) {
 					newTickers = newTickers.filter(
-						(ticker) => ticker.name.includes($filter.search) || ticker.id.includes($filter.search)
+						(ticker) =>
+							ticker.name.toLowerCase().includes($filter.search.toLowerCase()) ||
+							ticker.symbol.toLowerCase().includes($filter.search.toLowerCase())
 					);
 				}
 
