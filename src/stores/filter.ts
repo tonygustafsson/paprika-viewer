@@ -2,7 +2,7 @@ import type { Exchange, MarketCap, Volume } from 'src/types';
 import { writable } from 'svelte/store';
 
 type Filter = {
-	exchange: Exchange | 'any' | 'all';
+	exchange: Exchange;
 	volume: Volume;
 	marketCap: MarketCap;
 	favorites: boolean;
@@ -10,8 +10,8 @@ type Filter = {
 
 const initValue: Filter = {
 	exchange: 'any',
-	volume: 'all',
-	marketCap: 'all',
+	volume: -1,
+	marketCap: -1,
 	favorites: false
 };
 
@@ -20,13 +20,6 @@ const filterStore = () => {
 
 	return {
 		subscribe,
-		update: (filter: Exchange) => {
-			update((filters) => {
-				const newFilter = { ...filters };
-				newFilter.exchange = filter;
-				return newFilter;
-			});
-		},
 		setExchange: (filter: Exchange) => {
 			update((filters) => {
 				const newFilter = { ...filters };

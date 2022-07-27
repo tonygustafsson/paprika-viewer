@@ -5,16 +5,16 @@
 	import Chip from '../components/ui/Chip.svelte';
 </script>
 
-{#if $filter.exchange !== 'any' && $filter.exchange !== 'all'}
+{#if $filter.exchange !== 'any'}
 	<Chip on:click={() => filter.setExchange('any')}>Exchange: {$filter.exchange}</Chip>
 {/if}
 
-{#if $filter.volume !== 'all'}
-	<Chip on:click={() => filter.setVolume('all')}>Volume: {volumeToHuman($filter.volume)}</Chip>
+{#if $filter.volume !== -1}
+	<Chip on:click={() => filter.setVolume(-1)}>Volume: {volumeToHuman($filter.volume)}</Chip>
 {/if}
 
-{#if $filter.marketCap !== 'all'}
-	<Chip on:click={() => filter.setMarketCap('all')}
+{#if $filter.marketCap !== -1}
+	<Chip on:click={() => filter.setMarketCap(-1)}
 		>MarketCap: {marketCapToHuman($filter.marketCap)}</Chip
 	>
 {/if}

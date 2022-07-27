@@ -4,7 +4,7 @@ import {
 	localStorageFetchTimeTablePrefix,
 	localStorageCacheTimeout
 } from '../constants';
-import type { GlobalMarket, Favorites, Ticker } from 'src/types';
+import type { GlobalMarket, Favorites, Ticker, Exchanges } from 'src/types';
 
 localforage.config({
 	name: localStorageDatabaseName,
@@ -12,7 +12,7 @@ localforage.config({
 });
 
 export const getFromStorage = async (
-	table: 'tickers' | 'globalMarket' | 'favorites' | 'columns'
+	table: 'tickers' | 'exchanges' | 'globalMarket' | 'favorites' | 'columns'
 ) => {
 	if (localStorageCacheTimeout[table] && localStorageCacheTimeout[table] > 0) {
 		const fetchTime = (await localforage
@@ -37,8 +37,8 @@ export const getFromStorage = async (
 };
 
 export const saveToStorage = async (
-	table: 'tickers' | 'globalMarket' | 'favorites' | 'columns',
-	data: Ticker[] | GlobalMarket | Favorites
+	table: 'tickers' | 'exchanges' | 'globalMarket' | 'favorites' | 'columns',
+	data: Ticker[] | Exchanges | GlobalMarket | Favorites
 ) => {
 	try {
 		if (localStorageCacheTimeout[table] && localStorageCacheTimeout[table] > 0) {

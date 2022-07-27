@@ -1,5 +1,6 @@
 import { writable, get } from 'svelte/store';
 import { tickers } from './tickers';
+import { exchanges } from './exchanges';
 import { sort } from './sort';
 import { settings } from './settings';
 import { filter } from './filter';
@@ -106,6 +107,7 @@ const filteredTickersStore = () => {
 		filter: () => {
 			update(() => {
 				const $tickers = get(tickers);
+				const $exchanges = get(exchanges);
 				const $filter = get(filter);
 				const $settings = get(settings);
 
@@ -118,23 +120,19 @@ const filteredTickersStore = () => {
 					);
 				}
 
-				if ($filter.exchange === 'any') {
-					newTickers = newTickers.filter(
-						(ticker) => ticker.exchanges && ticker.exchanges.length > 0
-					);
-				} else if ($filter.exchange !== 'all') {
-					newTickers = newTickers.filter(
-						(ticker) => ticker.exchanges && ticker.exchanges.includes($filter.exchange)
+				if ($filter.exchange !== 'any') {
+					newTickers = newTickers.filter((ticker) =>
+						($exchanges[ticker.id] || []).includes($filter.exchange)
 					);
 				}
 
-				if ($filter.volume === '0') {
+				if ($filter.volume === 0) {
 					newTickers = newTickers.filter(
 						(ticker) => ticker.quotes[$settings.referenceCurrency].volume_24h < 100000
 					);
 				}
 
-				if ($filter.volume === '100000') {
+				if ($filter.volume === 100000) {
 					newTickers = newTickers.filter(
 						(ticker) =>
 							ticker.quotes[$settings.referenceCurrency].volume_24h >= 100000 &&
@@ -142,7 +140,7 @@ const filteredTickersStore = () => {
 					);
 				}
 
-				if ($filter.volume === '250000') {
+				if ($filter.volume === 250000) {
 					newTickers = newTickers.filter(
 						(ticker) =>
 							ticker.quotes[$settings.referenceCurrency].volume_24h > 250000 &&
@@ -150,7 +148,7 @@ const filteredTickersStore = () => {
 					);
 				}
 
-				if ($filter.volume === '500000') {
+				if ($filter.volume === 500000) {
 					newTickers = newTickers.filter(
 						(ticker) =>
 							ticker.quotes[$settings.referenceCurrency].volume_24h > 500000 &&
@@ -158,7 +156,7 @@ const filteredTickersStore = () => {
 					);
 				}
 
-				if ($filter.volume === '1000000') {
+				if ($filter.volume === 1000000) {
 					newTickers = newTickers.filter(
 						(ticker) =>
 							ticker.quotes[$settings.referenceCurrency].volume_24h > 1000000 &&
@@ -166,7 +164,7 @@ const filteredTickersStore = () => {
 					);
 				}
 
-				if ($filter.volume === '5000000') {
+				if ($filter.volume === 5000000) {
 					newTickers = newTickers.filter(
 						(ticker) =>
 							ticker.quotes[$settings.referenceCurrency].volume_24h > 5000000 &&
@@ -174,7 +172,7 @@ const filteredTickersStore = () => {
 					);
 				}
 
-				if ($filter.volume === '10000000') {
+				if ($filter.volume === 10000000) {
 					newTickers = newTickers.filter(
 						(ticker) =>
 							ticker.quotes[$settings.referenceCurrency].volume_24h > 10000000 &&
@@ -182,7 +180,7 @@ const filteredTickersStore = () => {
 					);
 				}
 
-				if ($filter.volume === '20000000') {
+				if ($filter.volume === 20000000) {
 					newTickers = newTickers.filter(
 						(ticker) =>
 							ticker.quotes[$settings.referenceCurrency].volume_24h > 20000000 &&
@@ -190,19 +188,19 @@ const filteredTickersStore = () => {
 					);
 				}
 
-				if ($filter.volume === '50000000') {
+				if ($filter.volume === 50000000) {
 					newTickers = newTickers.filter(
 						(ticker) => ticker.quotes[$settings.referenceCurrency].volume_24h > 50000000
 					);
 				}
 
-				if ($filter.marketCap === '0') {
+				if ($filter.marketCap === 0) {
 					newTickers = newTickers.filter(
 						(ticker) => ticker.quotes[$settings.referenceCurrency].market_cap < 100000
 					);
 				}
 
-				if ($filter.marketCap === '100000') {
+				if ($filter.marketCap === 100000) {
 					newTickers = newTickers.filter(
 						(ticker) =>
 							ticker.quotes[$settings.referenceCurrency].market_cap >= 100000 &&
@@ -210,7 +208,7 @@ const filteredTickersStore = () => {
 					);
 				}
 
-				if ($filter.marketCap === '250000') {
+				if ($filter.marketCap === 250000) {
 					newTickers = newTickers.filter(
 						(ticker) =>
 							ticker.quotes[$settings.referenceCurrency].market_cap > 250000 &&
@@ -218,7 +216,7 @@ const filteredTickersStore = () => {
 					);
 				}
 
-				if ($filter.marketCap === '500000') {
+				if ($filter.marketCap === 500000) {
 					newTickers = newTickers.filter(
 						(ticker) =>
 							ticker.quotes[$settings.referenceCurrency].market_cap > 500000 &&
@@ -226,7 +224,7 @@ const filteredTickersStore = () => {
 					);
 				}
 
-				if ($filter.marketCap === '1000000') {
+				if ($filter.marketCap === 1000000) {
 					newTickers = newTickers.filter(
 						(ticker) =>
 							ticker.quotes[$settings.referenceCurrency].market_cap > 1000000 &&
@@ -234,7 +232,7 @@ const filteredTickersStore = () => {
 					);
 				}
 
-				if ($filter.marketCap === '5000000') {
+				if ($filter.marketCap === 5000000) {
 					newTickers = newTickers.filter(
 						(ticker) =>
 							ticker.quotes[$settings.referenceCurrency].market_cap > 5000000 &&
@@ -242,7 +240,7 @@ const filteredTickersStore = () => {
 					);
 				}
 
-				if ($filter.marketCap === '10000000') {
+				if ($filter.marketCap === 10000000) {
 					newTickers = newTickers.filter(
 						(ticker) =>
 							ticker.quotes[$settings.referenceCurrency].market_cap > 10000000 &&
@@ -250,7 +248,7 @@ const filteredTickersStore = () => {
 					);
 				}
 
-				if ($filter.marketCap === '20000000') {
+				if ($filter.marketCap === 20000000) {
 					newTickers = newTickers.filter(
 						(ticker) =>
 							ticker.quotes[$settings.referenceCurrency].market_cap > 20000000 &&
@@ -258,7 +256,7 @@ const filteredTickersStore = () => {
 					);
 				}
 
-				if ($filter.marketCap === '50000000') {
+				if ($filter.marketCap === 50000000) {
 					newTickers = newTickers.filter(
 						(ticker) => ticker.quotes[$settings.referenceCurrency].market_cap > 50000000
 					);
@@ -279,9 +277,9 @@ tickers.subscribe((tickers) => {
 	if (tickers.length <= 0) return;
 
 	filteredTickers.updateAll(tickers);
+});
 
-	filter.subscribe(() => {
-		filteredTickers.filter();
-		filteredTickers.sort();
-	});
+filter.subscribe(() => {
+	filteredTickers.filter();
+	filteredTickers.sort();
 });

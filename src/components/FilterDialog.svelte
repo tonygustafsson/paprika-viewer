@@ -16,29 +16,11 @@
 	export let onClose: () => void;
 
 	const filterItems: Volume[] = [
-		'all',
-		0,
-		100000,
-		250000,
-		500000,
-		1000000,
-		5000000,
-		10000000,
-		20000000,
-		50000000
+		-1, 0, 100000, 250000, 500000, 1000000, 5000000, 10000000, 20000000, 50000000
 	];
 
 	const marketCapItems: MarketCap[] = [
-		'all',
-		0,
-		100000,
-		250000,
-		500000,
-		1000000,
-		5000000,
-		10000000,
-		20000000,
-		50000000
+		-1, 0, 100000, 250000, 500000, 1000000, 5000000, 10000000, 20000000, 50000000
 	];
 
 	const filterExchange = (e: Event) => {
@@ -46,11 +28,11 @@
 	};
 
 	const filterVolume = (e: Event) => {
-		filter.setVolume((e.target as HTMLSelectElement).value as Volume);
+		filter.setVolume(parseInt((e.target as HTMLSelectElement).value) as Volume);
 	};
 
 	const filterMarketCap = (e: Event) => {
-		filter.setMarketCap((e.target as HTMLSelectElement).value as MarketCap);
+		filter.setMarketCap(parseInt((e.target as HTMLSelectElement).value) as MarketCap);
 	};
 
 	const filterFavorites = (e: Event) => {
@@ -76,9 +58,8 @@
 				name="filter-exchange"
 				label="Exchange"
 				value={$filter.exchange}
-				on:change={(e) => filterExchange(e)}
+				on:change={filterExchange}
 			>
-				<option value="all">All</option>
 				<option value="any">Any</option>
 				<option value="Binance">Binance</option>
 				<option value="Coinbase">Coinbase</option>
@@ -93,11 +74,11 @@
 				id="filter-marketcap"
 				name="filter-marketcap"
 				label="Market cap"
-				value={$filter.marketCap.toString()}
-				on:change={(e) => filterMarketCap(e)}
+				value={$filter.marketCap}
+				on:change={filterMarketCap}
 			>
 				{#each marketCapItems as item}
-					<option value={item.toString()}>{marketCapToHuman(item)}</option>
+					<option value={item}>{marketCapToHuman(item)}</option>
 				{/each}
 			</Select>
 		</div>
@@ -107,11 +88,11 @@
 				label="Volume"
 				id="filter-volume"
 				name="filter-volume"
-				value={$filter.volume.toString()}
-				on:change={(e) => filterVolume(e)}
+				value={$filter.volume}
+				on:change={filterVolume}
 			>
 				{#each filterItems as item}
-					<option value={item.toString()}>{volumeToHuman(item)}</option>
+					<option value={item}>{volumeToHuman(item)}</option>
 				{/each}
 			</Select>
 		</div>

@@ -2,17 +2,19 @@
 	import { onMount } from 'svelte';
 	import { settings } from '../stores/settings';
 	import { getTickers } from '../utils/getTickers';
+	import { getExchanges } from '../utils/getExchanges';
 	import GlobalMarket from '../components/GlobalMarket.svelte';
 	import Filter from '../components/Filter.svelte';
 	import SelectedFilters from '../components/SelectedFilters.svelte';
 	import Tickers from '../components/Tickers.svelte';
 	import Loader from '../components/Loader.svelte';
 	import ChiliIcon from '../components/icons/Chili.svelte';
-	import '../theme.css';
 	import TickerInfoDialog from '../components/TickerInfoDialog.svelte';
+	import '../theme.css';
 
 	onMount(() => {
 		getTickers();
+		getExchanges();
 	});
 </script>
 

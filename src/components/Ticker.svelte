@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { selectedTicker } from '../stores/selectedTicker';
 	import { settings } from '../stores/settings';
+	import { exchanges } from '../stores/exchanges';
 	import Favorite from './Favorite.svelte';
 	import type { Ticker } from 'src/types';
 	import { onMount } from 'svelte';
@@ -191,9 +192,9 @@
 
 		{#if $columns.exchanges}
 			<td class="exchanges">
-				{#if ticker.exchanges}
+				{#if Object.keys($exchanges).includes(ticker.id)}
 					<ul>
-						{#each ticker.exchanges as exchange}
+						{#each $exchanges[ticker.id] as exchange}
 							<li>{exchange}</li>
 						{/each}
 					</ul>

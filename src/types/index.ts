@@ -31,6 +31,8 @@ export type Ticker = {
 	quotes: Record<'BTC' | 'SEK' | 'USD', Quote>;
 };
 
+export type Exchanges = Record<string, string[]>;
+
 export type Market = {
 	base_currency_id: string;
 	base_currency_name: string;
@@ -100,7 +102,7 @@ export type SortBy =
 	| 'percent_from_price_ath';
 
 export type Volume =
-	| 'all'
+	| -1
 	| 0
 	| 100000
 	| 250000
@@ -112,7 +114,7 @@ export type Volume =
 	| 50000000;
 
 export type MarketCap =
-	| 'all'
+	| -1
 	| 0
 	| 100000
 	| 250000
