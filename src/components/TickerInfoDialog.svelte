@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { columns } from '../stores/columns';
+	import { exchanges } from '../stores/exchanges';
 	import { selectedTicker } from '../stores/selectedTicker';
 	import { settings } from '../stores/settings';
 	import { priceToHuman } from '../utils/number';
@@ -111,7 +113,13 @@
 
 			<div>
 				<strong>Exchanges:</strong>
-				{$selectedTicker.exchanges?.join(', ')}.
+				{#if $exchanges[$selectedTicker.id] && $exchanges[$selectedTicker.id].length > 0}
+					{$exchanges[$selectedTicker.id].join(', ')}.
+				{:else if !$columns.exchanges}
+					Column "Exchanges" not present, no data can be fetched.
+				{:else}
+					No known exchanges.
+				{/if}
 			</div>
 
 			<div>
