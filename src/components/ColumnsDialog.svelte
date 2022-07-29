@@ -65,6 +65,22 @@
 		</div>
 		<div class="column-switch">
 			<Switch
+				label="Beta value"
+				name="beta_value"
+				checked={$columns.beta_value}
+				on:change={() => columns.toggle('beta_value')}
+			/>
+		</div>
+		<div class="column-switch">
+			<Switch
+				label="Creation date"
+				name="first_data_at"
+				checked={$columns.first_data_at}
+				on:change={() => columns.toggle('first_data_at')}
+			/>
+		</div>
+		<div class="column-switch">
+			<Switch
 				label="Change 1h"
 				name="change-1h"
 				checked={$columns.change_1h}

@@ -21,13 +21,14 @@ export type QuoteSimple = {
 export type Ticker = {
 	circulating_supply?: number;
 	id: string;
-	exchanges?: string[];
 	max_supply?: number;
 	name: string;
 	symbol: string;
 	rank: number;
 	volume_24h?: number;
 	volume_24_change?: number;
+	beta_value: number;
+	first_data_at: string;
 	quotes: Record<'BTC' | 'SEK' | 'USD', Quote>;
 };
 
@@ -99,7 +100,9 @@ export type SortBy =
 	| 'percent_change_7d'
 	| 'percent_change_30d'
 	| 'percent_change_1y'
-	| 'percent_from_price_ath';
+	| 'percent_from_price_ath'
+	| 'beta_value'
+	| 'first_data_at';
 
 export type Volume =
 	| -1

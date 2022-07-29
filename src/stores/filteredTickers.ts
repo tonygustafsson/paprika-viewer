@@ -111,6 +111,12 @@ const sortTickers = (tickers: Ticker[]) => {
 				(ticker: Ticker) => ticker.quotes[refCurrency].percent_from_price_ath
 			);
 			break;
+		case 'beta_value':
+			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.beta_value);
+			break;
+		case 'first_data_at':
+			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.first_data_at);
+			break;
 		default:
 			newTickers = sortTickersByLambda(
 				newTickers,
