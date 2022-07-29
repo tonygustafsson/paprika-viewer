@@ -8,6 +8,7 @@ type Filter = {
 	marketCap: MarketCap;
 	favorites: boolean;
 	search: string;
+	tag: string;
 };
 
 const initValue: Filter = {
@@ -15,7 +16,8 @@ const initValue: Filter = {
 	volume: -1,
 	marketCap: -1,
 	favorites: false,
-	search: ""
+	search: '',
+	tag: 'any'
 };
 
 const filterStore = () => {
@@ -28,6 +30,7 @@ const filterStore = () => {
 		setMarketCap: (filter: MarketCap) => update((filters) => ({ ...filters, marketCap: filter })),
 		setFavorites: (filter: boolean) => update((filters) => ({ ...filters, favorites: filter })),
 		setSearch: (filter: string) => update((filters) => ({ ...filters, search: filter })),
+		setTag: (filter: string) => update((filters) => ({ ...filters, tag: filter })),
 		reset: () => set(initValue)
 	};
 };

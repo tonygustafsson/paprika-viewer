@@ -246,6 +246,10 @@
 					</th>
 				{/if}
 
+				{#if $columns.tags}
+					<th>Tags</th>
+				{/if}
+
 				{#if $columns.exchanges}
 					<th>Exchanges</th>
 				{/if}

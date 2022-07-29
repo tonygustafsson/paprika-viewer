@@ -14,6 +14,7 @@
 	import { settings } from '../stores/settings';
 	import { getExchanges } from '../utils/getExchanges';
 	import { getTickers } from '../utils/getTickers';
+	import { getTags } from '../utils/getTags';
 
 	onMount(() => {
 		getTickers();
@@ -21,6 +22,10 @@
 
 	$: if (!$settings.loading && $columns.exchanges) {
 		getExchanges();
+	}
+
+	$: if (!$settings.loading && $columns.tags) {
+		getTags();
 	}
 </script>
 

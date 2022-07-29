@@ -7,6 +7,7 @@ import { favorites } from './favorites';
 import { filter } from './filter';
 import { settings } from './settings';
 import { sort } from './sort';
+import { tags } from './tags';
 import { tickers } from './tickers';
 
 const initValue: Ticker[] = [];
@@ -140,6 +141,7 @@ const filteredTickersStore = () => {
 			update(() => {
 				const $tickers = get(tickers);
 				const $exchanges = get(exchanges);
+				const $tags = get(tags);
 				const $filter = get(filter);
 				const $settings = get(settings);
 
@@ -155,6 +157,12 @@ const filteredTickersStore = () => {
 				if ($filter.exchange !== 'any') {
 					newTickers = newTickers.filter((ticker) =>
 						($exchanges[ticker.id] || []).includes($filter.exchange)
+					);
+				}
+
+				if ($filter.tag !== 'any') {
+					newTickers = newTickers.filter((ticker) =>
+						($tags.tickers[ticker.id] || []).includes($filter.tag)
 					);
 				}
 

@@ -9,6 +9,10 @@
 	<Chip on:click={() => filter.setExchange('any')}>Exchange: {$filter.exchange}</Chip>
 {/if}
 
+{#if $filter.tag !== 'any'}
+	<Chip on:click={() => filter.setTag('any')}>Tag: {$filter.tag}</Chip>
+{/if}
+
 {#if $filter.volume !== -1}
 	<Chip on:click={() => filter.setVolume(-1)}>Volume: {volumeToHuman($filter.volume)}</Chip>
 {/if}

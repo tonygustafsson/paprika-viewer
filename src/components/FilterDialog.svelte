@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { filter } from '../stores/filter';
 	import { settings } from '../stores/settings';
+	import { tags } from '../stores/tags';
+	import { columns } from '../stores/columns';
 	import { sort } from '../stores/sort';
 	import type { Currency, Exchange, MarketCap, Volume } from '../types';
 	import { marketCapToHuman } from '../utils/marketCapToHuman';
@@ -27,6 +29,10 @@
 		filter.setExchange((e.target as HTMLSelectElement).value as Exchange);
 	};
 
+	const filterTag = (e: Event) => {
+		filter.setTag((e.target as HTMLSelectElement).value as string);
+	};
+
 	const filterVolume = (e: Event) => {
 		filter.setVolume(parseInt((e.target as HTMLSelectElement).value) as Volume);
 	};
@@ -45,6 +51,14 @@
 
 	const setReferenceCurrency = (e: Event) => {
 		settings.setReferenceCurrency((e.target as HTMLInputElement).value as Currency);
+	};
+
+	const enableExchangeColumn = () => {
+		columns.add('exchanges');
+	};
+
+	const enableTagsColumn = () => {
+		columns.add('tags');
 	};
 
 	const reset = () => {
@@ -75,12 +89,47 @@
 				on:change={filterExchange}
 			>
 				<option value="any">Any</option>
-				<option value="Binance">Binance</option>
-				<option value="Coinbase">Coinbase</option>
-				<option value="Kraken">Kraken</option>
-				<option value="Kucoin">Kucoin</option>
-				<option value="OKEx">OKEx</option>
+
+				{#if $columns.exchanges}
+					<option value="Binance">Binance</option>
+					<option value="Coinbase">Coinbase</option>
+					<option value="Kraken">Kraken</option>
+					<option value="Kucoin">Kucoin</option>
+					<option value="OKEx">OKEx</option>
+				{/if}
 			</Select>
+
+			{#if !$columns.exchanges}
+				<em class="warning">
+					You can only filter by exchange if column "Exchange" is enabled.
+					<a href="/" on:click={enableExchangeColumn}>Enable</a>
+				</em>
+			{/if}
+		</div>
+
+		<div class="filter-item">
+			<Select
+				id="filter-tag"
+				name="filter-tag"
+				label="Tag"
+				value={$filter.tag}
+				on:change={filterTag}
+			>
+				<option value="any">Any</option>
+
+				{#if $tags.list}
+					{#each $tags.list as tag}
+						<option value={tag}>{tag}</option>
+					{/each}
+				{/if}
+			</Select>
+
+			{#if !$columns.tags}
+				<em class="warning">
+					You can only filter by tag if column "Tags" is enabled.
+					<a href="/" on:click={enableTagsColumn}>Enable</a>
+				</em>
+			{/if}
 		</div>
 
 		<div class="filter-item">
@@ -155,5 +204,15 @@
 
 	.extra-margin {
 		margin: 16px 0;
+	}
+
+	.warning {
+		display: block;
+		margin: 8px 0;
+	}
+
+	.warning a {
+		color: #fff;
+		font-style: normal;
 	}
 </style>

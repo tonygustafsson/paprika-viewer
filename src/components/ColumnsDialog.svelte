@@ -137,6 +137,14 @@
 		</div>
 		<div class="column-switch">
 			<Switch
+				label="Tags"
+				name="tags"
+				checked={$columns.tags}
+				on:change={() => columns.toggle('tags')}
+			/>
+		</div>
+		<div class="column-switch">
+			<Switch
 				label="Exchanges"
 				name="exchanges"
 				checked={$columns.exchanges}

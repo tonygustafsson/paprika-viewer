@@ -3,6 +3,7 @@
 
 	import { columns } from '../stores/columns';
 	import { exchanges } from '../stores/exchanges';
+	import { tags } from '../stores/tags';
 	import { selectedTicker } from '../stores/selectedTicker';
 	import { settings } from '../stores/settings';
 	import type { Ticker } from '../types';
@@ -199,8 +200,20 @@
 			<td>{new Date(ticker.first_data_at).toLocaleDateString('sv-SE')}</td>
 		{/if}
 
+		{#if $columns.tags}
+			<td class="list">
+				{#if Object.keys($tags.tickers || {}).includes(ticker.id)}
+					<ul>
+						{#each $tags.tickers[ticker.id] as tag}
+							<li>{tag}</li>
+						{/each}
+					</ul>
+				{/if}
+			</td>
+		{/if}
+
 		{#if $columns.exchanges}
-			<td class="exchanges">
+			<td class="list">
 				{#if Object.keys($exchanges).includes(ticker.id)}
 					<ul>
 						{#each $exchanges[ticker.id] as exchange}
@@ -236,7 +249,11 @@
 		color: #fff;
 	}
 
-	.exchanges ul {
+	.list {
+		white-space: normal;
+	}
+
+	.list ul {
 		list-style: none;
 		padding: 0;
 	}

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { columns } from '../stores/columns';
 	import { exchanges } from '../stores/exchanges';
+	import { tags } from '../stores/tags';
 	import { selectedTicker } from '../stores/selectedTicker';
 	import { settings } from '../stores/settings';
 	import { priceToHuman } from '../utils/number';
@@ -12,6 +13,14 @@
 
 		const url = `https://coinpaprika.com/coin/${$selectedTicker.id}`;
 		window.open(url, '_blank');
+	};
+
+	const enableExchangeColumn = () => {
+		columns.add('exchanges');
+	};
+
+	const enableTagsColumn = () => {
+		columns.add('tags');
 	};
 </script>
 
@@ -116,9 +125,26 @@
 				{#if $exchanges[$selectedTicker.id] && $exchanges[$selectedTicker.id].length > 0}
 					{$exchanges[$selectedTicker.id].join(', ')}.
 				{:else if !$columns.exchanges}
-					Column "Exchanges" not present, no data can be fetched.
+					<span class="warning">
+						Column "Exchanges" is not enabled.
+						<a href="/" on:click={enableExchangeColumn}>Enable</a>
+					</span>
 				{:else}
 					No known exchanges.
+				{/if}
+			</div>
+
+			<div>
+				<strong>Tags:</strong>
+				{#if $tags.tickers[$selectedTicker.id] && $tags.tickers[$selectedTicker.id].length > 0}
+					{$tags.tickers[$selectedTicker.id].join(', ')}.
+				{:else if !$columns.tags}
+					<span class="warning">
+						Column "Tags" is not enabled.
+						<a href="/" on:click={enableTagsColumn}>Enable</a>
+					</span>
+				{:else}
+					No known tags.
 				{/if}
 			</div>
 
@@ -177,5 +203,9 @@
 
 	.graph-img.negative {
 		filter: hue-rotate(115deg);
+	}
+
+	.warning a {
+		color: #fff;
 	}
 </style>

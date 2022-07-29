@@ -19,7 +19,8 @@ type Column =
 	| 'ath'
 	| 'beta_value'
 	| 'first_data_at'
-	| 'exchanges';
+	| 'exchanges'
+	| 'tags';
 
 type Columns = Record<Column, boolean>;
 
@@ -39,6 +40,7 @@ const initValue: Columns = {
 	ath: false,
 	beta_value: false,
 	first_data_at: false,
+	tags: false,
 	exchanges: true
 };
 

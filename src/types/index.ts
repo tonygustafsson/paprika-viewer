@@ -34,6 +34,11 @@ export type Ticker = {
 
 export type Exchanges = Record<string, string[]>;
 
+export type Tags = {
+	tickers: Record<string, string[]>;
+	list: string[];
+};
+
 export type Market = {
 	base_currency_id: string;
 	base_currency_name: string;
@@ -85,6 +90,16 @@ export type Settings = {
 	referenceCurrency: Currency;
 	currencyPrefix: '$' | '₿' | undefined;
 	currencySuffix: 'kr' | undefined;
+};
+
+export type ApiTag = {
+	id: string;
+	name: string;
+	description: string;
+	type: string;
+	coin_counter: number;
+	ico_counter: number;
+	coins: string[];
 };
 
 export type SortBy =

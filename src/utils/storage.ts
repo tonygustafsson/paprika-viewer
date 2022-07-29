@@ -5,16 +5,22 @@ import {
 	localStorageDatabaseName,
 	localStorageFetchTimeTablePrefix
 } from '../constants';
-import type { Exchanges, Favorites, GlobalMarket, Ticker } from '../types';
+import type { Exchanges, Favorites, GlobalMarket, Tags, Ticker } from '../types';
 
 localforage.config({
 	name: localStorageDatabaseName,
 	storeName: localStorageDatabaseName
 });
 
-export const getFromStorage = async (
-	table: 'tickers' | 'exchanges' | 'globalMarket' | 'favorites' | 'columns'
-) => {
+type LocalStorageTables =
+	| 'tickers'
+	| 'exchanges'
+	| 'globalMarket'
+	| 'favorites'
+	| 'columns'
+	| 'tags';
+
+export const getFromStorage = async (table: LocalStorageTables) => {
 	if (localStorageCacheTimeout[table] && localStorageCacheTimeout[table] > 0) {
 		const fetchTime = (await localforage
 			.getItem(`${localStorageFetchTimeTablePrefix}_${table}`)
@@ -38,8 +44,8 @@ export const getFromStorage = async (
 };
 
 export const saveToStorage = async (
-	table: 'tickers' | 'exchanges' | 'globalMarket' | 'favorites' | 'columns',
-	data: Ticker[] | Exchanges | GlobalMarket | Favorites
+	table: LocalStorageTables,
+	data: Ticker[] | Exchanges | GlobalMarket | Favorites | Tags
 ) => {
 	try {
 		if (localStorageCacheTimeout[table] && localStorageCacheTimeout[table] > 0) {
