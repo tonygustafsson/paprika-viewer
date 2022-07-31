@@ -27,6 +27,7 @@
 {#if $selectedTicker}
 	<Dialog
 		title={`${$selectedTicker.name} (#${$selectedTicker.rank})`}
+		iconUrl={`/img/currencies/${$selectedTicker.symbol.toLowerCase()}.svg`}
 		open={!!selectedTicker}
 		onClose={() => selectedTicker.set(null)}
 	>

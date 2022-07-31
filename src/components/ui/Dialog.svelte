@@ -4,6 +4,7 @@
 	export let open = false;
 	export let onClose: (e: MouseEvent | KeyboardEvent) => void;
 	export let title: string;
+	export let iconUrl: string;
 
 	let dialog: HTMLDialogElement;
 
@@ -32,7 +33,13 @@
 	<button on:click={onClose}>&#x2715</button>
 
 	{#if title}
-		<p class="title">{title}</p>
+		<p class="title">
+			{#if iconUrl}
+				<img width="24" height="24" src={iconUrl} class="icon" alt="" />
+			{/if}
+
+			{title}
+		</p>
 	{/if}
 
 	<slot />
@@ -61,11 +68,16 @@
 	}
 
 	.title {
+		display: flex;
 		margin-top: 0;
 		padding-bottom: 0.5em;
 		font-size: 1.25rem;
 		border-bottom: 1px #3b3b3b solid;
 		margin-bottom: 24px;
+	}
+
+	.title img {
+		margin-right: 0.5em;
 	}
 
 	button {
