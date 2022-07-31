@@ -45,18 +45,20 @@
 
 		{#if $columns.symbol}
 			<td>
-				<img
-					width="20"
-					height="20"
-					class="ticker-icon"
-					loading="lazy"
-					src="https://cryptologos.cc/logos/thumbs/{ticker.name.toLowerCase()}.png"
-					alt=""
-				/>
+				<div class="symbol">
+					<img
+						width="24"
+						height="24"
+						class="ticker-icon"
+						loading="lazy"
+						src="/img/currencies/{ticker.symbol.toLowerCase()}.svg"
+						alt=""
+					/>
 
-				<a href="/" on:click|preventDefault={() => selectTicker(ticker)}>
-					{ticker.symbol}
-				</a>
+					<a href="/" on:click|preventDefault={() => selectTicker(ticker)}>
+						{ticker.symbol}
+					</a>
+				</div>
 			</td>
 		{/if}
 
@@ -250,6 +252,12 @@
 		height: 100%;
 	}
 
+	.symbol {
+		display: flex;
+		align-items: center;
+		height: 100%;
+	}
+
 	a {
 		color: #fff;
 	}
@@ -264,10 +272,9 @@
 	}
 
 	.ticker-icon {
-		width: 20px;
-		height: 20px;
-		vertical-align: sub;
-		margin-right: 0.25em;
+		width: 24px;
+		height: 24px;
+		margin-right: 0.5em;
 	}
 
 	.graph-img {
