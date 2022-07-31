@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { favorites } from '../stores/favorites';
+	import Star from './icons/Star.svelte';
 
 	export let tickerSymbol: string;
 
@@ -9,24 +10,13 @@
 </script>
 
 <span on:click={() => toggleFavorite(tickerSymbol)} class="favorite">
-	{#if $favorites[tickerSymbol]}★{:else}☆{/if}
+	<Star width={20} height={20} filled={$favorites[tickerSymbol]} />
 </span>
 
 <style>
 	.favorite {
-		font-size: 200%;
-		margin: 0 auto;
-		display: block;
-		text-align: center;
+		margin-left: 0.25em;
+		margin-top: 2px;
 		cursor: pointer;
-	}
-
-	@media screen and (min-width: 1000px) {
-		.favorite {
-			font-size: 250%;
-			display: inline-block;
-			vertical-align: sub;
-			margin-left: 0.25em;
-		}
 	}
 </style>

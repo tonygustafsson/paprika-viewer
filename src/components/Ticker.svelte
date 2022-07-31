@@ -36,16 +36,18 @@
 	{#if visible}
 		{#if $columns.rank}
 			<td>
-				{ticker.rank}
-				<Favorite tickerSymbol={ticker.symbol} />
+				<div class="rank">
+					{ticker.rank}
+					<Favorite tickerSymbol={ticker.symbol} />
+				</div>
 			</td>
 		{/if}
 
 		{#if $columns.symbol}
 			<td>
 				<img
-					width="16"
-					height="16"
+					width="20"
+					height="20"
 					class="ticker-icon"
 					loading="lazy"
 					src="https://cryptologos.cc/logos/thumbs/{ticker.name.toLowerCase()}.png"
@@ -241,8 +243,11 @@
 		white-space: nowrap;
 	}
 
-	td img {
-		display: block;
+	.rank {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
 	}
 
 	a {
@@ -259,16 +264,17 @@
 	}
 
 	.ticker-icon {
-		width: 16px;
-		height: 16px;
-		vertical-align: middle;
+		width: 20px;
+		height: 20px;
+		vertical-align: sub;
+		margin-right: 0.25em;
 	}
 
 	.graph-img {
+		display: block;
 		width: 100%;
 		min-width: 120px;
 		margin-bottom: 12px;
-		vertical-align: middle;
 	}
 
 	.graph-img.positive {
