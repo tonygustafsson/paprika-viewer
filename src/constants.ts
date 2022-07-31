@@ -20,7 +20,7 @@ export const localStorageGlobalMarketTable = 'globalMarket';
 export const localStorageTagsTable = 'tags';
 export const localStorageFavoritesTable = 'favorites';
 export const localStorageColumnsTable = 'columns';
-export const localStorageFetchTimeTablePrefix = 'fetchTime';
+export const localStorageFetchTimeTable = 'fetchTime';
 
 export const localStorageCacheTimeout = {
 	tickers: 5 * 60 * 1000, // 5 minutes,

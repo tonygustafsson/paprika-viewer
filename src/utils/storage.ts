@@ -3,9 +3,9 @@ import localforage from 'localforage';
 import {
 	localStorageCacheTimeout,
 	localStorageDatabaseName,
-	localStorageFetchTimeTablePrefix
+	localStorageFetchTimeTable
 } from '../constants';
-import type { Exchanges, Favorites, GlobalMarket, Tags, Ticker } from '../types';
+import type { Exchanges, Favorites, GlobalMarket, Storage, Tags, Ticker } from '../types';
 
 localforage.config({
 	name: localStorageDatabaseName,
@@ -22,13 +22,15 @@ type LocalStorageTables =
 
 export const getFromStorage = async (table: LocalStorageTables) => {
 	if (localStorageCacheTimeout[table] && localStorageCacheTimeout[table] > 0) {
-		const fetchTime = (await localforage
-			.getItem(`${localStorageFetchTimeTablePrefix}_${table}`)
-			.catch(() => {
-				// Happens on load when localForage is not ready yet
-			})) as number;
+		const fetchTimes = (await localforage.getItem(localStorageFetchTimeTable).catch(() => {
+			// Happens on load when localForage is not ready yet
+		})) as Storage['fetchTimes'];
 
-		if (fetchTime && Date.now() - fetchTime > localStorageCacheTimeout[table]) {
+		if (
+			!fetchTimes ||
+			!fetchTimes[table] ||
+			Date.now() - fetchTimes[table] > localStorageCacheTimeout[table]
+		) {
 			// Expire the cache if it's too old
 			console.log(`Cache expired for ${table}.`);
 			return null;
@@ -48,11 +50,17 @@ export const saveToStorage = async (
 	data: Ticker[] | Exchanges | GlobalMarket | Favorites | Tags
 ) => {
 	try {
+		const fetchTimes = (await localforage.getItem(localStorageFetchTimeTable).catch(() => {
+			// Happens on load when localForage is not ready yet
+		})) as Storage['fetchTimes'];
+
 		if (localStorageCacheTimeout[table] && localStorageCacheTimeout[table] > 0) {
 			// Set the last time data were saved to storage
-			localforage.setItem(`${localStorageFetchTimeTablePrefix}_${table}`, Date.now()).catch(() => {
-				// Happens on load when localForage is not ready yet
-			});
+			localforage
+				.setItem(localStorageFetchTimeTable, { ...fetchTimes, [table]: Date.now() })
+				.catch(() => {
+					// Happens on load when localForage is not ready yet
+				});
 		}
 
 		console.log(`Saving ${table} to local storage`);

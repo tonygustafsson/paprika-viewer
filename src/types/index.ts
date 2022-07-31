@@ -77,8 +77,7 @@ export type Favorites = Record<string, boolean>;
 
 export type Storage = {
 	favorites: Favorites;
-	fetchTime_globalMarket: number;
-	fetchTime_tickers: number;
+	fetchTimes: Record<string, number>;
 	globalMarket: GlobalMarket;
 	tickers: Ticker[];
 };
