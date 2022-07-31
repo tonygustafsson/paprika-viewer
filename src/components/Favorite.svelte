@@ -15,7 +15,8 @@
 
 <style>
 	.favorite {
-		margin-left: 0.25em;
+		display: block;
+		margin-left: 0.5em;
 		margin-top: 2px;
 		cursor: pointer;
 	}
