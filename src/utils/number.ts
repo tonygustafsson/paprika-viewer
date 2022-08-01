@@ -42,7 +42,7 @@ export const getDecimalsForPrice = (price: number | string) => {
 	return Number(price).toFixed(6);
 };
 
-export const priceToHuman = (price: number) => {
+export const priceToHuman = (price: number = 0) => {
 	if (price > 1_000_000_000_000) {
 		return `${(price / 1_000_000_000_000).toFixed(2)} T`;
 	}
