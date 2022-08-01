@@ -11,8 +11,6 @@ export const apiUrls = {
 	}
 };
 
-export const minVolumeToView = 100; // USD
-export const minMarketCapToView = 1000; // USD
 export const localStorageDatabaseName = 'paprika-viewer';
 export const localStorageTickersTable = 'tickers';
 export const localStorageExchangesTable = 'exchanges';
