@@ -8,6 +8,13 @@
 
 	let dialog: HTMLDialogElement;
 
+	const handleImageError = (e: Event) => {
+		const img = e.target as HTMLImageElement;
+		if (img) {
+			img.src = '/img/currencies/placeholder.svg';
+		}
+	};
+
 	const escapeListener = (e: KeyboardEvent) => {
 		if (e.code === 'Escape') {
 			onClose(e);
@@ -35,7 +42,7 @@
 	{#if title}
 		<p class="title">
 			{#if iconUrl}
-				<img width="24" height="24" src={iconUrl} class="icon" alt="" />
+				<img width="24" height="24" src={iconUrl} class="icon" alt="" on:error={handleImageError} />
 			{/if}
 
 			{title}

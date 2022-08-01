@@ -21,6 +21,13 @@
 		selectedTicker.set(ticker);
 	};
 
+	const handleImageError = (e: Event) => {
+		const img = e.target as HTMLImageElement;
+		if (img) {
+			img.src = '/img/currencies/placeholder.svg';
+		}
+	};
+
 	const observer = new IntersectionObserver((entries) => {
 		entries.forEach((entry) => {
 			visible = entry.isIntersecting;
@@ -52,6 +59,7 @@
 						class="ticker-icon"
 						loading="lazy"
 						src="/img/currencies/{ticker.symbol.toLowerCase()}.svg"
+						on:error={handleImageError}
 						alt=""
 					/>
 
