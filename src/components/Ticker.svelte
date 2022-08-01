@@ -283,6 +283,10 @@
 		width: 24px;
 		height: 24px;
 		margin-right: 0.5em;
+		background: #fff;
+		border-radius: 50%;
+		border-color: #000;
+		padding: 1px;
 	}
 
 	.graph-img {
