@@ -4,7 +4,7 @@
 	export let open = false;
 	export let onClose: (e: MouseEvent | KeyboardEvent) => void;
 	export let title: string;
-	export let iconUrl: string;
+	export let iconUrl: string | undefined = undefined;
 
 	let dialog: HTMLDialogElement;
 
