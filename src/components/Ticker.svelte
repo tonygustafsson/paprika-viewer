@@ -200,16 +200,16 @@
 			</td>
 		{/if}
 
-		{#if $columns.ath}
-			<td>{quote.percent_from_price_ath}%</td>
-		{/if}
-
 		{#if $columns.beta_value}
 			<td>{ticker.beta_value}</td>
 		{/if}
 
 		{#if $columns.first_data_at}
 			<td>{new Date(ticker.first_data_at).toLocaleDateString('sv-SE')}</td>
+		{/if}
+
+		{#if $columns.ath}
+			<td>{quote.percent_from_price_ath}%</td>
 		{/if}
 
 		{#if $columns.tags}
