@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import '../theme.css';
 
 	import { onMount } from 'svelte';
@@ -15,9 +15,21 @@
 	import { getExchanges } from '../utils/getExchanges';
 	import { getTickers } from '../utils/getTickers';
 	import { getTags } from '../utils/getTags';
+	import type { Ticker, GlobalMarket as GlobalMarketType } from 'src/types';
+	import { tickers as tickersStore } from '../stores/tickers';
+	import { globalMarket as globalMarketStore } from '../stores/globalMarket';
+
+	// Fetched from endpoint index.ts
+	export let tickers: Ticker[];
+	export let globalData: GlobalMarketType;
+
+	$: console.log({ tickers, globalData });
 
 	onMount(() => {
-		getTickers();
+		tickersStore.save(tickers);
+		globalMarketStore.save(globalData);
+		settings.isLoading(false);
+		//getTickers();
 	});
 
 	$: if (!$settings.loading && $columns.exchanges) {

@@ -8,7 +8,7 @@
 	export let loading = false;
 
 	onMount(async () => {
-		getGlobalMarket();
+		//getGlobalMarket();
 	});
 </script>
 
