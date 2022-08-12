@@ -12,25 +12,21 @@
 	import Tickers from '../components/Tickers.svelte';
 	import { columns } from '../stores/columns';
 	import { settings } from '../stores/settings';
-	import { getExchanges } from '../utils/getExchanges';
 	import { getTickers } from '../utils/getTickers';
 	import { getTags } from '../utils/getTags';
-	import type { GlobalMarket as GlobalMarketType } from 'src/types';
+	import type { Exchanges, GlobalMarket as GlobalMarketType } from 'src/types';
 	import { globalMarket as globalMarketStore } from '../stores/globalMarket';
+	import { exchanges as exchangesStore } from '../stores/exchanges';
 
 	// Fetched from endpoint index.ts
 	export let globalData: GlobalMarketType;
-
-	$: console.log({ globalData });
+	export let exchanges: Exchanges;
 
 	onMount(() => {
 		globalMarketStore.save(globalData);
+		exchangesStore.save(exchanges);
 		getTickers();
 	});
-
-	$: if (!$settings.loading && $columns.exchanges) {
-		getExchanges();
-	}
 
 	$: if (!$settings.loading && $columns.tags) {
 		getTags();
