@@ -15,21 +15,17 @@
 	import { getExchanges } from '../utils/getExchanges';
 	import { getTickers } from '../utils/getTickers';
 	import { getTags } from '../utils/getTags';
-	import type { Ticker, GlobalMarket as GlobalMarketType } from 'src/types';
-	import { tickers as tickersStore } from '../stores/tickers';
+	import type { GlobalMarket as GlobalMarketType } from 'src/types';
 	import { globalMarket as globalMarketStore } from '../stores/globalMarket';
 
 	// Fetched from endpoint index.ts
-	export let tickers: Ticker[];
 	export let globalData: GlobalMarketType;
 
-	$: console.log({ tickers, globalData });
+	$: console.log({ globalData });
 
 	onMount(() => {
-		tickersStore.save(tickers);
 		globalMarketStore.save(globalData);
-		settings.isLoading(false);
-		//getTickers();
+		getTickers();
 	});
 
 	$: if (!$settings.loading && $columns.exchanges) {
@@ -44,7 +40,7 @@
 <Loader />
 
 <div class="container">
-	<GlobalMarket loading={$settings.loading} />
+	<GlobalMarket />
 
 	<h1><ChiliIcon width={35} height={35} /> Paprika Viewer</h1>
 
