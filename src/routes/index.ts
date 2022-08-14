@@ -4,7 +4,8 @@ import type { Exchanges, GlobalMarket, Market } from 'src/types';
 import { apiUrls } from '../constants';
 import { getExchangeNameFromUrl } from '../utils/exchanges';
 
-const indexCache = new Keyv({ namespace: 'index', ttl: 30000 });
+const ttl = 14400000; // 4 hours
+const indexCache = new Keyv({ namespace: 'index', ttl });
 
 const addExchangeData = async (url: string, existingData: Exchanges | undefined = {}) => {
 	const data = (await (await fetch(url)).json()) as unknown as Market[];

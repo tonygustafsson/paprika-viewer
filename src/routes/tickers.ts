@@ -3,7 +3,8 @@ import type { Currency, Ticker, TickerApi } from 'src/types';
 
 import { apiUrls } from '../constants';
 
-const tickersCache = new Keyv({ namespace: 'tickers', ttl: 30000 });
+const ttl = 300000; // 5 mins
+const tickersCache = new Keyv({ namespace: 'tickers', ttl });
 
 export const getTickersFromApi = async (currency: Currency) => {
 	const tickersResponse = await fetch(`${apiUrls.tickers}?quotes=${currency}`);
@@ -41,7 +42,12 @@ export async function GET({ params, url }: import('@sveltejs/kit').RequestEvent)
 	const cache = await tickersCache.get(cacheKey);
 
 	if (cache) {
-		return cache;
+		return {
+			headers: {
+				'x-cached': true
+			},
+			...cache
+		};
 	}
 
 	const tickers = await getTickersFromApi(currency as Currency);

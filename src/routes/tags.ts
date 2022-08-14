@@ -3,7 +3,8 @@ import type { ApiTag, Tags } from 'src/types';
 
 import { apiUrls } from '../constants';
 
-const tagsCache = new Keyv({ namespace: 'tags', ttl: 30000 });
+const ttl = 86400000; // 24h
+const tagsCache = new Keyv({ namespace: 'tags', ttl });
 
 const getTagsFromApi = async () => {
 	const tags = await fetch(apiUrls.tags);
@@ -37,7 +38,12 @@ export async function GET({ params }: import('@sveltejs/kit').RequestEvent) {
 	const cache = await tagsCache.get(cacheKey);
 
 	if (cache) {
-		return cache;
+		return {
+			headers: {
+				'x-cached': true
+			},
+			...cache
+		};
 	}
 
 	const { list, tickers } = await getTagsFromApi();
