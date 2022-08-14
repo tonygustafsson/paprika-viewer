@@ -5,7 +5,6 @@ import type { Ticker } from '../types';
 import { exchanges } from './exchanges';
 import { favorites } from './favorites';
 import { filter } from './filter';
-import { settings } from './settings';
 import { sort } from './sort';
 import { tags } from './tags';
 import { tickers } from './tickers';
@@ -42,11 +41,9 @@ const sortTickersByLambda = (tickers: Ticker[], lambda: (ticker: Ticker) => numb
 	return orderBy(tickers, lambda, $sort.direction);
 };
 
-const sortTickers = (tickers: Ticker[]) => {
-	let newTickers = [...tickers];
+const sortTickers = (tickersData: Ticker[]) => {
+	let newTickers = [...tickersData];
 	const $sort = get(sort);
-	const $settings = get(settings);
-	const refCurrency = $settings.referenceCurrency;
 
 	switch ($sort.by) {
 		case 'rank':
@@ -59,70 +56,40 @@ const sortTickers = (tickers: Ticker[]) => {
 			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.name);
 			break;
 		case 'price':
-			newTickers = sortTickersByLambda(
-				newTickers,
-				(ticker: Ticker) => ticker.quotes[refCurrency].price
-			);
+			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.price);
 			break;
 		case 'volume_24h':
-			newTickers = sortTickersByLambda(
-				newTickers,
-				(ticker: Ticker) => ticker.quotes[refCurrency].volume_24h
-			);
+			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.volume_24h);
 			break;
 		case 'percent_change_1h':
-			newTickers = sortTickersByLambda(
-				newTickers,
-				(ticker: Ticker) => ticker.quotes[refCurrency].percent_change_1h
-			);
+			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.change_1h);
 			break;
 		case 'percent_change_12h':
-			newTickers = sortTickersByLambda(
-				newTickers,
-				(ticker: Ticker) => ticker.quotes[refCurrency].percent_change_12h
-			);
+			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.change_12h);
 			break;
 		case 'percent_change_24h':
-			newTickers = sortTickersByLambda(
-				newTickers,
-				(ticker: Ticker) => ticker.quotes[refCurrency].percent_change_24h
-			);
+			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.change_24h);
 			break;
 		case 'percent_change_7d':
-			newTickers = sortTickersByLambda(
-				newTickers,
-				(ticker: Ticker) => ticker.quotes[refCurrency].percent_change_7d
-			);
+			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.change_7d);
 			break;
 		case 'percent_change_30d':
-			newTickers = sortTickersByLambda(
-				newTickers,
-				(ticker: Ticker) => ticker.quotes[refCurrency].percent_change_30d
-			);
+			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.change_30d);
 			break;
 		case 'percent_change_1y':
-			newTickers = sortTickersByLambda(
-				newTickers,
-				(ticker: Ticker) => ticker.quotes[refCurrency].percent_change_1y
-			);
+			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.change_1y);
 			break;
-		case 'percent_from_price_ath':
-			newTickers = sortTickersByLambda(
-				newTickers,
-				(ticker: Ticker) => ticker.quotes[refCurrency].percent_from_price_ath
-			);
+		case 'from_ath':
+			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.from_ath);
 			break;
-		case 'beta_value':
-			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.beta_value);
+		case 'beta':
+			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.beta);
 			break;
-		case 'first_data_at':
-			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.first_data_at);
+		case 'created':
+			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.created);
 			break;
 		default:
-			newTickers = sortTickersByLambda(
-				newTickers,
-				(ticker: Ticker) => ticker.quotes[refCurrency].market_cap
-			);
+			newTickers = sortTickersByLambda(newTickers, (ticker: Ticker) => ticker.mcap);
 	}
 
 	return newTickers;
@@ -143,7 +110,6 @@ const filteredTickersStore = () => {
 				const $exchanges = get(exchanges);
 				const $tags = get(tags);
 				const $filter = get(filter);
-				const $settings = get(settings);
 
 				let newTickers = [...$tickers];
 
@@ -171,8 +137,7 @@ const filteredTickersStore = () => {
 
 					newTickers = newTickers.filter(
 						(ticker) =>
-							ticker.quotes[$settings.referenceCurrency].volume_24h >= volumeMinMax.min &&
-							ticker.quotes[$settings.referenceCurrency].volume_24h <= volumeMinMax.max
+							ticker.volume_24h >= volumeMinMax.min && ticker.volume_24h <= volumeMinMax.max
 					);
 				}
 
@@ -180,9 +145,7 @@ const filteredTickersStore = () => {
 					const marketCapMinMax = sortMarketCapMap[$filter.marketCap];
 
 					newTickers = newTickers.filter(
-						(ticker) =>
-							ticker.quotes[$settings.referenceCurrency].market_cap >= marketCapMinMax.min &&
-							ticker.quotes[$settings.referenceCurrency].market_cap <= marketCapMinMax.max
+						(ticker) => ticker.mcap >= marketCapMinMax.min && ticker.mcap <= marketCapMinMax.max
 					);
 				}
 
@@ -205,10 +168,10 @@ const filteredTickersStore = () => {
 
 export const filteredTickers = filteredTickersStore();
 
-tickers.subscribe((tickers) => {
-	if (tickers.length <= 0) return;
+tickers.subscribe((tickersData) => {
+	if (tickersData.length <= 0) return;
 
-	filteredTickers.updateAll(tickers);
+	filteredTickers.updateAll(tickersData);
 });
 
 filter.subscribe(() => {

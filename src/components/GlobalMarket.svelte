@@ -1,23 +1,12 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-
 	import { globalMarket } from '../stores/globalMarket';
-	import { getGlobalMarket } from '../utils/getGlobalMarket';
 	import { priceToHuman } from '../utils/number';
-
-	export let loading = false;
-
-	onMount(async () => {
-		getGlobalMarket();
-	});
 </script>
 
 <ul>
-	{#if !loading}
-		<li>Total marketcap: ${priceToHuman($globalMarket.market_cap_usd)}</li>
-		<li>Total 24h volume: ${priceToHuman($globalMarket.volume_24h_usd)}</li>
-		<li>BTC Dominance: {priceToHuman($globalMarket.bitcoin_dominance_percentage)}%</li>
-	{/if}
+	<li>Total marketcap: ${priceToHuman($globalMarket.market_cap_usd)}</li>
+	<li>Total 24h volume: ${priceToHuman($globalMarket.volume_24h_usd)}</li>
+	<li>BTC Dominance: {priceToHuman($globalMarket.bitcoin_dominance_percentage)}%</li>
 </ul>
 
 <style>

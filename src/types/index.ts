@@ -1,9 +1,9 @@
-export type Quote = {
+export type ApiQuote = {
 	percent_from_price_ath: number;
 	market_cap: number;
 	market_cap_change_24h: number;
 	percent_change_1h: number;
-	percent_change_6h?: number;
+	percent_change_6h: number;
 	percent_change_12h: number;
 	percent_change_24h: number;
 	percent_change_7d: number;
@@ -18,18 +18,39 @@ export type QuoteSimple = {
 	volume_24h: number;
 };
 
-export type Ticker = {
-	circulating_supply?: number;
-	id: string;
-	max_supply?: number;
-	name: string;
-	symbol: string;
-	rank: number;
-	volume_24h?: number;
-	volume_24_change?: number;
+export type TickerApi = {
 	beta_value: number;
+	circulating_supply?: number;
 	first_data_at: string;
-	quotes: Record<'BTC' | 'SEK' | 'USD', Quote>;
+	id: string;
+	max_supply: number;
+	name: string;
+	quotes: Record<Currency, ApiQuote>;
+	rank: number;
+	symbol: string;
+	volume_24_change: number;
+	volume_24h: number;
+};
+
+export type Ticker = {
+	beta: number;
+	supply: number;
+	created: string;
+	id: string;
+	max_supply: number;
+	mcap: number;
+	name: string;
+	change_12h: number;
+	change_1h: number;
+	change_1y: number;
+	change_24h: number;
+	change_30d: number;
+	change_7d: number;
+	from_ath: number;
+	price: number;
+	symbol: string;
+	volume_24h: number;
+	rank: number;
 };
 
 export type Exchanges = Record<string, string[]>;
@@ -114,9 +135,9 @@ export type SortBy =
 	| 'percent_change_7d'
 	| 'percent_change_30d'
 	| 'percent_change_1y'
-	| 'percent_from_price_ath'
-	| 'beta_value'
-	| 'first_data_at';
+	| 'from_ath'
+	| 'beta'
+	| 'created';
 
 export type Volume =
 	| -1

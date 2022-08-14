@@ -17,8 +17,8 @@ type Column =
 	| 'change_30d'
 	| 'change_1y'
 	| 'ath'
-	| 'beta_value'
-	| 'first_data_at'
+	| 'beta'
+	| 'created'
 	| 'exchanges'
 	| 'tags';
 
@@ -38,8 +38,8 @@ const initValue: Columns = {
 	change_30d: true,
 	change_1y: false,
 	ath: false,
-	beta_value: false,
-	first_data_at: false,
+	beta: false,
+	created: false,
 	tags: false,
 	exchanges: true
 };

@@ -201,11 +201,11 @@
 					</th>
 				{/if}
 
-				{#if $columns.beta_value}
-					<th on:click={() => handleSort('beta_value')}>
+				{#if $columns.beta}
+					<th on:click={() => handleSort('beta')}>
 						<div class="table-header-column">
 							Beta value
-							{#if $sort.by === 'beta_value'}
+							{#if $sort.by === 'beta'}
 								<Arrow
 									direction={$sort.direction === 'desc' ? 'down' : 'up'}
 									width={16}
@@ -216,11 +216,11 @@
 					</th>
 				{/if}
 
-				{#if $columns.first_data_at}
-					<th on:click={() => handleSort('first_data_at')}>
+				{#if $columns.created}
+					<th on:click={() => handleSort('created')}>
 						<div class="table-header-column">
 							Creation date
-							{#if $sort.by === 'first_data_at'}
+							{#if $sort.by === 'created'}
 								<Arrow
 									direction={$sort.direction === 'desc' ? 'down' : 'up'}
 									width={16}
@@ -232,10 +232,10 @@
 				{/if}
 
 				{#if $columns.ath}
-					<th on:click={() => handleSort('percent_from_price_ath')}>
+					<th on:click={() => handleSort('from_ath')}>
 						<div class="table-header-column">
 							From ATH
-							{#if $sort.by === 'percent_from_price_ath'}
+							{#if $sort.by === 'from_ath'}
 								<Arrow
 									direction={$sort.direction === 'desc' ? 'down' : 'up'}
 									width={16}

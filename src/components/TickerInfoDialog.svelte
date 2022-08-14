@@ -37,7 +37,7 @@
 				{#if $settings.currencyPrefix}
 					{$settings.currencyPrefix}
 				{/if}
-				{priceToHuman($selectedTicker.quotes[$settings.referenceCurrency].price)}
+				{$selectedTicker.price}
 				{#if $settings.currencySuffix}
 					{$settings.currencySuffix}
 				{/if}
@@ -45,17 +45,13 @@
 
 			<div class="graphs">
 				<div>
-					<span class="graph-label"
-						>24h ({$selectedTicker.quotes[$settings.referenceCurrency].percent_change_24h}%):</span
-					>
+					<span class="graph-label">24h ({$selectedTicker.change_24h}%):</span>
 
 					<img
 						loading="lazy"
 						class="graph-img"
-						class:positive={$selectedTicker.quotes[$settings.referenceCurrency]
-							.percent_change_24h >= 0}
-						class:negative={$selectedTicker.quotes[$settings.referenceCurrency].percent_change_24h <
-							0}
+						class:positive={$selectedTicker.change_24h >= 0}
+						class:negative={$selectedTicker.change_24h < 0}
 						width="120"
 						height="23"
 						src="https://graphs.coinpaprika.com/currency/chart/{$selectedTicker.id}/24h/chart.svg"
@@ -64,17 +60,13 @@
 				</div>
 
 				<div>
-					<span class="graph-label"
-						>7d ({$selectedTicker.quotes[$settings.referenceCurrency].percent_change_7d}%):</span
-					>
+					<span class="graph-label">7d ({$selectedTicker.change_7d}%):</span>
 
 					<img
 						loading="lazy"
 						class="graph-img"
-						class:positive={$selectedTicker.quotes[$settings.referenceCurrency].percent_change_7d >=
-							0}
-						class:negative={$selectedTicker.quotes[$settings.referenceCurrency].percent_change_7d <
-							0}
+						class:positive={$selectedTicker.change_7d >= 0}
+						class:negative={$selectedTicker.change_7d < 0}
 						width="120"
 						height="23"
 						src="https://graphs.coinpaprika.com/currency/chart/{$selectedTicker.id}/7d/chart.svg"
@@ -83,17 +75,13 @@
 				</div>
 
 				<div>
-					<span class="graph-label"
-						>30d ({$selectedTicker.quotes[$settings.referenceCurrency].percent_change_30d}%):</span
-					>
+					<span class="graph-label">30d ({$selectedTicker.change_30d}%):</span>
 
 					<img
 						loading="lazy"
 						class="graph-img"
-						class:positive={$selectedTicker.quotes[$settings.referenceCurrency]
-							.percent_change_30d >= 0}
-						class:negative={$selectedTicker.quotes[$settings.referenceCurrency].percent_change_30d <
-							0}
+						class:positive={$selectedTicker.change_30d >= 0}
+						class:negative={$selectedTicker.change_30d < 0}
 						width="120"
 						height="23"
 						src="https://graphs.coinpaprika.com/currency/chart/{$selectedTicker.id}/30d/chart.svg"
@@ -103,16 +91,14 @@
 
 				<div>
 					<span class="graph-label">
-						1y ({$selectedTicker.quotes[$settings.referenceCurrency].percent_change_1y}%):
+						1y ({$selectedTicker.change_1y}%):
 					</span>
 
 					<img
 						loading="lazy"
 						class="graph-img"
-						class:positive={$selectedTicker.quotes[$settings.referenceCurrency].percent_change_1y >=
-							0}
-						class:negative={$selectedTicker.quotes[$settings.referenceCurrency].percent_change_1y <
-							0}
+						class:positive={$selectedTicker.change_1y >= 0}
+						class:negative={$selectedTicker.change_1y < 0}
 						width="120"
 						height="23"
 						src="https://graphs.coinpaprika.com/currency/chart/{$selectedTicker.id}/1y/chart.svg"
@@ -151,7 +137,7 @@
 
 			<div>
 				<strong>Circulating supply:</strong>
-				{$selectedTicker.circulating_supply}.
+				{$selectedTicker.supply}.
 			</div>
 
 			<div>

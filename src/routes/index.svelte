@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import '../theme.css';
 
 	import { onMount } from 'svelte';
@@ -12,17 +12,32 @@
 	import Tickers from '../components/Tickers.svelte';
 	import { columns } from '../stores/columns';
 	import { settings } from '../stores/settings';
-	import { getExchanges } from '../utils/getExchanges';
 	import { getTickers } from '../utils/getTickers';
 	import { getTags } from '../utils/getTags';
+	import type { Exchanges, GlobalMarket as GlobalMarketType } from 'src/types';
+	import { globalMarket as globalMarketStore } from '../stores/globalMarket';
+	import { exchanges as exchangesStore } from '../stores/exchanges';
+
+	// Fetched from endpoint index.ts
+	export let globalData: GlobalMarketType;
+	export let exchanges: Exchanges;
+
+	$: referenceCurrency = 'USD';
 
 	onMount(() => {
-		getTickers();
-	});
+		globalMarketStore.save(globalData);
+		exchangesStore.save(exchanges);
 
-	$: if (!$settings.loading && $columns.exchanges) {
-		getExchanges();
-	}
+		getTickers($settings.referenceCurrency).then(() => {
+			settings.subscribe(($newSettings) => {
+				if ($newSettings.referenceCurrency !== referenceCurrency) {
+					getTickers($newSettings.referenceCurrency);
+				}
+
+				referenceCurrency = $newSettings.referenceCurrency;
+			});
+		});
+	});
 
 	$: if (!$settings.loading && $columns.tags) {
 		getTags();
@@ -32,7 +47,7 @@
 <Loader />
 
 <div class="container">
-	<GlobalMarket loading={$settings.loading} />
+	<GlobalMarket />
 
 	<h1><ChiliIcon width={35} height={35} /> Paprika Viewer</h1>
 

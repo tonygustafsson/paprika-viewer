@@ -12,13 +12,7 @@ localforage.config({
 	storeName: localStorageDatabaseName
 });
 
-type LocalStorageTables =
-	| 'tickers'
-	| 'exchanges'
-	| 'globalMarket'
-	| 'favorites'
-	| 'columns'
-	| 'tags';
+type LocalStorageTables = 'favorites' | 'columns';
 
 export const getFromStorage = async (table: LocalStorageTables) => {
 	if (localStorageCacheTimeout[table] && localStorageCacheTimeout[table] > 0) {
