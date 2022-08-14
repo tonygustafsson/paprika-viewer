@@ -1,8 +1,6 @@
 import { writable } from 'svelte/store';
 
-import { localStorageExchangesTable } from '../constants';
 import type { Exchanges } from '../types';
-import { saveToStorage } from '../utils/storage';
 
 const initValue: Exchanges = {};
 
@@ -16,11 +14,3 @@ const exchangesStore = () => {
 };
 
 export const exchanges = exchangesStore();
-
-exchanges.subscribe((exchanges) => {
-	if (!exchanges || Object.keys(exchanges).length === 0) {
-		return;
-	}
-
-	saveToStorage(localStorageExchangesTable, exchanges);
-});
