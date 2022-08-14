@@ -14,7 +14,6 @@
 
 	let ref: HTMLTableRowElement;
 
-	$: quote = ticker.quotes[$settings.referenceCurrency];
 	$: visible = false;
 
 	const selectTicker = (ticker: Ticker) => {
@@ -81,7 +80,7 @@
 				{#if $settings.currencyPrefix}
 					{$settings.currencyPrefix}
 				{/if}
-				{getDecimalsForPrice(quote.price)}
+				{getDecimalsForPrice(ticker.price)}
 				{#if $settings.currencySuffix}
 					{$settings.currencySuffix}
 				{/if}
@@ -93,7 +92,7 @@
 				{#if $settings.currencyPrefix}
 					{$settings.currencyPrefix}
 				{/if}
-				{priceToHuman(quote.market_cap)}
+				{priceToHuman(ticker.mcap)}
 				{#if $settings.currencySuffix}
 					{$settings.currencySuffix}
 				{/if}
@@ -105,7 +104,7 @@
 				{#if $settings.currencyPrefix}
 					{$settings.currencyPrefix}
 				{/if}
-				{priceToHuman(quote.volume_24h)}
+				{priceToHuman(ticker.volume_24h)}
 				{#if $settings.currencySuffix}
 					{$settings.currencySuffix}
 				{/if}
@@ -114,7 +113,7 @@
 
 		{#if $columns.change_1h}
 			<td>
-				{quote.percent_change_1h}%
+				{ticker.change_1h}%
 			</td>
 		{/if}
 
@@ -123,14 +122,14 @@
 				<img
 					loading="lazy"
 					class="graph-img"
-					class:positive={quote.percent_change_24h >= 0}
-					class:negative={quote.percent_change_24h < 0}
+					class:positive={ticker.change_24h >= 0}
+					class:negative={ticker.change_24h < 0}
 					width="120"
 					height="23"
 					src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/12h/chart.svg"
 					alt=""
 				/>
-				{quote.percent_change_12h}%
+				{ticker.change_12h}%
 			</td>
 		{/if}
 
@@ -139,14 +138,14 @@
 				<img
 					loading="lazy"
 					class="graph-img"
-					class:positive={quote.percent_change_24h >= 0}
-					class:negative={quote.percent_change_24h < 0}
+					class:positive={ticker.change_24h >= 0}
+					class:negative={ticker.change_24h < 0}
 					width="120"
 					height="23"
 					src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/24h/chart.svg"
 					alt=""
 				/>
-				{quote.percent_change_24h}%
+				{ticker.change_24h}%
 			</td>
 		{/if}
 
@@ -155,14 +154,14 @@
 				<img
 					loading="lazy"
 					class="graph-img"
-					class:positive={quote.percent_change_7d >= 0}
-					class:negative={quote.percent_change_7d < 0}
+					class:positive={ticker.change_7d >= 0}
+					class:negative={ticker.change_7d < 0}
 					width="120"
 					height="23"
 					src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/7d/chart.svg"
 					alt=""
 				/>
-				{quote.percent_change_7d}%
+				{ticker.change_7d}%
 			</td>
 		{/if}
 
@@ -171,15 +170,15 @@
 				<img
 					loading="lazy"
 					class="graph-img"
-					class:positive={quote.percent_change_30d >= 0}
-					class:negative={quote.percent_change_30d < 0}
+					class:positive={ticker.change_30d >= 0}
+					class:negative={ticker.change_30d < 0}
 					width="120"
 					height="23"
 					src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/24h/chart.svg"
 					alt=""
 				/>
 
-				{quote.percent_change_30d}%
+				{ticker.change_30d}%
 			</td>
 		{/if}
 
@@ -188,28 +187,28 @@
 				<img
 					loading="lazy"
 					class="graph-img"
-					class:positive={quote.percent_change_1y >= 0}
-					class:negative={quote.percent_change_1y < 0}
+					class:positive={ticker.change_1y >= 0}
+					class:negative={ticker.change_1y < 0}
 					width="120"
 					height="23"
 					src="https://graphs.coinpaprika.com/currency/chart/{ticker.id}/1y/chart.svg"
 					alt=""
 				/>
 
-				{quote.percent_change_1y}%
+				{ticker.change_1y}%
 			</td>
 		{/if}
 
-		{#if $columns.beta_value}
-			<td>{ticker.beta_value}</td>
+		{#if $columns.beta}
+			<td>{ticker.beta}</td>
 		{/if}
 
-		{#if $columns.first_data_at}
-			<td>{new Date(ticker.first_data_at).toLocaleDateString('sv-SE')}</td>
+		{#if $columns.created}
+			<td>{new Date(ticker.created).toLocaleDateString('sv-SE')}</td>
 		{/if}
 
 		{#if $columns.ath}
-			<td>{quote.percent_from_price_ath}%</td>
+			<td>{ticker.from_ath}%</td>
 		{/if}
 
 		{#if $columns.tags}

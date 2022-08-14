@@ -22,10 +22,21 @@
 	export let globalData: GlobalMarketType;
 	export let exchanges: Exchanges;
 
+	$: referenceCurrency = 'USD';
+
 	onMount(() => {
 		globalMarketStore.save(globalData);
 		exchangesStore.save(exchanges);
-		getTickers();
+
+		getTickers($settings.referenceCurrency).then(() => {
+			settings.subscribe(($newSettings) => {
+				if ($newSettings.referenceCurrency !== referenceCurrency) {
+					getTickers($newSettings.referenceCurrency);
+				}
+
+				referenceCurrency = $newSettings.referenceCurrency;
+			});
+		});
 	});
 
 	$: if (!$settings.loading && $columns.tags) {

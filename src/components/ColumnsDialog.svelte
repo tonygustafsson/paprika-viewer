@@ -66,17 +66,17 @@
 		<div class="column-switch">
 			<Switch
 				label="Beta value"
-				name="beta_value"
-				checked={$columns.beta_value}
-				on:change={() => columns.toggle('beta_value')}
+				name="beta"
+				checked={$columns.beta}
+				on:change={() => columns.toggle('beta')}
 			/>
 		</div>
 		<div class="column-switch">
 			<Switch
 				label="Creation date"
-				name="first_data_at"
-				checked={$columns.first_data_at}
-				on:change={() => columns.toggle('first_data_at')}
+				name="created"
+				checked={$columns.created}
+				on:change={() => columns.toggle('created')}
 			/>
 		</div>
 		<div class="column-switch">

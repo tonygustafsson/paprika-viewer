@@ -4,8 +4,7 @@ import type { Exchanges, GlobalMarket, Market } from 'src/types';
 import { apiUrls } from '../constants';
 import { getExchangeNameFromUrl } from '../utils/exchanges';
 
-const globalMarketCache = new Keyv({ namespace: 'globalMarket', ttl: 30000 });
-const exchangesCache = new Keyv({ namespace: 'exchanges', ttl: 30000 });
+const indexCache = new Keyv({ namespace: 'index', ttl: 30000 });
 
 const addExchangeData = async (url: string, existingData: Exchanges | undefined = {}) => {
 	const data = (await (await fetch(url)).json()) as unknown as Market[];
@@ -32,13 +31,7 @@ const addExchangeData = async (url: string, existingData: Exchanges | undefined 
 	return output;
 };
 
-export const getExchangesFromApi = async (endpoint: string) => {
-	const cache = await exchangesCache.get(endpoint);
-
-	if (cache) {
-		return cache;
-	}
-
+export const getExchangesFromApi = async () => {
 	let exchanges: Exchanges = {};
 
 	exchanges = (await addExchangeData(apiUrls.markets.binance, exchanges)) || exchanges;
@@ -62,20 +55,27 @@ const getGlobalMarketFromApi = async () => {
 };
 
 export async function GET({ params }: import('@sveltejs/kit').RequestEvent) {
-	const cache = await globalMarketCache.get(params.endpoint);
+	const cache = await indexCache.get(params.endpoint);
 
 	if (cache) {
 		return cache;
 	}
 
-	const [exchanges, globalData] = await Promise.all([
-		getExchangesFromApi(params.endpoint),
-		getGlobalMarketFromApi()
-	]);
+	let exchanges: Exchanges = {};
+	let globalData: GlobalMarket | null = null;
+
+	try {
+		[exchanges, globalData] = await Promise.all([getExchangesFromApi(), getGlobalMarketFromApi()]);
+	} catch (error) {
+		return {
+			message: 'Could not fetch data from CoinPaprika API',
+			error
+		};
+	}
 
 	const output = { body: { exchanges, globalData } };
 
-	await globalMarketCache.set(params.endpoint, output);
+	await indexCache.set(params.endpoint, output);
 
 	return output;
 }

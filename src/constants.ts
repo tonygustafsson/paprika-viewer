@@ -1,5 +1,5 @@
 export const apiUrls = {
-	tickers: 'https://api.coinpaprika.com/v1/tickers?quotes=USD,SEK,BTC',
+	tickers: 'https://api.coinpaprika.com/v1/tickers',
 	tags: 'https://api.coinpaprika.com/v1/tags?additional_fields=coins',
 	globalMarket: 'https://api.coinpaprika.com/v1/global',
 	markets: {
