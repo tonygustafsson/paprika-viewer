@@ -30,9 +30,8 @@ A special thanks to [CoinPaprika](https://coinpaprika.com/) for providing us wit
 
 ## Tech
 
-Built with [SvelteKit](https://kit.svelte.dev/) and TypeScript. Fetching live data from CoinPaprika with client AJAX calls.
-Cache the API data in localForage to avoid adding too much load on CoinPaprika.
-Using only public API so no key is needed.
+Built with [SvelteKit](https://kit.svelte.dev/) and TypeScript. Fetching live data from CoinPaprika with Svelte endpoints.
+Using only public API so no key is needed. Reducing number of request with cache.
 
 ## Get started
 
