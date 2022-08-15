@@ -1,18 +1,14 @@
 <script lang="ts">
 	import { filter } from '../stores/filter';
-	import { settings } from '../stores/settings';
 	import { tags } from '../stores/tags';
 	import { columns } from '../stores/columns';
 	import { sort } from '../stores/sort';
-	import type { Currency, Exchange, MarketCap, Volume } from '../types';
+	import type { Exchange, MarketCap, Volume } from '../types';
 	import { marketCapToHuman } from '../utils/marketCapToHuman';
 	import { volumeToHuman } from '../utils/number';
 	import Button from './ui/Button.svelte';
 	import Dialog from './ui/Dialog.svelte';
-	import RadioGroup from './ui/RadioGroup.svelte';
 	import Select from './ui/Select.svelte';
-	import Switch from './ui/Switch.svelte';
-	import Textfield from './ui/Textfield.svelte';
 
 	export let open: boolean;
 	export let onClose: () => void;
@@ -41,18 +37,6 @@
 		filter.setMarketCap(parseInt((e.target as HTMLSelectElement).value) as MarketCap);
 	};
 
-	const filterFavorites = (e: Event) => {
-		filter.setFavorites((e.target as HTMLInputElement).checked);
-	};
-
-	const search = (e: Event) => {
-		filter.setSearch((e.target as HTMLInputElement).value);
-	};
-
-	const setReferenceCurrency = (e: Event) => {
-		settings.setReferenceCurrency((e.target as HTMLInputElement).value as Currency);
-	};
-
 	const enableExchangeColumn = () => {
 		columns.add('exchanges');
 	};
@@ -70,16 +54,6 @@
 
 <Dialog title="Filter" {open} {onClose}>
 	<div class="filters">
-		<div class="filter-item">
-			<Textfield
-				label="Search"
-				id="filter-search"
-				name="filter-search"
-				value={$filter.search}
-				on:change={search}
-			/>
-		</div>
-
 		<div class="filter-item">
 			<Select
 				id="filter-exchange"
@@ -159,28 +133,6 @@
 				{/each}
 			</Select>
 		</div>
-
-		<div class="filter-item extra-margin">
-			<Switch
-				label="Favorites only"
-				name="filter-favorites"
-				checked={$filter.favorites}
-				on:change={(e) => filterFavorites(e)}
-			/>
-		</div>
-
-		<div class="filter-item">
-			<RadioGroup
-				name="referenceCurrency"
-				label="Reference currency"
-				on:change={(e) => setReferenceCurrency(e)}
-				items={[
-					{ label: 'USD', value: 'USD', checked: true },
-					{ label: 'BTC', value: 'BTC' },
-					{ label: 'SEK', value: 'SEK' }
-				]}
-			/>
-		</div>
 	</div>
 
 	<div slot="actions">
@@ -200,10 +152,6 @@
 		flex: 1 0 0;
 		align-items: center;
 		margin: 8px 0;
-	}
-
-	.extra-margin {
-		margin: 16px 0;
 	}
 
 	.warning {

@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let name: string;
-	export let label: string;
+	export let label: string | undefined = undefined;
 	export let items: {
 		label: string;
 		value: string;
@@ -15,7 +15,7 @@
 <div class="wrapper">
 	{#each items as item}
 		<label>
-			<input type="radio" {name} value={item.value} checked={item.checked} on:change />
+			<input type="radio" {name} value={item.value} checked={item.checked || false} on:change />
 			{item.label}
 		</label>
 	{/each}

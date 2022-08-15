@@ -15,9 +15,10 @@
 	button {
 		display: flex;
 		align-items: center;
+		gap: 0.5em;
 		font-family: var(--font-family);
 		padding: 0.5em 1em;
-		margin: 1em 0.5em;
+		margin: 0.5em 0.25em;
 		background-color: var(--color-secondary);
 		border-radius: var(--border-radius);
 		color: #fff;
@@ -32,8 +33,19 @@
 	}
 
 	button.medium {
-		font-size: 1rem;
-		padding: 0.75em 1.5em;
+		font-size: 0.85rem;
+		padding: 0.5em 1em;
+	}
+
+	@media screen and (min-width: 1000px) {
+		button {
+			margin: 1em 0.5em;
+		}
+
+		button.medium {
+			font-size: 1rem;
+			padding: 0.75em 1.5em;
+		}
 	}
 
 	button:hover {
@@ -47,7 +59,6 @@
 	.icon {
 		display: flex;
 		color: white;
-		margin-right: 0.5em;
 		align-items: center;
 	}
 </style>
