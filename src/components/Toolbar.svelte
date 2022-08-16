@@ -11,6 +11,7 @@
 	import SettingsDialog from './SettingsDialog.svelte';
 	import Button from './ui/Button.svelte';
 	import RadioGroup from './ui/RadioGroup.svelte';
+	import SearchButton from './ui/SearchButton.svelte';
 	import Switch from './ui/Switch.svelte';
 	import Textfield from './ui/Textfield.svelte';
 
@@ -32,7 +33,7 @@
 	};
 </script>
 
-<div class="filters">
+<div class="toolbar">
 	<div class="filter-buttons">
 		<Button size="medium" on:click={() => (filterDialogOpen = true)}>
 			<div slot="icon" class="icon">
@@ -87,11 +88,12 @@
 
 		<div class="margin-left-auto">
 			<Textfield
-				label="Search"
 				id="filter-search"
 				name="filter-search"
 				value={$filter.search}
 				on:change={search}
+				on:click={() => alert('OKi')}
+				buttonIcon={SearchButton}
 			/>
 		</div>
 	</div>
@@ -114,15 +116,9 @@
 <SettingsDialog open={settingsDialogOpen} onClose={() => (settingsDialogOpen = false)} />
 
 <style>
-	.filters {
+	.toolbar {
 		display: flex;
 		align-items: center;
-	}
-
-	@media screen and (min-width: 1000px) {
-		.filters {
-			gap: 12px;
-		}
 	}
 
 	.filter-buttons {
@@ -155,6 +151,10 @@
 	}
 
 	@media screen and (min-width: 1000px) {
+		.toolbar {
+			gap: 12px;
+		}
+
 		.mobile-buttons {
 			display: none;
 		}

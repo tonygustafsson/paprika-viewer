@@ -3,7 +3,7 @@
 
 	import { onMount } from 'svelte';
 
-	import Filter from '../components/Filter.svelte';
+	import Toolbar from '../components/Toolbar.svelte';
 	import GlobalMarket from '../components/GlobalMarket.svelte';
 	import ChiliIcon from '../components/icons/Chili.svelte';
 	import Loader from '../components/Loader.svelte';
@@ -52,7 +52,7 @@
 	<h1><ChiliIcon width={35} height={35} /> Paprika Viewer</h1>
 
 	{#if !$settings.loading}
-		<Filter />
+		<Toolbar />
 		<SelectedFilters />
 
 		<Tickers />
