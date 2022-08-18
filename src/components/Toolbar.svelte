@@ -11,7 +11,6 @@
 	import SettingsDialog from './SettingsDialog.svelte';
 	import Button from './ui/Button.svelte';
 	import RadioGroup from './ui/RadioGroup.svelte';
-	import SearchButton from './ui/SearchButton.svelte';
 	import Switch from './ui/Switch.svelte';
 	import Textfield from './ui/Textfield.svelte';
 
@@ -88,12 +87,12 @@
 
 		<div class="margin-left-auto">
 			<Textfield
+				label="Search"
 				id="filter-search"
 				name="filter-search"
 				value={$filter.search}
 				on:change={search}
 				on:click={() => alert('OKi')}
-				buttonIcon={SearchButton}
 			/>
 		</div>
 	</div>
