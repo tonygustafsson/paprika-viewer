@@ -2,6 +2,9 @@ export const apiUrls = {
 	tickers: 'https://api.coinpaprika.com/v1/tickers',
 	tags: 'https://api.coinpaprika.com/v1/tags?additional_fields=coins',
 	globalMarket: 'https://api.coinpaprika.com/v1/global',
+	news: `https://cryptopanic.com/api/v1/posts/?auth_token=${
+		import.meta.env.VITE_CRYPTO_PANIC_API_KEY
+	}&public=true&filter=hot`,
 	markets: {
 		binance: 'https://api.coinpaprika.com/v1/exchanges/binance/markets',
 		coinbasePro: 'https://api.coinpaprika.com/v1/exchanges/coinbase-pro/markets',

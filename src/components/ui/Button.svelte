@@ -1,21 +1,45 @@
 <script lang="ts">
 	export let variant: 'primary' | 'secondary' = 'secondary';
 	export let size: 'small' | 'medium' = 'small';
+	export let href: string | undefined = undefined;
 </script>
 
-<button on:click class:medium={size === 'medium'} class:primary={variant === 'primary'}>
-	<div class="icon">
-		<slot name="icon" />
-	</div>
+{#if href}
+	<a
+		{href}
+		on:click
+		class="button"
+		class:medium={size === 'medium'}
+		class:primary={variant === 'primary'}
+	>
+		<div class:icon={$$slots.icon}>
+			<slot name="icon" />
+		</div>
 
-	<slot />
-</button>
+		<slot />
+	</a>
+{/if}
+
+{#if !href}
+	<button
+		on:click
+		class="button"
+		class:medium={size === 'medium'}
+		class:primary={variant === 'primary'}
+	>
+		<div class:icon={$$slots.icon}>
+			<slot name="icon" />
+		</div>
+
+		<slot />
+	</button>
+{/if}
 
 <style>
-	button {
+	.button {
 		display: flex;
 		align-items: center;
-		gap: 0.5em;
+		max-width: fit-content;
 		font-family: var(--font-family);
 		padding: 0.5em 1em;
 		margin: 0.5em 0.25em;
@@ -25,34 +49,35 @@
 		border: 0;
 		font-size: 100%;
 		cursor: pointer;
+		text-decoration: none;
 		transition: background-color 150ms ease-in-out;
 	}
 
-	button.primary {
+	.button.primary {
 		background-color: var(--color-red-500);
 	}
 
-	button.medium {
+	.button.medium {
 		font-size: 0.85rem;
 		padding: 0.5em 1em;
 	}
 
 	@media screen and (min-width: 1000px) {
-		button {
+		.button {
 			margin: 1em 0.5em;
 		}
 
-		button.medium {
+		.button.medium {
 			font-size: 1rem;
 			padding: 0.75em 1.5em;
 		}
 	}
 
-	button:hover {
+	.button:hover {
 		background-color: var(--color-secondary-hover);
 	}
 
-	button.primary:hover {
+	.button.primary:hover {
 		background-color: var(--color-red-600);
 	}
 
@@ -60,5 +85,6 @@
 		display: flex;
 		color: white;
 		align-items: center;
+		margin-right: 0.5em;
 	}
 </style>
