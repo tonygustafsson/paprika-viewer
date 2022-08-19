@@ -78,9 +78,9 @@
 				name="dashboardReferenceCurrency"
 				on:change={(e) => setReferenceCurrency(e)}
 				items={[
-					{ label: 'USD', value: 'USD', checked: true },
-					{ label: 'BTC', value: 'BTC' },
-					{ label: 'SEK', value: 'SEK' }
+					{ label: 'USD', value: 'USD', checked: $settings.referenceCurrency === 'USD' },
+					{ label: 'BTC', value: 'BTC', checked: $settings.referenceCurrency === 'BTC' },
+					{ label: 'SEK', value: 'SEK', checked: $settings.referenceCurrency === 'SEK' }
 				]}
 			/>
 		</div>
