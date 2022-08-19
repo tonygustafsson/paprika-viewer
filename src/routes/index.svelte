@@ -11,6 +11,7 @@
 	import Tickers from '../components/Tickers.svelte';
 	import { columns } from '../stores/columns';
 	import { settings } from '../stores/settings';
+	import { filteredTickers } from '../stores/filteredTickers';
 	import { getTickers } from '../utils/getTickers';
 	import { getTags } from '../utils/getTags';
 	import type { Exchanges, GlobalMarket as GlobalMarketType } from 'src/types';
@@ -27,15 +28,18 @@
 		globalMarketStore.save(globalData);
 		exchangesStore.save(exchanges);
 
-		getTickers($settings.referenceCurrency).then(() => {
-			settings.subscribe(($newSettings) => {
-				if ($newSettings.referenceCurrency !== referenceCurrency) {
-					getTickers($newSettings.referenceCurrency);
-				}
+		if ($filteredTickers.length === 0) {
+			// Avoid refetching tickers if they are already in the store
+			getTickers($settings.referenceCurrency).then(() => {
+				settings.subscribe(($newSettings) => {
+					if ($newSettings.referenceCurrency !== referenceCurrency) {
+						getTickers($newSettings.referenceCurrency);
+					}
 
-				referenceCurrency = $newSettings.referenceCurrency;
+					referenceCurrency = $newSettings.referenceCurrency;
+				});
 			});
-		});
+		}
 	});
 
 	$: if (!$settings.loading && $columns.tags) {
