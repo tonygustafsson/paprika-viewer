@@ -2,12 +2,14 @@
 	export let variant: 'primary' | 'secondary' = 'secondary';
 	export let size: 'small' | 'medium' = 'small';
 	export let href: string | undefined = undefined;
+	export let target: string | undefined = undefined;
 </script>
 
 {#if href}
 	<a
 		{href}
 		on:click
+		{target}
 		class="button"
 		class:medium={size === 'medium'}
 		class:primary={variant === 'primary'}

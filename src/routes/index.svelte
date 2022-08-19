@@ -43,6 +43,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Tickers - Paprika Viewer</title>
+</svelte:head>
+
 <Loader />
 
 <div class="container">

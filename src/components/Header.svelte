@@ -38,9 +38,9 @@
 <style>
 	.wrapper {
 		display: flex;
-		align-items: flex-end;
-		gap: 48px;
-		margin-block: 48px;
+		flex-direction: column;
+		gap: 16px;
+		margin-block: 32px;
 	}
 
 	nav ul {
@@ -56,8 +56,12 @@
 		font-size: 1.25rem;
 	}
 
+	nav ul li a {
+		display: inline-block;
+	}
+
 	nav ul li a.active {
-		text-decoration: underline;
+		border-bottom: 1px #fff solid;
 	}
 
 	a {
@@ -75,5 +79,15 @@
 		gap: 8px;
 		font-size: 1.75rem;
 		font-weight: bold;
+	}
+
+	@media screen and (min-width: 1000px) {
+		.wrapper {
+			display: flex;
+			flex-direction: row;
+			align-items: flex-end;
+			gap: 48px;
+			margin-block: 48px;
+		}
 	}
 </style>

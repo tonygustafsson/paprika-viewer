@@ -8,6 +8,7 @@
 	import { globalMarket as globalMarketStore } from '../stores/globalMarket';
 	import Chip from '../components/ui/Chip.svelte';
 	import Button from '../components/ui/Button.svelte';
+	import BookIcon from '../components/icons/Book.svelte';
 
 	// Fetched from endpoint index.ts
 	export let globalData: GlobalMarketType;
@@ -18,10 +19,14 @@
 	});
 </script>
 
+<svelte:head>
+	<title>News - Paprika Viewer</title>
+</svelte:head>
+
 <div class="container">
 	<Header />
 
-	<h1>News</h1>
+	<h1 class="hidden">News</h1>
 
 	{#if news.length === 0}
 		<em>No news available</em>
@@ -31,9 +36,23 @@
 		<div class="news">
 			{#each news as newsItem}
 				<div class="news-item">
-					<h2>{newsItem.title}</h2>
-					<p class="time">{newsItem.published_at}</p>
-					<Button variant="primary" size="medium" href={newsItem.url}>Read more</Button>
+					<h2><a target="_blank" href={newsItem.url}>{newsItem.title}</a></h2>
+
+					<div class="button-wrapper">
+						<Button target="_blank" variant="primary" href={newsItem.url}>
+							<div slot="icon" class="icon">
+								<BookIcon width={16} height={16} />
+							</div>
+							Read more
+						</Button>
+
+						<Button target="_blank" variant="secondary" href={newsItem.url}>
+							<div slot="icon" class="icon">
+								<BookIcon width={16} height={16} />
+							</div>
+							Discuss on CryptoPanic
+						</Button>
+					</div>
 
 					<div class="currencies">
 						{#if newsItem.currencies.length === 0}
@@ -45,6 +64,8 @@
 								<Chip variant="secondary">{currency}</Chip>
 							{/each}
 						{/if}
+
+						<p class="time">{newsItem.published_at}</p>
 					</div>
 				</div>
 			{/each}
@@ -70,16 +91,36 @@
 
 	h2 {
 		font-size: 1.25rem;
-		margin-bottom: 0;
+	}
+
+	h2 a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	.button-wrapper {
+		display: flex;
+		align-items: center;
+		gap: 12px;
 	}
 
 	.time {
 		color: var(--color-grey-25);
 		font-size: 1rem;
+		margin-left: auto;
 	}
 
 	.link {
 		color: #fff;
+	}
+
+	.icon {
+		display: flex;
+		align-items: center;
 	}
 
 	.news {
