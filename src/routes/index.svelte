@@ -3,9 +3,8 @@
 
 	import { onMount } from 'svelte';
 
+	import Header from '../components/Header.svelte';
 	import Toolbar from '../components/Toolbar.svelte';
-	import GlobalMarket from '../components/GlobalMarket.svelte';
-	import ChiliIcon from '../components/icons/Chili.svelte';
 	import Loader from '../components/Loader.svelte';
 	import SelectedFilters from '../components/SelectedFilters.svelte';
 	import TickerInfoDialog from '../components/TickerInfoDialog.svelte';
@@ -47,9 +46,7 @@
 <Loader />
 
 <div class="container">
-	<GlobalMarket />
-
-	<h1><ChiliIcon width={35} height={35} /> Paprika Viewer</h1>
+	<Header isStartPage />
 
 	{#if !$settings.loading}
 		<Toolbar />
@@ -65,13 +62,6 @@
 	.container {
 		width: 100%;
 		margin: 0 auto;
-	}
-
-	h1 {
-		display: flex;
-		align-items: flex-end;
-		gap: 8px;
-		font-size: 1.75rem;
 	}
 
 	@media screen and (min-width: 1000px) {

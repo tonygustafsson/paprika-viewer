@@ -3,8 +3,7 @@
 
 	import { onMount } from 'svelte';
 
-	import GlobalMarket from '../components/GlobalMarket.svelte';
-	import ChiliIcon from '../components/icons/Chili.svelte';
+	import Header from '../components/Header.svelte';
 	import type { GlobalMarket as GlobalMarketType, NewsItem } from 'src/types';
 	import { globalMarket as globalMarketStore } from '../stores/globalMarket';
 	import Chip from '../components/ui/Chip.svelte';
@@ -20,9 +19,7 @@
 </script>
 
 <div class="container">
-	<GlobalMarket />
-
-	<span class="logo"><ChiliIcon width={35} height={35} /> Paprika Viewer</span>
+	<Header />
 
 	<h1>News</h1>
 
@@ -64,14 +61,6 @@
 	.container {
 		width: 100%;
 		margin: 0 auto;
-	}
-
-	.logo {
-		display: flex;
-		align-items: flex-end;
-		gap: 8px;
-		margin-block: 0.75em;
-		font-size: 1.75rem;
 	}
 
 	h1 {
