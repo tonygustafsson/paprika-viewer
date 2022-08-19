@@ -7,42 +7,53 @@
 
 <div class="selected-filters">
 	{#if $filter.exchange !== 'any'}
-		<Chip on:click={() => filter.setExchange('any')}>Exchange: {$filter.exchange}</Chip>
+		<Chip showCloseIcon on:click={() => filter.setExchange('any')}
+			>Exchange: {$filter.exchange}</Chip
+		>
 	{/if}
 
 	{#if $filter.tag !== 'any'}
-		<Chip on:click={() => filter.setTag('any')}>Tag: {$filter.tag}</Chip>
+		<Chip showCloseIcon on:click={() => filter.setTag('any')}>Tag: {$filter.tag}</Chip>
 	{/if}
 
 	{#if $filter.volume !== -1}
-		<Chip on:click={() => filter.setVolume(-1)}>Volume: {volumeToHuman($filter.volume)}</Chip>
+		<Chip showCloseIcon on:click={() => filter.setVolume(-1)}
+			>Volume: {volumeToHuman($filter.volume)}</Chip
+		>
 	{/if}
 
 	{#if $filter.marketCap !== -1}
-		<Chip on:click={() => filter.setMarketCap(-1)}
+		<Chip showCloseIcon on:click={() => filter.setMarketCap(-1)}
 			>MarketCap: {marketCapToHuman($filter.marketCap)}</Chip
 		>
 	{/if}
 
 	{#if $filter.search}
 		<div class="search">
-			<Chip on:click={() => filter.setSearch('')}>Search: {$filter.search}</Chip>
+			<Chip showCloseIcon on:click={() => filter.setSearch('')}>Search: {$filter.search}</Chip>
 		</div>
 	{/if}
 
 	{#if $filter.favorites}
 		<div class="favorites-only">
-			<Chip on:click={() => filter.setFavorites(false)}>Favorites only</Chip>
+			<Chip showCloseIcon on:click={() => filter.setFavorites(false)}>Favorites only</Chip>
 		</div>
 	{/if}
 </div>
 
 <style>
 	.selected-filters {
-		margin-top: 12px;
+		display: flex;
+		gap: 8px;
+		margin-top: 8px;
+		padding-block: 8px;
 	}
 
 	@media screen and (min-width: 1000px) {
+		.selected-filters {
+			gap: 12px;
+		}
+
 		.search {
 			display: none;
 		}

@@ -135,7 +135,7 @@
 		</div>
 	</div>
 
-	<div slot="actions">
+	<div slot="actions" class="actions">
 		<Button size="medium" on:click={reset}>Reset</Button>
 		<Button variant="primary" size="medium" on:click={onClose}>Show results</Button>
 	</div>
@@ -152,6 +152,12 @@
 		flex: 1 0 0;
 		align-items: center;
 		margin: 8px 0;
+	}
+
+	.actions {
+		display: flex;
+		gap: 12px;
+		margin-top: 12px;
 	}
 
 	.warning {

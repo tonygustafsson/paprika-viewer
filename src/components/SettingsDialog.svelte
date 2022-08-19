@@ -43,15 +43,15 @@
 				label="Reference currency"
 				on:change={(e) => setReferenceCurrency(e)}
 				items={[
-					{ label: 'USD', value: 'USD', checked: true },
-					{ label: 'BTC', value: 'BTC' },
-					{ label: 'SEK', value: 'SEK' }
+					{ label: 'USD', value: 'USD', checked: $settings.referenceCurrency === 'USD' },
+					{ label: 'BTC', value: 'BTC', checked: $settings.referenceCurrency === 'BTC' },
+					{ label: 'SEK', value: 'SEK', checked: $settings.referenceCurrency === 'SEK' }
 				]}
 			/>
 		</div>
 	</div>
 
-	<div slot="actions">
+	<div slot="actions" class="actions">
 		<Button size="medium" on:click={reset}>Reset</Button>
 		<Button variant="primary" size="medium" on:click={onClose}>Show results</Button>
 	</div>
@@ -68,5 +68,11 @@
 		flex: 1 0 0;
 		align-items: center;
 		margin: 8px 0;
+	}
+
+	.actions {
+		display: flex;
+		gap: 12px;
+		margin-top: 12px;
 	}
 </style>
