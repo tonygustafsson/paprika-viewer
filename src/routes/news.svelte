@@ -73,10 +73,12 @@
 		</div>
 	{/if}
 
-	<p>
-		A special thanks to <a class="link" href="https://cryptopanic.com/">CryptoPanic</a> for providing
-		the API data needed to make this page a reality.
-	</p>
+	<footer>
+		<p>
+			A special thanks to <a class="link" href="https://cryptopanic.com/">CryptoPanic</a> for providing
+			the API data needed to make this page a reality.
+		</p>
+	</footer>
 </div>
 
 <style>
@@ -149,6 +151,10 @@
 		border-top: 1px solid var(--color-grey-50);
 		margin-top: 24px;
 		padding-block: 8px;
+	}
+
+	footer {
+		margin-block: 24px;
 	}
 
 	@media screen and (min-width: 1000px) {
