@@ -123,12 +123,14 @@
 	.filter-buttons {
 		display: flex;
 		align-items: center;
+		gap: 8px;
 	}
 
 	.mobile-buttons {
 		display: flex;
 		align-items: center;
 		width: 100%;
+		gap: 8px;
 	}
 
 	.mobile-search {
@@ -151,7 +153,7 @@
 
 	@media screen and (min-width: 1000px) {
 		.toolbar {
-			gap: 12px;
+			gap: 32px;
 		}
 
 		.mobile-buttons {
@@ -165,7 +167,7 @@
 		.desktop-filters {
 			display: flex;
 			align-items: center;
-			gap: 12px;
+			gap: 24px;
 			width: 100%;
 		}
 	}

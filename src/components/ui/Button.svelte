@@ -27,7 +27,7 @@
 		class:medium={size === 'medium'}
 		class:primary={variant === 'primary'}
 	>
-		<div class:icon={$$slots.icon}>
+		<div class:icon={$$slots.icon && $$slots.default}>
 			<slot name="icon" />
 		</div>
 
@@ -42,7 +42,6 @@
 		max-width: fit-content;
 		font-family: var(--font-family);
 		padding: 0.5em 1em;
-		margin: 0.5em 0.25em;
 		background-color: var(--color-secondary);
 		border-radius: var(--border-radius);
 		color: #fff;
@@ -63,10 +62,6 @@
 	}
 
 	@media screen and (min-width: 1000px) {
-		.button {
-			margin: 1em 0.5em;
-		}
-
 		.button.medium {
 			font-size: 1rem;
 			padding: 0.75em 1.5em;

@@ -43,10 +43,17 @@
 
 <style>
 	.selected-filters {
-		margin-top: 12px;
+		display: flex;
+		gap: 8px;
+		margin-top: 8px;
+		padding-block: 8px;
 	}
 
 	@media screen and (min-width: 1000px) {
+		.selected-filters {
+			gap: 12px;
+		}
+
 		.search {
 			display: none;
 		}

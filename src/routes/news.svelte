@@ -22,9 +22,9 @@
 <div class="container">
 	<GlobalMarket />
 
-	<h1><ChiliIcon width={35} height={35} /> Paprika Viewer</h1>
+	<span class="logo"><ChiliIcon width={35} height={35} /> Paprika Viewer</span>
 
-	<h2>News</h2>
+	<h1>News</h1>
 
 	{#if news.length === 0}
 		<em>No news available</em>
@@ -35,12 +35,20 @@
 			{#each news as newsItem}
 				<div class="news-item">
 					<h2>{newsItem.title}</h2>
-					<p>{newsItem.published_at}</p>
-					<Button variant="primary" href={newsItem.url}>Read more</Button>
+					<p class="time">{newsItem.published_at}</p>
+					<Button variant="primary" size="medium" href={newsItem.url}>Read more</Button>
 
-					{#each newsItem.currencies as currency}
-						<Chip variant="secondary">{currency}</Chip>
-					{/each}
+					<div class="currencies">
+						{#if newsItem.currencies.length === 0}
+							<Chip variant="secondary">General</Chip>
+						{/if}
+
+						{#if newsItem.currencies.length > 0}
+							{#each newsItem.currencies as currency}
+								<Chip variant="secondary">{currency}</Chip>
+							{/each}
+						{/if}
+					</div>
 				</div>
 			{/each}
 		</div>
@@ -58,10 +66,27 @@
 		margin: 0 auto;
 	}
 
-	h1 {
+	.logo {
 		display: flex;
 		align-items: flex-end;
 		gap: 8px;
+		margin-block: 0.75em;
+		font-size: 1.75rem;
+	}
+
+	h1 {
+		font-size: 2rem;
+		margin-block: 1em;
+	}
+
+	h2 {
+		font-size: 1.25rem;
+		margin-bottom: 0;
+	}
+
+	.time {
+		color: var(--color-grey-25);
+		font-size: 1rem;
 	}
 
 	.link {
@@ -75,9 +100,21 @@
 	}
 
 	.news-item {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
 		background-color: var(--color-grey-100);
 		padding: 16px;
+		padding-bottom: 0px;
 		border-radius: 4px;
+	}
+
+	.currencies {
+		display: flex;
+		gap: 8px;
+		border-top: 1px solid var(--color-grey-50);
+		margin-top: 24px;
+		padding-block: 8px;
 	}
 
 	@media screen and (min-width: 1000px) {

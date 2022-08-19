@@ -24,8 +24,6 @@
 		color: #fff;
 		padding: 0.5rem;
 		border-radius: 8px;
-		margin-bottom: 12px;
-		margin-right: 8px;
 	}
 
 	.primary {

@@ -71,6 +71,7 @@
 		display: flex;
 		align-items: flex-end;
 		gap: 8px;
+		font-size: 1.75rem;
 	}
 
 	@media screen and (min-width: 1000px) {
