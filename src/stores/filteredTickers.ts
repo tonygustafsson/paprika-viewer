@@ -172,6 +172,8 @@ tickers.subscribe((tickersData) => {
 	if (tickersData.length <= 0) return;
 
 	filteredTickers.updateAll(tickersData);
+	filteredTickers.filter();
+	filteredTickers.sort();
 });
 
 filter.subscribe(() => {

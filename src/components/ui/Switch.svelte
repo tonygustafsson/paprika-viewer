@@ -20,7 +20,7 @@
 	input {
 		height: 0;
 		width: 0;
-		visibility: hidden;
+		display: none;
 	}
 
 	.switch {

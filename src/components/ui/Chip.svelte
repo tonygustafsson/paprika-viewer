@@ -1,26 +1,40 @@
 <script lang="ts">
+	export let variant: 'primary' | 'secondary' = 'primary';
+	export let showCloseIcon: boolean = false;
 </script>
 
-<div class="chip" on:click>
+<div
+	class="chip"
+	class:primary={variant === 'primary'}
+	class:chip-closable={showCloseIcon}
+	on:click
+>
 	<slot />
 
-	<div class="icon">&times;</div>
+	{#if showCloseIcon}
+		<div class="icon">&times;</div>
+	{/if}
 </div>
 
 <style>
 	.chip {
 		display: inline-flex;
 		align-items: center;
-		background-color: var(--color-red-500);
+		background-color: var(--color-grey-100);
 		color: #fff;
 		padding: 0.5rem;
 		border-radius: 8px;
-		cursor: pointer;
-		margin-bottom: 12px;
-		margin-right: 8px;
 	}
 
-	.chip:hover {
+	.primary {
+		background-color: var(--color-red-500);
+	}
+
+	.chip-closable {
+		cursor: pointer;
+	}
+
+	.chip-closable:hover {
 		background-color: var(--color-red-600);
 	}
 

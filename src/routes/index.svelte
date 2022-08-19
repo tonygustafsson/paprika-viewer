@@ -3,15 +3,15 @@
 
 	import { onMount } from 'svelte';
 
-	import Filter from '../components/Filter.svelte';
-	import GlobalMarket from '../components/GlobalMarket.svelte';
-	import ChiliIcon from '../components/icons/Chili.svelte';
+	import Header from '../components/Header.svelte';
+	import Toolbar from '../components/Toolbar.svelte';
 	import Loader from '../components/Loader.svelte';
 	import SelectedFilters from '../components/SelectedFilters.svelte';
 	import TickerInfoDialog from '../components/TickerInfoDialog.svelte';
 	import Tickers from '../components/Tickers.svelte';
 	import { columns } from '../stores/columns';
 	import { settings } from '../stores/settings';
+	import { filteredTickers } from '../stores/filteredTickers';
 	import { getTickers } from '../utils/getTickers';
 	import { getTags } from '../utils/getTags';
 	import type { Exchanges, GlobalMarket as GlobalMarketType } from 'src/types';
@@ -28,15 +28,18 @@
 		globalMarketStore.save(globalData);
 		exchangesStore.save(exchanges);
 
-		getTickers($settings.referenceCurrency).then(() => {
-			settings.subscribe(($newSettings) => {
-				if ($newSettings.referenceCurrency !== referenceCurrency) {
-					getTickers($newSettings.referenceCurrency);
-				}
+		if ($filteredTickers.length === 0) {
+			// Avoid refetching tickers if they are already in the store
+			getTickers($settings.referenceCurrency).then(() => {
+				settings.subscribe(($newSettings) => {
+					if ($newSettings.referenceCurrency !== referenceCurrency) {
+						getTickers($newSettings.referenceCurrency);
+					}
 
-				referenceCurrency = $newSettings.referenceCurrency;
+					referenceCurrency = $newSettings.referenceCurrency;
+				});
 			});
-		});
+		}
 	});
 
 	$: if (!$settings.loading && $columns.tags) {
@@ -44,15 +47,17 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Tickers - Paprika Viewer</title>
+</svelte:head>
+
 <Loader />
 
 <div class="container">
-	<GlobalMarket />
-
-	<h1><ChiliIcon width={35} height={35} /> Paprika Viewer</h1>
+	<Header isStartPage />
 
 	{#if !$settings.loading}
-		<Filter />
+		<Toolbar />
 		<SelectedFilters />
 
 		<Tickers />
@@ -65,12 +70,6 @@
 	.container {
 		width: 100%;
 		margin: 0 auto;
-	}
-
-	h1 {
-		display: flex;
-		align-items: flex-end;
-		gap: 8px;
 	}
 
 	@media screen and (min-width: 1000px) {
