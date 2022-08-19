@@ -20,7 +20,7 @@
 	.chip {
 		display: inline-flex;
 		align-items: center;
-		background-color: var(--color-grey-500);
+		background-color: var(--color-grey-100);
 		color: #fff;
 		padding: 0.5rem;
 		border-radius: 8px;

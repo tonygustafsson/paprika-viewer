@@ -12,7 +12,13 @@ const getNewsFromApi = async () => {
 
 	const output: NewsItem[] = (newsResponse.results || []).map((newsItem) => ({
 		title: newsItem.title,
-		published_at: new Date(newsItem.published_at).toLocaleString('sv-SE'),
+		published_at: new Date(newsItem.published_at).toLocaleString('sv-SE', {
+			month: '2-digit',
+			day: '2-digit',
+			year: 'numeric',
+			hour: 'numeric',
+			minute: 'numeric'
+		}),
 		currencies: (newsItem.currencies || []).map((currency) => currency.title),
 		url: newsItem.url
 	}));

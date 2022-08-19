@@ -9,6 +9,7 @@
 	import Chip from '../components/ui/Chip.svelte';
 	import Button from '../components/ui/Button.svelte';
 	import BookIcon from '../components/icons/Book.svelte';
+	import SpeechBubbleIcon from '../components/icons/SpeechBubble.svelte';
 
 	// Fetched from endpoint index.ts
 	export let globalData: GlobalMarketType;
@@ -48,13 +49,13 @@
 
 						<Button target="_blank" variant="secondary" href={newsItem.url}>
 							<div slot="icon" class="icon">
-								<BookIcon width={16} height={16} />
+								<SpeechBubbleIcon width={16} height={16} />
 							</div>
 							Discuss on CryptoPanic
 						</Button>
 					</div>
 
-					<div class="currencies">
+					<div class="info-bar">
 						{#if newsItem.currencies.length === 0}
 							<Chip variant="secondary">General</Chip>
 						{/if}
@@ -65,7 +66,7 @@
 							{/each}
 						{/if}
 
-						<p class="time">{newsItem.published_at}</p>
+						<time class="time">{newsItem.published_at}</time>
 					</div>
 				</div>
 			{/each}
@@ -90,7 +91,7 @@
 	}
 
 	h2 {
-		font-size: 1.25rem;
+		font-size: 1.1rem;
 	}
 
 	h2 a {
@@ -104,7 +105,7 @@
 
 	.button-wrapper {
 		display: flex;
-		align-items: center;
+		flex-direction: column;
 		gap: 12px;
 	}
 
@@ -133,14 +134,17 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
-		background-color: var(--color-grey-100);
+		background-color: var(--color-grey-500);
 		padding: 16px;
 		padding-bottom: 0px;
+		border: 1px solid var(--color-grey-200);
 		border-radius: 4px;
 	}
 
-	.currencies {
+	.info-bar {
 		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
 		gap: 8px;
 		border-top: 1px solid var(--color-grey-50);
 		margin-top: 24px;
@@ -156,6 +160,15 @@
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr;
 			gap: 16px;
+		}
+
+		.button-wrapper {
+			flex-direction: row;
+			align-items: center;
+		}
+
+		h2 {
+			font-size: 1.25rem;
 		}
 	}
 </style>
